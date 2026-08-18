@@ -1,0 +1,46 @@
+{
+  "run_id": "20260817_213038_v0_smoke",
+  "start_time": "2026-08-17T13:30:38.785544+00:00",
+  "status": "completed",
+  "git_branch_name": "",
+  "git_commit_sha": "",
+  "git_status_porcelain": [],
+  "git_is_dirty": false,
+  "mode": "baseline",
+  "experiment_name": "v0_smoke",
+  "benchmark_alias": "",
+  "config_path": "/root/autodl-tmp/rp_lora_v0/configs/smoke_instrdialog.yaml",
+  "config_snapshot_path": "results/runs/20260817_213038_v0_smoke/config_snapshot.yaml",
+  "dataset_path": "citb_cl_dialogue_tasks_train50_eval10.json",
+  "dataset_sha256": "",
+  "tokenizer_path_or_name": "assets/pretrained/Meta-Llama-3.1-8B-Instruct",
+  "model_path_or_name": "assets/pretrained/Meta-Llama-3.1-8B-Instruct",
+  "lora_config": {
+    "enabled": true,
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "train_config": {
+    "epochs_per_segment": 1,
+    "batch_size": 2,
+    "lr": 0.0002,
+    "weight_decay": 0.0,
+    "grad_clip_norm": 1.0,
+    "log_every": 50
+  },
+  "modules_config": {},
+  "run_dir": "results/runs/20260817_213038_v0_smoke",
+  "artifacts_generated_in_run": [
+    "results/runs/20260817_213038_v0_smoke/config_snapshot.yaml",
+    "results/logs/20260817_213038_v0_smoke.log",
+    "results/runs/20260817_213038_v0_smoke/run_manifest.json",
+    "results/runs/20260817_213038_v0_smoke/final_metrics.json",
+    "results/tables/20260817_213038_v0_smoke_segment_metrics.csv"
+  ],
+  "end_time": "2026-08-17T13:31:03.142254+00:00"
+}

@@ -1,0 +1,157 @@
+{
+  "current_score": 1.0,
+  "seen_avg_score": 0.36,
+  "current_task_aware_score": 1.0,
+  "seen_avg_task_aware_score": 0.36,
+  "forgetting": 0.07500000000000001,
+  "task_aware_forgetting": 0.07500000000000001,
+  "num_seen_segments": 5,
+  "token_f1_mean": 0.35855917256331576,
+  "lcs_overlap_mean": 0.35777388682221095,
+  "rouge_l_mean": 0.35216951270750974,
+  "bleu_mean": 0.37987626767654237,
+  "slot_error_rate": 0.0,
+  "extra": {
+    "per_segment_accuracy": [
+      {
+        "segment_id": 0,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 1,
+        "accuracy": 0.1
+      },
+      {
+        "segment_id": 2,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 3,
+        "accuracy": 0.7
+      },
+      {
+        "segment_id": 4,
+        "accuracy": 1.0
+      }
+    ],
+    "per_segment_task_aware_accuracy": [
+      {
+        "segment_id": 0,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 1,
+        "task_aware_accuracy": 0.1
+      },
+      {
+        "segment_id": 2,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 3,
+        "task_aware_accuracy": 0.7
+      },
+      {
+        "segment_id": 4,
+        "task_aware_accuracy": 1.0
+      }
+    ],
+    "anytime_score": 0.36,
+    "anytime_task_aware_score": 0.36,
+    "forgetting_by_segment": [
+      {
+        "segment_id": 0,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 1,
+        "accuracy": 0.1,
+        "best_historical_accuracy": 0.1,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 2,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 3,
+        "accuracy": 0.7,
+        "best_historical_accuracy": 1.0,
+        "forgetting": 0.30000000000000004
+      },
+      {
+        "segment_id": 4,
+        "accuracy": 1.0,
+        "best_historical_accuracy": 1.0,
+        "forgetting": 0.0
+      }
+    ],
+    "task_aware_forgetting_by_segment": [
+      {
+        "segment_id": 0,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.0,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 1,
+        "task_aware_accuracy": 0.1,
+        "best_historical_task_aware_accuracy": 0.1,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 2,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.0,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 3,
+        "task_aware_accuracy": 0.7,
+        "best_historical_task_aware_accuracy": 1.0,
+        "task_aware_forgetting": 0.30000000000000004
+      },
+      {
+        "segment_id": 4,
+        "task_aware_accuracy": 1.0,
+        "best_historical_task_aware_accuracy": 1.0,
+        "task_aware_forgetting": 0.0
+      }
+    ],
+    "routing": {
+      "num_routed": 0,
+      "branch_counts": {},
+      "oracle_best_branch_counts": {},
+      "oracle_agreement_count": 0,
+      "oracle_num_examples": 0,
+      "confidence_sum": 0.0,
+      "entropy_sum": 0.0,
+      "oracle_margin_sum": 0.0,
+      "branch_utilization": {},
+      "decision_confidence_mean": 0.0,
+      "decision_entropy_mean": 0.0,
+      "oracle_agreement_rate": 0.0,
+      "oracle_margin_mean": 0.0
+    },
+    "token_f1_mean": 0.35855917256331576,
+    "lcs_overlap_mean": 0.35777388682221095,
+    "rouge_l_mean": 0.35216951270750974,
+    "bleu_mean": 0.37987626767654237,
+    "slot_error_rate": 0.0,
+    "slot_error_count": 0,
+    "task_aware_score_mean": 0.2608695652173913,
+    "task_score_type_counts": {
+      "strict_em": 50,
+      "label_accuracy": 19
+    },
+    "prefix_1_match_mean": 0.3333333333333333,
+    "prefix_3_match_mean": 0.2753623188405797,
+    "prefix_5_match_mean": 0.2608695652173913,
+    "num_bad_prefix_mismatch": 50,
+    "likely_assistant_start_or_continuation_boundary": true
+  }
+}

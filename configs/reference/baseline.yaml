@@ -1,0 +1,76 @@
+experiment_name: "citb_baselines"
+mode: "baseline"  # debug | baseline | ours
+
+seed: 123
+
+baseline_name: "sequential_lora"
+# 可选：
+# - sequential_lora
+# - replay_lora
+# - periodic_multilora
+# - router_only
+# - bank_no_router   (重要：无独立 baselines/ 子目录，通过该模式走统一管线)
+
+paths:
+  project_root: "."
+  processed_stream_dir: "data/processed"
+  processed_stream_file: ""     # 若为空，代码会尝试在 processed_stream_dir 下自动寻找
+  assets_dir: "assets"
+  results_dir: "results"
+
+data:
+  # 真实实验：指向 data/processed 的 CITB 流式文件（建议 JSON）
+  stream_format: "citb_processed"
+  split: "default"
+  max_segments: -1
+  max_train_examples_per_segment: -1
+  max_eval_examples_per_segment: -1
+
+model:
+  backbone_name: "llama31-8b-instruct"
+  # 建议将模型权重放在 assets/pretrained 下，或直接指向你的 HF cache
+  hf_model_name_or_path: "assets/pretrained/meta-llama/Llama-3.1-8B-Instruct"
+  torch_dtype: "bfloat16"
+  device: "auto"
+
+lora:
+  enabled: true
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: ["q_proj", "v_proj"]
+  # 未来可扩展：per-layer list / regex / exclude list 等
+
+train:
+  epochs_per_segment: 1
+  batch_size: 2
+  lr: 2.0e-4
+  weight_decay: 0.0
+  grad_clip_norm: 1.0
+  log_every: 50
+
+replay:
+  enabled: false            # 由 baseline_name 自动覆盖；也可手动强制
+  buffer_size: 256
+  replay_ratio: 0.3         # 每个 batch 混入 replay 的比例（简化实现）
+  strategy: "uniform"       # uniform | recent | reservoir（未来可加）
+
+periodic:
+  enabled: false
+  spawn_every_segments: 2   # periodic_multilora：每隔 N 段 spawn 新 LoRA 分支
+  max_branches: 8
+
+router:
+  enabled: false
+  hard_routing: true
+  pseudo_label_strategy: "self_consistency"  # 未来：entropy_min / margin / distill
+  temperature: 1.0
+  num_initial_branches: 3     # router_only：预先创建的分支数（简化：b0,b1,b2）
+  # router_only / bank_no_router / ours 会使用 bank/router 子模块；baseline 这里也保留统一参数位
+
+output:
+  run_name: ""
+  save_every_segment: true
+  write_tables: true
+  write_logs: true
+

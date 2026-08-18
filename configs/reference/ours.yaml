@@ -1,0 +1,74 @@
+experiment_name: "citb_ours"
+mode: "ours"  # debug | baseline | ours
+
+seed: 2026
+
+paths:
+  project_root: "."
+  processed_stream_dir: "data/processed"
+  processed_stream_file: ""
+  assets_dir: "assets"
+  results_dir: "results"
+
+data:
+  stream_format: "citb_processed"
+  max_segments: -1
+  max_train_examples_per_segment: -1
+  max_eval_examples_per_segment: -1
+
+model:
+  backbone_name: "llama31-8b-instruct"
+  hf_model_name_or_path: "assets/pretrained/meta-llama/Llama-3.1-8B-Instruct"
+  torch_dtype: "bfloat16"
+  device: "auto"
+
+lora:
+  enabled: true
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: ["q_proj", "v_proj"]
+
+train:
+  epochs_per_segment: 1
+  batch_size: 2
+  lr: 2.0e-4
+  weight_decay: 0.0
+  grad_clip_norm: 1.0
+  log_every: 50
+
+output:
+  run_name: ""
+  save_every_segment: true
+  write_tables: true
+  write_logs: true
+
+# 通过这里的模块开关完成消融（不改代码结构）
+modules:
+  use_drift_detector: true
+  use_lora_bank: true
+  use_router: true
+  use_overlap_loss: true
+
+drift:
+  anchor_size: 64
+  monitor_interval: 50
+  calibration_window: 200
+  threshold: 0.15
+  score_ema: 0.9
+
+bank:
+  max_branches: 8
+  spawn_on_drift: true
+  freeze_old_branches: true
+
+router:
+  hard_routing: true
+  pseudo_label_strategy: "self_consistency"
+  temperature: 1.0
+  router_warmup_segments: 1
+
+overlap:
+  beta: 0.1
+  # 简化实现：用“激活向量余弦相似度惩罚”作为多分支 anti-overlap 代理
+

@@ -1,0 +1,177 @@
+{
+  "current_score": 0.0,
+  "seen_avg_score": 0.049999999999999996,
+  "current_task_aware_score": 0.3333333333333333,
+  "seen_avg_task_aware_score": 0.10555555555555556,
+  "forgetting": 0.36,
+  "task_aware_forgetting": 0.36,
+  "num_seen_segments": 6,
+  "token_f1_mean": 0.16502582358831205,
+  "lcs_overlap_mean": 0.3299821631692976,
+  "rouge_l_mean": 0.15658333163634577,
+  "bleu_mean": 0.16773832071524541,
+  "slot_error_rate": 0.0,
+  "extra": {
+    "per_segment_accuracy": [
+      {
+        "segment_id": 0,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 1,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 2,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 3,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 4,
+        "accuracy": 0.3
+      },
+      {
+        "segment_id": 5,
+        "accuracy": 0.0
+      }
+    ],
+    "per_segment_task_aware_accuracy": [
+      {
+        "segment_id": 0,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 1,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 2,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 3,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 4,
+        "task_aware_accuracy": 0.3
+      },
+      {
+        "segment_id": 5,
+        "task_aware_accuracy": 0.3333333333333333
+      }
+    ],
+    "anytime_score": 0.049999999999999996,
+    "anytime_task_aware_score": 0.10555555555555556,
+    "forgetting_by_segment": [
+      {
+        "segment_id": 0,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 1,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.1,
+        "forgetting": 0.1
+      },
+      {
+        "segment_id": 2,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 3,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 1.0,
+        "forgetting": 1.0
+      },
+      {
+        "segment_id": 4,
+        "accuracy": 0.3,
+        "best_historical_accuracy": 1.0,
+        "forgetting": 0.7
+      },
+      {
+        "segment_id": 5,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      }
+    ],
+    "task_aware_forgetting_by_segment": [
+      {
+        "segment_id": 0,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.0,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 1,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.1,
+        "task_aware_forgetting": 0.1
+      },
+      {
+        "segment_id": 2,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.0,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 3,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 1.0,
+        "task_aware_forgetting": 1.0
+      },
+      {
+        "segment_id": 4,
+        "task_aware_accuracy": 0.3,
+        "best_historical_task_aware_accuracy": 1.0,
+        "task_aware_forgetting": 0.7
+      },
+      {
+        "segment_id": 5,
+        "task_aware_accuracy": 0.3333333333333333,
+        "best_historical_task_aware_accuracy": 0.3333333333333333,
+        "task_aware_forgetting": 0.0
+      }
+    ],
+    "routing": {
+      "num_routed": 0,
+      "branch_counts": {},
+      "oracle_best_branch_counts": {},
+      "oracle_agreement_count": 0,
+      "oracle_num_examples": 0,
+      "confidence_sum": 0.0,
+      "entropy_sum": 0.0,
+      "oracle_margin_sum": 0.0,
+      "branch_utilization": {},
+      "decision_confidence_mean": 0.0,
+      "decision_entropy_mean": 0.0,
+      "oracle_agreement_rate": 0.0,
+      "oracle_margin_mean": 0.0
+    },
+    "token_f1_mean": 0.16502582358831205,
+    "lcs_overlap_mean": 0.3299821631692976,
+    "rouge_l_mean": 0.15658333163634577,
+    "bleu_mean": 0.16773832071524541,
+    "slot_error_rate": 0.0,
+    "slot_error_count": 0,
+    "task_aware_score_mean": 0.08641975308641975,
+    "task_score_type_counts": {
+      "strict_em": 52,
+      "label_accuracy": 29
+    },
+    "prefix_1_match_mean": 0.12345679012345678,
+    "prefix_3_match_mean": 0.037037037037037035,
+    "prefix_5_match_mean": 0.037037037037037035,
+    "num_bad_prefix_mismatch": 71,
+    "likely_assistant_start_or_continuation_boundary": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "batches": 46,
+  "mean_batch_acc": 0.010869565217391304,
+  "train.loss": 2.1608268696328867,
+  "train.answer_token_acc": 0.48874818253940616,
+  "num_total_tokens": 8674,
+  "num_supervised_tokens": 658,
+  "grad_norm": 7.837003901133079,
+  "lr": 0.00019999999999999996,
+  "active_adapter": "default"
+}

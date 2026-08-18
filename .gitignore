@@ -1,0 +1,6 @@
+# 模型权重(15G,通过 modelscope 下载,不入库)
+assets/
+
+# Python
+__pycache__/
+*.pyc
