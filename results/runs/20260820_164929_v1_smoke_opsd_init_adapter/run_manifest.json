@@ -1,0 +1,66 @@
+{
+  "run_id": "20260820_164929_v1_smoke_opsd_init_adapter",
+  "start_time": "2026-08-20T08:49:29.550184+00:00",
+  "status": "completed",
+  "git_branch_name": "main",
+  "git_commit_sha": "a6dc1e6b43662af9d8e99e2188b1d3944664e83b",
+  "git_status_porcelain": [
+    "M configs/v0_sequential_instrdialog.yaml",
+    " M configs/v0_sequential_instrdialogpp.yaml",
+    " M core/formatting.py",
+    " M core/models/base_model.py",
+    " M core/models/lora_wrapper.py",
+    " M core/train.py",
+    "?? 2026-08-20-selina.md",
+    "?? baselines/basic_baselines/opsd/",
+    "?? configs/smoke_opsd.yaml",
+    "?? configs/smoke_opsd_init_adapter.yaml",
+    "?? configs/v1_opsd_instrdialog.yaml",
+    "?? configs/v1_opsd_instrdialogpp.yaml",
+    "?? configs/v1_sft_opsd_instrdialog.yaml",
+    "?? configs/v1_sft_opsd_instrdialogpp.yaml",
+    "?? results/logs/20260820_164929_v1_smoke_opsd_init_adapter.log",
+    "?? results/logs/smoke_opsd.log",
+    "?? results/runs/20260820_164929_v1_smoke_opsd_init_adapter/",
+    "?? results/runs/smoke_opsd/",
+    "?? results/tables/smoke_opsd_segment_metrics.csv"
+  ],
+  "git_is_dirty": true,
+  "mode": "baseline",
+  "experiment_name": "v1_smoke_opsd_init_adapter",
+  "benchmark_alias": "",
+  "config_path": "/root/autodl-tmp/rp_lora_v0/configs/smoke_opsd_init_adapter.yaml",
+  "config_snapshot_path": "results/runs/20260820_164929_v1_smoke_opsd_init_adapter/config_snapshot.yaml",
+  "dataset_path": "citb_cl_dialogue_tasks_train50_eval10.json",
+  "dataset_sha256": "",
+  "tokenizer_path_or_name": "assets/pretrained/Meta-Llama-3.1-8B-Instruct",
+  "model_path_or_name": "assets/pretrained/Meta-Llama-3.1-8B-Instruct",
+  "lora_config": {
+    "enabled": true,
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "train_config": {
+    "epochs_per_segment": 1,
+    "batch_size": 2,
+    "lr": 0.0002,
+    "weight_decay": 0.0,
+    "grad_clip_norm": 1.0,
+    "log_every": 50
+  },
+  "modules_config": {},
+  "run_dir": "results/runs/20260820_164929_v1_smoke_opsd_init_adapter",
+  "artifacts_generated_in_run": [
+    "results/runs/20260820_164929_v1_smoke_opsd_init_adapter/config_snapshot.yaml",
+    "results/logs/20260820_164929_v1_smoke_opsd_init_adapter.log",
+    "results/runs/20260820_164929_v1_smoke_opsd_init_adapter/run_manifest.json",
+    "results/runs/20260820_164929_v1_smoke_opsd_init_adapter/final_metrics.json",
+    "results/tables/20260820_164929_v1_smoke_opsd_init_adapter_segment_metrics.csv"
+  ],
+  "end_time": "2026-08-20T08:49:36.853111+00:00"
+}

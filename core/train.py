@@ -469,6 +469,12 @@ def run_baseline(
     debug_tools = cfg.get("debug_tools", {}) if isinstance(cfg.get("debug_tools", {}), dict) else {}
     normalization_cfg = cfg.get("eval_normalization", {}) if isinstance(cfg.get("eval_normalization", {}), dict) else {}
 
+    # Optional warm-start: load a previously saved adapter (e.g. SFT weights for OPSD runs).
+    init_adapter_path = str(model_cfg.get("init_adapter_path", "")).strip()
+    if init_adapter_path:
+        lora.load_adapter_checkpoint(init_adapter_path)
+        logger.log(f"Loaded initial adapter from: {init_adapter_path}")
+
     seen_segments: List[Segment] = []
     historical_best_per_segment: Dict[int, float] = {}
     historical_best_task_aware_per_segment: Dict[int, float] = {}
@@ -621,12 +627,21 @@ def run_baseline(
         if tracker is not None:
             tracker.log_segment_row(row)
 
+    # Optional: persist the final adapter weights (e.g. SFT adapters later reused by OPSD runs).
+    output_cfg = cfg.get("output", {}) if isinstance(cfg.get("output", {}), dict) else {}
+    final_adapter_dir = ""
+    if bool(output_cfg.get("save_final_adapter", False)):
+        final_adapter_dir = str(Path(run_paths.run_dir) / "final_adapter")
+        lora.save_adapter_checkpoint(final_adapter_dir)
+        logger.log(f"Saved final adapter: {final_adapter_dir}")
+
     final = segment_metrics_rows[-1] if segment_metrics_rows else {}
     return {
         "run_id": run_paths.run_id,
         "mode": mode,
         "baseline_name": baseline_name,
         "final": final,
+        "final_adapter_dir": final_adapter_dir,
         "drift_quality": _summarize_drift_proxy_quality(stream, drift if baseline_name == "bank_no_router" else None),
         "routing_quality": (
             (last_eval_metrics.get("extra", {}) if isinstance(last_eval_metrics.get("extra", {}), dict) else {}).get("routing", {})
@@ -974,6 +989,10 @@ def _build_baseline_method(baseline_name: str, cfg: Dict[str, Any]) -> Any:
         from baselines.basic_baselines.sequential_lora.method import SequentialLoRAMethod
 
         return SequentialLoRAMethod(cfg)
+    if baseline_name == "opsd":
+        from baselines.basic_baselines.opsd.method import OPSDMethod
+
+        return OPSDMethod(cfg)
     if baseline_name == "replay_lora":
         from baselines.basic_baselines.replay_lora.method import ReplayLoRAMethod
 
@@ -1007,7 +1026,7 @@ def _build_baseline_method(baseline_name: str, cfg: Dict[str, Any]) -> Any:
         return ContinualT0Method(cfg)
     raise ValueError(
         "Unknown baseline_name. Expected one of: "
-        "sequential_lora | replay_lora | periodic_multilora | router_only | bank_no_router | "
+        "sequential_lora | opsd | replay_lora | periodic_multilora | router_only | bank_no_router | "
         "o_lora | lb_cl | progressive_prompts | continual_t0"
     )
 

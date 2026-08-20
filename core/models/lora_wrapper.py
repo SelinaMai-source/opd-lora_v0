@@ -16,6 +16,12 @@ import peft.tuners.lora.layer
 _original_lora_linear_forward = peft.tuners.lora.layer.Linear.forward
 
 def _cdma_lora_forward(self, x: torch.Tensor, *args: Any, **kwargs: Any) -> torch.Tensor:
+    # Respect PEFT's adapter enable/disable toggle (e.g. the `peft_model.disable_adapter()`
+    # context used for frozen-base teacher forwards). Without this check the patched forward
+    # would keep adding the LoRA delta even while adapters are meant to be disabled.
+    if getattr(self, "disable_adapters", False):
+        return _original_lora_linear_forward(self, x, *args, **kwargs)
+
     soft_adapters = getattr(self, "_soft_routing_adapters", None)
     
     # We always use CDMA on top of either soft adapters or standard active adapters

@@ -61,8 +61,9 @@ router:
   num_initial_branches: 3
 
 output:
-  run_name: ""
+  run_name: "v0_sft_instrdialogpp"  # 固定名：v1_sft_opsd_instrdialogpp 的 init_adapter_path 引用该 run 的 final_adapter
   save_every_segment: true
+  save_final_adapter: true  # 训练结束保存最终 adapter 到 <run_dir>/final_adapter（v1_SFT_OPSD 初始化用）
   write_tables: true
   write_logs: true
   tracking:

@@ -79,6 +79,21 @@ class BaseBackbone:
         """
         raise NotImplementedError
 
+    def sample_rollouts(
+        self,
+        prompts: List[str],
+        max_new_tokens: Optional[int] = None,
+        *,
+        temperature: float = 1.0,
+        top_p: float = 1.0,
+    ) -> List[List[int]]:
+        """Sample one continuation per prompt; returns de-padded continuation token ids (no decode round-trip)."""
+        raise NotImplementedError
+
+    def forward_logits(self, input_ids: Any, attention_mask: Any) -> Any:
+        """Run a forward pass and return logits [B, T, V] (gradient behavior follows the caller's context)."""
+        raise NotImplementedError
+
     def get_activations(self, prompts: List[str]) -> List[List[float]]:
         """Return per-prompt activation vectors (used by overlap/diversity regularization)."""
         raise NotImplementedError
@@ -840,6 +855,8 @@ class HFCausalLMBackbone(BaseBackbone):
         *,
         num_beams: Optional[int] = None,
         do_sample: Optional[bool] = None,
+        temperature: Optional[float] = None,
+        top_p: Optional[float] = None,
     ) -> Any:
         from transformers import GenerationConfig
 
@@ -847,6 +864,8 @@ class HFCausalLMBackbone(BaseBackbone):
         eos_id = int(self.tokenizer.eos_token_id) if self.tokenizer.eos_token_id is not None else None
         nb = int(num_beams) if num_beams is not None else int(self.cfg.gen_num_beams)
         ds = bool(self.cfg.gen_do_sample) if do_sample is None else bool(do_sample)
+        temp = 1.0 if temperature is None else float(temperature)
+        tp = 1.0 if top_p is None else float(top_p)
         return GenerationConfig(
             max_new_tokens=int(max_new_tokens),
             do_sample=ds,
@@ -854,8 +873,8 @@ class HFCausalLMBackbone(BaseBackbone):
             pad_token_id=pad_id,
             eos_token_id=eos_id,
             use_cache=True,
-            temperature=1.0,
-            top_p=1.0,
+            temperature=temp,
+            top_p=tp,
             early_stopping=nb > 1,
         )
 
@@ -948,7 +967,15 @@ class HFCausalLMBackbone(BaseBackbone):
             self.model.train()
         return text
 
-    def generate_with_ids(self, prompts: List[str], max_new_tokens: int = 64) -> List[Dict[str, Any]]:
+    def generate_with_ids(
+        self,
+        prompts: List[str],
+        max_new_tokens: int = 64,
+        *,
+        do_sample: Optional[bool] = None,
+        temperature: Optional[float] = None,
+        top_p: Optional[float] = None,
+    ) -> List[Dict[str, Any]]:
         import torch
         from transformers import GenerationConfig
 
@@ -967,7 +994,9 @@ class HFCausalLMBackbone(BaseBackbone):
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
         prompt_width = int(inputs["input_ids"].shape[1])
 
-        gen_cfg = self._make_generation_config(max_new_tokens, num_beams=None)
+        gen_cfg = self._make_generation_config(
+            max_new_tokens, num_beams=None, do_sample=do_sample, temperature=temperature, top_p=top_p
+        )
 
         with torch.no_grad():
             outputs = self.model.generate(**inputs, generation_config=gen_cfg)
@@ -1004,6 +1033,74 @@ class HFCausalLMBackbone(BaseBackbone):
         if was_training:
             self.model.train()
         return results
+
+    def sample_rollouts(
+        self,
+        prompts: List[str],
+        max_new_tokens: Optional[int] = None,
+        *,
+        temperature: float = 1.0,
+        top_p: float = 1.0,
+    ) -> List[List[int]]:
+        """
+        On-policy sampling for OPSD: one sampled continuation per prompt (do_sample=True).
+
+        Returns continuation token ids per sample, sliced by the padded prompt width (same
+        convention as `generate`/`generate_with_ids`) and trimmed: everything up to and
+        including the first EOS is kept; trailing pad tokens are dropped. No decode +
+        re-tokenize round-trip, so ids can be concatenated onto prompt ids directly.
+        """
+        import torch
+
+        was_training = self.model.training
+        self.model.eval()
+
+        max_new = int(max_new_tokens) if max_new_tokens else int(self.cfg.gen_max_new_tokens)
+        inputs = self.tokenizer(
+            prompts,
+            padding=True,
+            truncation=True,
+            max_length=int(self.cfg.max_seq_len),
+            # Prompts are preformatted chat-template strings; adding special tokens again duplicates BOS.
+            add_special_tokens=False,
+            return_tensors="pt",
+        )
+        inputs = {k: v.to(self.device) for k, v in inputs.items()}
+        prompt_width = int(inputs["input_ids"].shape[1])
+
+        gen_cfg = self._make_generation_config(
+            max_new, num_beams=1, do_sample=True, temperature=temperature, top_p=top_p
+        )
+
+        with torch.no_grad():
+            outputs = self.model.generate(**inputs, generation_config=gen_cfg)
+
+        pad_id = int(self.tokenizer.pad_token_id) if self.tokenizer.pad_token_id is not None else -1
+        eos_id = int(self.tokenizer.eos_token_id) if self.tokenizer.eos_token_id is not None else pad_id
+
+        results: List[List[int]] = []
+        for i in range(outputs.shape[0]):
+            continuation = outputs[i, prompt_width:].detach().cpu().tolist()
+            trimmed: List[int] = []
+            for tid in continuation:
+                tid = int(tid)
+                trimmed.append(tid)
+                if tid == eos_id:
+                    break
+            else:
+                # No EOS generated (hit max_new_tokens): drop trailing pads if any.
+                while trimmed and trimmed[-1] == pad_id:
+                    trimmed.pop()
+            results.append(trimmed)
+
+        if was_training:
+            self.model.train()
+        return results
+
+    def forward_logits(self, input_ids: Any, attention_mask: Any) -> Any:
+        """Forward pass returning logits [B, T, V]. Callers control grad (no_grad) and adapter state."""
+        outputs = self.model(input_ids=input_ids, attention_mask=attention_mask, return_dict=True)
+        return outputs.logits
 
     def get_activations(self, prompts: List[str]) -> List[List[float]]:
         pooled = self.get_activations_tensor(prompts, with_grad=False)

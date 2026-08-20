@@ -1,4 +1,29 @@
-# RP-LoRA v0 进度存档(2026-08-17 22:25)
+# RP-LoRA v0 进度存档(2026-08-17 22:25;2026-08-20 追加 v1)
+
+## v1 OPSD 对比实验(2026-08-20 完成)
+
+- [x] OPSD 实现:on-policy 采样 + student/teacher 双 forward + 逐 token JSD(β=0.5);core/formatting.py(format_for_teacher)、core/models/base_model.py(sample_rollouts/forward_logits)、baselines/basic_baselines/opsd/method.py、core/train.py 注册、adapter 存取链路(output.save_final_adapter / model.init_adapter_path)
+- [x] 6 个正式 run 全部完成:SFT 重跑 v0_sft_instrdialog / v0_sft_instrdialogpp(产出 final_adapter),v1_OPSD 两条流(20260820_172934/174143),v1_SFT_OPSD 两条流(20260820_181411/182823)
+
+### v1 最终结果(seen_avg strict EM / forgetting,提取自 final_metrics.json)
+
+| 方法 | InstrDialog Score/F | InstrDialog++ Score/F |
+|---|---|---|
+| v0_LoRA_SFT(本次重跑) | 34.65% / 0.089 | 28.50% / 0.180 |
+| v1_OPSD(fresh LoRA) | 28.86% / 0.128 | 22.31% / 0.171 |
+| v1_SFT_OPSD(SFT adapter 初始化) | **1.05% / 0.367(末段崩盘)** | **30.03% / 0.084** |
+
+### v1 结论
+
+1. v1_OPSD 两条流稳定训练无崩盘但绝对分数低于 SFT 系 5.8/6.2 pp → 仅 on-policy 蒸馏不足以替代 SFT 起点
+2. v1_SFT_OPSD 在 instrdialog++ 上 Score 与抗遗忘双优(30.03% > 28.50%,F 0.084 << 0.180)→ SFT 之上加 OPSD 有效
+3. **重要异常**:v1_SFT_OPSD 在 instrdialog 末段(segment 18, task1600_smcalflow)训练后 strict EM 由 0.2944 崩至 0.0105(F 0.367);训练侧 loss/grad_norm 正常、同段 v0/v1_OPSD 均不崩 → 经诊断排除 bug,属真实剧烈遗忘;SFT 初始化对 OPSD 是双刃剑
+
+完整报告:/root/autodl-tmp/docs/v1_experiment_report.md;GitHub v1 分支:experiments/v1_OPSD/ 与 experiments/v1_SFT_OPSD/
+
+---
+
+# 以下为 v0 存档(2026-08-17 22:25)
 
 ## 当前状态:v0 baseline 已完成,指标正常
 - [x] rp_lora_v0 目录已组装:core/(v3 完整栈)、baselines/(commit d711d91 旧布局)、data/processed/(instrdialog 19 段 + instrdialog++ 38 段,与 v3 同源)

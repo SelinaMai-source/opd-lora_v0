@@ -38,6 +38,30 @@ def format_for_infer(
     )
 
 
+TEACHER_TRANSITION_INSTRUCTION = (
+    "The reference output above is one valid response rather than the only acceptable wording. "
+    "Use it to understand the intended meaning, tone, and degree of brevity.\n\n"
+    "Now answer the original task. Do not quote, discuss, or mention the reference output. "
+    "Return only the requested response."
+)
+
+
+def format_for_teacher(tokenizer: Any, instruction: str, input_text: str, reference: str) -> str:
+    """OPSD teacher prompt: student prompt + privileged reference + transition instruction."""
+    user_content = build_user_content(instruction, input_text)
+    ref = str(reference or "").strip()
+    user_content = (
+        f"{user_content}\n\n"
+        f"<privileged_reference_output>\n{ref}\n</privileged_reference_output>\n\n"
+        f"{TEACHER_TRANSITION_INSTRUCTION}"
+    )
+    return tokenizer.apply_chat_template(
+        [{"role": "user", "content": user_content}],
+        tokenize=False,
+        add_generation_prompt=True,
+    )
+
+
 def format_for_train(tokenizer: Any, instruction: str, input_text: str, target: str) -> Dict[str, str]:
     prompt_text = format_for_infer(tokenizer, instruction, input_text)
     full_text = tokenizer.apply_chat_template(

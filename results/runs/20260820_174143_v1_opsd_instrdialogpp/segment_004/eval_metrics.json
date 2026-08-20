@@ -1,0 +1,158 @@
+{
+  "current_score": 0.0,
+  "seen_avg_score": 0.12,
+  "current_task_aware_score": 0.0,
+  "seen_avg_task_aware_score": 0.13999999999999999,
+  "forgetting": 0.225,
+  "task_aware_forgetting": 0.225,
+  "num_seen_segments": 5,
+  "token_f1_mean": 0.20272547825290457,
+  "lcs_overlap_mean": 0.21707101925851924,
+  "rouge_l_mean": 0.19812772465515094,
+  "bleu_mean": 0.2696942910009201,
+  "slot_error_rate": 0.0,
+  "extra": {
+    "per_segment_accuracy": [
+      {
+        "segment_id": 0,
+        "accuracy": 0.6
+      },
+      {
+        "segment_id": 1,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 2,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 3,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 4,
+        "accuracy": 0.0
+      }
+    ],
+    "per_segment_task_aware_accuracy": [
+      {
+        "segment_id": 0,
+        "task_aware_accuracy": 0.6
+      },
+      {
+        "segment_id": 1,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 2,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 3,
+        "task_aware_accuracy": 0.1
+      },
+      {
+        "segment_id": 4,
+        "task_aware_accuracy": 0.0
+      }
+    ],
+    "anytime_score": 0.12,
+    "anytime_task_aware_score": 0.13999999999999999,
+    "forgetting_by_segment": [
+      {
+        "segment_id": 0,
+        "accuracy": 0.6,
+        "best_historical_accuracy": 0.7,
+        "forgetting": 0.09999999999999998
+      },
+      {
+        "segment_id": 1,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.8,
+        "forgetting": 0.8
+      },
+      {
+        "segment_id": 2,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 3,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 4,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      }
+    ],
+    "task_aware_forgetting_by_segment": [
+      {
+        "segment_id": 0,
+        "task_aware_accuracy": 0.6,
+        "best_historical_task_aware_accuracy": 0.7,
+        "task_aware_forgetting": 0.09999999999999998
+      },
+      {
+        "segment_id": 1,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.8,
+        "task_aware_forgetting": 0.8
+      },
+      {
+        "segment_id": 2,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.0,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 3,
+        "task_aware_accuracy": 0.1,
+        "best_historical_task_aware_accuracy": 0.1,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 4,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.0,
+        "task_aware_forgetting": 0.0
+      }
+    ],
+    "routing": {
+      "num_routed": 0,
+      "branch_counts": {},
+      "oracle_best_branch_counts": {},
+      "oracle_agreement_count": 0,
+      "oracle_num_examples": 0,
+      "confidence_sum": 0.0,
+      "entropy_sum": 0.0,
+      "oracle_margin_sum": 0.0,
+      "branch_utilization": {},
+      "decision_confidence_mean": 0.0,
+      "decision_entropy_mean": 0.0,
+      "oracle_agreement_rate": 0.0,
+      "oracle_margin_mean": 0.0
+    },
+    "token_f1_mean": 0.20272547825290457,
+    "lcs_overlap_mean": 0.21707101925851924,
+    "rouge_l_mean": 0.19812772465515094,
+    "bleu_mean": 0.2696942910009201,
+    "slot_error_rate": 0.0,
+    "slot_error_count": 0,
+    "task_aware_score_mean": 0.0875,
+    "task_score_type_counts": {
+      "after_step_extracted_em": 10,
+      "label_accuracy": 24,
+      "strict_em": 46
+    },
+    "prefix_1_match_mean": 0.2125,
+    "prefix_3_match_mean": 0.1125,
+    "prefix_5_match_mean": 0.0875,
+    "num_bad_prefix_mismatch": 71,
+    "likely_assistant_start_or_continuation_boundary": true
+  }
+}

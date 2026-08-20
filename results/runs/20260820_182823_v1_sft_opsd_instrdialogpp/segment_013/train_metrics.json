@@ -1,0 +1,10 @@
+{
+  "batches": 32,
+  "train.loss": 0.09624477231409401,
+  "grad_norm": 0.5231763374716821,
+  "lr": 0.0001999999999999999,
+  "rollout_mean_tokens": 25.555555555555557,
+  "divergence": "jsd",
+  "beta": 0.5,
+  "active_adapter": "default"
+}

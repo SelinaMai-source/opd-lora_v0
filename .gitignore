@@ -4,3 +4,8 @@ assets/
 # Python
 __pycache__/
 *.pyc
+
+# v1: adapter 权重 / 模型权重不入库;仅忽略仓库根级运行日志目录(results/logs 小日志保留)
+final_adapter/
+*.safetensors
+/logs/
