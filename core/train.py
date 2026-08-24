@@ -468,6 +468,8 @@ def run_baseline(
     method = _build_baseline_method(baseline_name, cfg)
     debug_tools = cfg.get("debug_tools", {}) if isinstance(cfg.get("debug_tools", {}), dict) else {}
     normalization_cfg = cfg.get("eval_normalization", {}) if isinstance(cfg.get("eval_normalization", {}), dict) else {}
+    output_cfg = cfg.get("output", {}) if isinstance(cfg.get("output", {}), dict) else {}
+    save_segment_adapters = bool(output_cfg.get("save_segment_adapters", False))
 
     # Optional warm-start: load a previously saved adapter (e.g. SFT weights for OPSD runs).
     init_adapter_path = str(model_cfg.get("init_adapter_path", "")).strip()
@@ -531,6 +533,11 @@ def run_baseline(
             )
 
         logger.log(f"Train metrics: {json.dumps(train_metrics, ensure_ascii=False)}")
+
+        if save_segment_adapters and hasattr(lora, "save_adapter_checkpoint"):
+            seg_adapter_dir = str(Path(run_paths.run_dir) / "segment_adapters" / f"segment_{seg.segment_id:03d}")
+            lora.save_adapter_checkpoint(seg_adapter_dir)
+            logger.log(f"Saved segment adapter: {seg_adapter_dir}")
 
         # Evaluate on seen segments (unified)
         seen_segments.append(seg)
@@ -628,7 +635,6 @@ def run_baseline(
             tracker.log_segment_row(row)
 
     # Optional: persist the final adapter weights (e.g. SFT adapters later reused by OPSD runs).
-    output_cfg = cfg.get("output", {}) if isinstance(cfg.get("output", {}), dict) else {}
     final_adapter_dir = ""
     if bool(output_cfg.get("save_final_adapter", False)):
         final_adapter_dir = str(Path(run_paths.run_dir) / "final_adapter")

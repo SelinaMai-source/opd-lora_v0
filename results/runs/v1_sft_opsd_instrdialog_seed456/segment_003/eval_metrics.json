@@ -1,0 +1,137 @@
+{
+  "current_score": 0.8,
+  "seen_avg_score": 0.2,
+  "current_task_aware_score": 0.8,
+  "seen_avg_task_aware_score": 0.2,
+  "forgetting": 0.03333333333333333,
+  "task_aware_forgetting": 0.03333333333333333,
+  "num_seen_segments": 4,
+  "token_f1_mean": 0.2323090499901737,
+  "lcs_overlap_mean": 0.24718174172180576,
+  "rouge_l_mean": 0.22838527105579556,
+  "bleu_mean": 0.2415423399736212,
+  "slot_error_rate": 0.0,
+  "extra": {
+    "per_segment_accuracy": [
+      {
+        "segment_id": 0,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 1,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 2,
+        "accuracy": 0.0
+      },
+      {
+        "segment_id": 3,
+        "accuracy": 0.8
+      }
+    ],
+    "per_segment_task_aware_accuracy": [
+      {
+        "segment_id": 0,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 1,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 2,
+        "task_aware_accuracy": 0.0
+      },
+      {
+        "segment_id": 3,
+        "task_aware_accuracy": 0.8
+      }
+    ],
+    "anytime_score": 0.2,
+    "anytime_task_aware_score": 0.2,
+    "forgetting_by_segment": [
+      {
+        "segment_id": 0,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 1,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.1,
+        "forgetting": 0.1
+      },
+      {
+        "segment_id": 2,
+        "accuracy": 0.0,
+        "best_historical_accuracy": 0.0,
+        "forgetting": 0.0
+      },
+      {
+        "segment_id": 3,
+        "accuracy": 0.8,
+        "best_historical_accuracy": 0.8,
+        "forgetting": 0.0
+      }
+    ],
+    "task_aware_forgetting_by_segment": [
+      {
+        "segment_id": 0,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.0,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 1,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.1,
+        "task_aware_forgetting": 0.1
+      },
+      {
+        "segment_id": 2,
+        "task_aware_accuracy": 0.0,
+        "best_historical_task_aware_accuracy": 0.0,
+        "task_aware_forgetting": 0.0
+      },
+      {
+        "segment_id": 3,
+        "task_aware_accuracy": 0.8,
+        "best_historical_task_aware_accuracy": 0.8,
+        "task_aware_forgetting": 0.0
+      }
+    ],
+    "routing": {
+      "num_routed": 0,
+      "branch_counts": {},
+      "oracle_best_branch_counts": {},
+      "oracle_agreement_count": 0,
+      "oracle_num_examples": 0,
+      "confidence_sum": 0.0,
+      "entropy_sum": 0.0,
+      "oracle_margin_sum": 0.0,
+      "branch_utilization": {},
+      "decision_confidence_mean": 0.0,
+      "decision_entropy_mean": 0.0,
+      "oracle_agreement_rate": 0.0,
+      "oracle_margin_mean": 0.0
+    },
+    "token_f1_mean": 0.2323090499901737,
+    "lcs_overlap_mean": 0.24718174172180576,
+    "rouge_l_mean": 0.22838527105579556,
+    "bleu_mean": 0.2415423399736212,
+    "slot_error_rate": 0.0,
+    "slot_error_count": 0,
+    "task_aware_score_mean": 0.13559322033898305,
+    "task_score_type_counts": {
+      "strict_em": 50,
+      "label_accuracy": 9
+    },
+    "prefix_1_match_mean": 0.13559322033898305,
+    "prefix_3_match_mean": 0.13559322033898305,
+    "prefix_5_match_mean": 0.13559322033898305,
+    "num_bad_prefix_mismatch": 51,
+    "likely_assistant_start_or_continuation_boundary": true
+  }
+}

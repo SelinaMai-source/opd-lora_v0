@@ -1,0 +1,56 @@
+{
+  "run_id": "v1_sft_opsd_instrdialog_seed123_rerun",
+  "start_time": "2026-08-24T06:23:58.788890+00:00",
+  "status": "completed",
+  "git_branch_name": "v1",
+  "git_commit_sha": "c4aef88116121482b87024feee8183cca98d7333",
+  "git_status_porcelain": [
+    "M .gitignore",
+    " M core/train.py",
+    "?? configs/v1_sft_opsd_instrdialog_rerun_seed123.yaml",
+    "?? configs/v1_sft_opsd_instrdialog_seed456.yaml",
+    "?? experiments/v1_SFT_OPSD/configs/v1_sft_opsd_instrdialog_rerun_seed123.yaml",
+    "?? experiments/v1_SFT_OPSD/configs/v1_sft_opsd_instrdialog_seed456.yaml",
+    "?? results/logs/v1_sft_opsd_instrdialog_rerun_wrapper.log",
+    "?? results/logs/v1_sft_opsd_instrdialog_seed123_rerun.log",
+    "?? results/runs/v1_sft_opsd_instrdialog_seed123_rerun/"
+  ],
+  "git_is_dirty": true,
+  "mode": "baseline",
+  "experiment_name": "v1_sft_opsd_instrdialog",
+  "benchmark_alias": "",
+  "config_path": "/root/autodl-tmp/rp_lora_v0/configs/v1_sft_opsd_instrdialog_rerun_seed123.yaml",
+  "config_snapshot_path": "results/runs/v1_sft_opsd_instrdialog_seed123_rerun/config_snapshot.yaml",
+  "dataset_path": "citb_cl_dialogue_tasks_train50_eval10.json",
+  "dataset_sha256": "",
+  "tokenizer_path_or_name": "assets/pretrained/Meta-Llama-3.1-8B-Instruct",
+  "model_path_or_name": "assets/pretrained/Meta-Llama-3.1-8B-Instruct",
+  "lora_config": {
+    "enabled": true,
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "train_config": {
+    "epochs_per_segment": 1,
+    "batch_size": 2,
+    "lr": 0.0002,
+    "weight_decay": 0.0,
+    "grad_clip_norm": 1.0,
+    "log_every": 50
+  },
+  "modules_config": {},
+  "run_dir": "results/runs/v1_sft_opsd_instrdialog_seed123_rerun",
+  "artifacts_generated_in_run": [
+    "results/runs/v1_sft_opsd_instrdialog_seed123_rerun/config_snapshot.yaml",
+    "results/logs/v1_sft_opsd_instrdialog_seed123_rerun.log",
+    "results/runs/v1_sft_opsd_instrdialog_seed123_rerun/run_manifest.json",
+    "results/runs/v1_sft_opsd_instrdialog_seed123_rerun/final_metrics.json",
+    "results/tables/v1_sft_opsd_instrdialog_seed123_rerun_segment_metrics.csv"
+  ],
+  "end_time": "2026-08-24T06:34:14.225225+00:00"
+}
