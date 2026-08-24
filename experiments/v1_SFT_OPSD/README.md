@@ -9,16 +9,16 @@
 
 ## 结果（全指标，提取自各 run 的 final_metrics.json，数值保留 3 位小数）
 
-| Method | Data | Output Length | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean | 结果解释 |
+| 版本 | 内容 | Data | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean | 结果解释 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| v0_LoRA_SFT | InstrDialog | 10.3 | 0.346 | 0.362 | 0.089 | 0.083 | 0.430 | 0.425 | 0.451 | 0.422 | 0.000 | 0.000 | 0.332 | 合理：SFT 基线，19 段流遗忘低（F 0.089），生成质量指标为全表最高档，作为 v1 对照起点 |
-| v0_LoRA_SFT | InstrDialog++ | 5.0 | 0.285 | 0.298 | 0.180 | 0.175 | 0.392 | 0.388 | 0.461 | 0.383 | 0.100 | 0.100 | 0.261 | 合理：38 段长流遗忘明显加重（F 0.180 vs 19 段 0.089），符合流越长越难抗遗忘的预期 |
-| v1_OPSD | InstrDialog | 9.7 | 0.289 | 0.299 | 0.128 | 0.133 | 0.361 | 0.357 | 0.385 | 0.357 | 0.000 | 0.000 | 0.270 | 合理但偏弱：训练稳定无崩盘、F 与 v0 相当，但 Score 低于 SFT 约 5.8pp——仅 on-policy 蒸馏不足以替代 SFT 起点 |
-| v1_OPSD | InstrDialog++ | 9.3 | 0.223 | 0.255 | 0.171 | 0.154 | 0.359 | 0.352 | 0.423 | 0.370 | 0.100 | 0.300 | 0.224 | 合理但偏弱：同样稳定无崩盘，Score 低于 v0 约 6.2pp、F 与 v0 接近，结论与 19 段流一致 |
-| v1_SFT_OPSD | InstrDialog | 14.7 | 0.011 | 0.211 | 0.367 | 0.171 | 0.153 | 0.146 | 0.197 | 0.165 | 0.000 | 0.000 | 0.190 | 异常：末段（segment 18, task1600_smcalflow）训练后 strict EM 由段 17 末的 0.294 崩至 0.011（F 0.367），Token F1/ROUGE-L/BLEU 同步腰斩且输出变长失控（均长 14.7、最长打满 64 token）；训练侧 loss/grad_norm 正常、同段 v0/v1_OPSD 均不崩，已排除 bug，属真实剧烈遗忘 |
-| v1_SFT_OPSD | InstrDialog++ | 7.7 | 0.300 | 0.313 | 0.084 | 0.082 | 0.409 | 0.402 | 0.457 | 0.412 | 0.000 | 0.200 | 0.272 | 合理且最优：Score 0.300 为全表最高，F 0.084 显著优于 v0 的 0.180——SFT 初始化 + OPSD 在长流上收益明确 |
+| v0_LoRA_SFT | fresh LoRA 顺序 SFT（v0 基线） | InstrDialog | 0.346 | 0.362 | 0.089 | 0.083 | 0.430 | 0.425 | 0.451 | 0.422 | 0.000 | 0.000 | 0.332 | 合理：SFT 基线，19 段流遗忘低（F 0.089），生成质量指标为全表最高档，作为 v1 对照起点 |
+| v0_LoRA_SFT | fresh LoRA 顺序 SFT（v0 基线） | InstrDialog++ | 0.285 | 0.298 | 0.180 | 0.175 | 0.392 | 0.388 | 0.461 | 0.383 | 0.100 | 0.100 | 0.261 | 合理：38 段长流遗忘明显加重（F 0.180 vs 19 段 0.089），符合流越长越难抗遗忘的预期 |
+| v1_OPSD | fresh LoRA 直接 OPSD，无 SFT 初始化 | InstrDialog | 0.289 | 0.299 | 0.128 | 0.133 | 0.361 | 0.357 | 0.385 | 0.357 | 0.000 | 0.000 | 0.270 | 合理但偏弱：训练稳定无崩盘、F 与 v0 相当，但 Score 低于 SFT 约 5.8pp——仅 on-policy 蒸馏不足以替代 SFT 起点 |
+| v1_OPSD | fresh LoRA 直接 OPSD，无 SFT 初始化 | InstrDialog++ | 0.223 | 0.255 | 0.171 | 0.154 | 0.359 | 0.352 | 0.423 | 0.370 | 0.100 | 0.300 | 0.224 | 合理但偏弱：同样稳定无崩盘，Score 低于 v0 约 6.2pp、F 与 v0 接近，结论与 19 段流一致 |
+| v1_SFT_OPSD | 加载 SFT 最终 adapter 初始化，继续 OPSD | InstrDialog | 0.011 | 0.211 | 0.367 | 0.171 | 0.153 | 0.146 | 0.197 | 0.165 | 0.000 | 0.000 | 0.190 | 异常：末段（segment 18, task1600_smcalflow）训练后 strict EM 由段 17 末的 0.294 崩至 0.011（F 0.367），Token F1/ROUGE-L/BLEU 同步腰斩且输出变长失控（均长 14.7、最长打满 64 token）；训练侧 loss/grad_norm 正常、同段 v0/v1_OPSD 均不崩，已排除 bug，属真实剧烈遗忘 |
+| v1_SFT_OPSD | 加载 SFT 最终 adapter 初始化，继续 OPSD | InstrDialog++ | 0.300 | 0.313 | 0.084 | 0.082 | 0.409 | 0.402 | 0.457 | 0.412 | 0.000 | 0.200 | 0.272 | 合理且最优：Score 0.300 为全表最高，F 0.084 显著优于 v0 的 0.180——SFT 初始化 + OPSD 在长流上收益明确 |
 
-注：Seen-Avg Acc = `eval.seen_avg_score`（strict EM），Forgetting = `eval.forgetting`，Current-Seg Acc = `eval.current_score`（末段），Task-aware Score Mean = `eval.task_aware_score_mean`（训练轨迹均值）；Output Length 取自最终评估点 eval_debug dump（前 50 条子集）`raw_generated_output` 的平均 token 数（Llama-3.1 tokenizer，不含 special tokens），final_metrics 无此字段。完整口径见 `docs/v1_experiment_report.md`（/root/autodl-tmp/docs/）。
+注：Seen-Avg Acc = `eval.seen_avg_score`（strict EM），Forgetting = `eval.forgetting`，Current-Seg Acc = `eval.current_score`（末段），Task-aware Score Mean = `eval.task_aware_score_mean`（训练轨迹均值）；Output Length 指标已从表中移除，崩盘行输出失控现象见结果解释。完整口径见 `docs/v1_experiment_report.md`（/root/autodl-tmp/docs/）。
 
 ## 末段崩盘诊断（InstrDialog 流）
 
