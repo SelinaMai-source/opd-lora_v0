@@ -45,15 +45,29 @@ TEACHER_TRANSITION_INSTRUCTION = (
     "Return only the requested response."
 )
 
+TEACHER_FORMAT_CONSTRAINT = (
+    "Preserve its key content, answer format, wording style, and approximate length."
+)
 
-def format_for_teacher(tokenizer: Any, instruction: str, input_text: str, reference: str) -> str:
+
+def format_for_teacher(
+    tokenizer: Any,
+    instruction: str,
+    input_text: str,
+    reference: str,
+    *,
+    format_constraint: bool = False,
+) -> str:
     """OPSD teacher prompt: student prompt + privileged reference + transition instruction."""
     user_content = build_user_content(instruction, input_text)
     ref = str(reference or "").strip()
+    transition = TEACHER_TRANSITION_INSTRUCTION
+    if format_constraint:
+        transition = f"{transition}\n{TEACHER_FORMAT_CONSTRAINT}"
     user_content = (
         f"{user_content}\n\n"
         f"<privileged_reference_output>\n{ref}\n</privileged_reference_output>\n\n"
-        f"{TEACHER_TRANSITION_INSTRUCTION}"
+        f"{transition}"
     )
     return tokenizer.apply_chat_template(
         [{"role": "user", "content": user_content}],

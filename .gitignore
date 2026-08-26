@@ -10,3 +10,6 @@ final_adapter/
 segment_adapters/
 *.safetensors
 /logs/
+
+# v0 全量 pred/gold CSV（体积大，留数据盘不入库）
+experiments_v1/v0_LoRA_SFT/predictions/

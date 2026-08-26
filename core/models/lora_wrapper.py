@@ -236,6 +236,32 @@ class LoRAWrapper:
             return []
         return [p for p in self.peft_model.parameters() if p.requires_grad]
 
+    def copy_adapter_weights(self, src: str, dst: str) -> None:
+        """Copy LoRA A/B weights from `src` into `dst` (in-place, no optimizer rebuild)."""
+        adapters = set(self.list_adapters())
+        if src not in adapters or dst not in adapters:
+            raise KeyError(
+                f"copy_adapter_weights requires existing adapters; src={src!r} dst={dst!r} "
+                f"existing={sorted(adapters)}"
+            )
+        if not self.cfg.enabled or self.peft_model is None:
+            return
+        named = dict(self.peft_model.named_parameters())
+        copied = 0
+        with torch.no_grad():
+            for n, p in named.items():
+                if f"lora_A.{src}." not in n and f"lora_B.{src}." not in n:
+                    continue
+                dst_n = n.replace(f"lora_A.{src}.", f"lora_A.{dst}.").replace(
+                    f"lora_B.{src}.", f"lora_B.{dst}."
+                )
+                if dst_n == n or dst_n not in named:
+                    raise KeyError(f"No destination param for {n} -> {dst_n}")
+                named[dst_n].data.copy_(p.data)
+                copied += 1
+        if copied == 0:
+            raise RuntimeError(f"copy_adapter_weights copied 0 params ({src} -> {dst})")
+
     def freeze_adapter(self, name: str) -> None:
         if name not in self.list_adapters():
             raise KeyError(f"Adapter '{name}' not found. Existing: {sorted(self.list_adapters())}")
@@ -531,6 +557,16 @@ class DebugLoRAWrapper:
 
     def trainable_parameters(self) -> List[Any]:
         return []
+
+    def copy_adapter_weights(self, src: str, dst: str) -> None:
+        if src not in self._adapter_steps or dst not in self._adapter_steps:
+            raise KeyError(
+                f"copy_adapter_weights requires existing adapters; src={src!r} dst={dst!r} "
+                f"existing={sorted(self._adapter_steps)}"
+            )
+        self._adapter_vectors[dst] = self._adapter_vectors.get(
+            src, self._make_debug_vector(src)
+        ).clone()
 
     def freeze_adapter(self, name: str) -> None:
         if name not in self._adapter_steps:

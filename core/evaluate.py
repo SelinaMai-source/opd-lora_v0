@@ -159,6 +159,25 @@ def _oracle_branch_for_example(model: Any, lora_bank: Any, ex: Example, branch_n
     }
 
 
+def _resolve_debug_max_examples(
+    debug_max_examples: Optional[int],
+    normalization_cfg: Optional[Dict[str, Any]] = None,
+) -> int:
+    """Return dump cap. 0 (or negative) means no truncation (export the full eval set)."""
+    if debug_max_examples is not None:
+        return int(debug_max_examples)
+    cfg = normalization_cfg or {}
+    if "debug_max_examples" in cfg:
+        return int(cfg.get("debug_max_examples", 50))
+    return 50
+
+
+def _slice_debug_examples(examples: List[Dict[str, Any]], debug_max_examples: int) -> List[Dict[str, Any]]:
+    if int(debug_max_examples) <= 0:
+        return list(examples)
+    return examples[: int(debug_max_examples)]
+
+
 def evaluate_stream(
     *,
     model: Any,
@@ -171,6 +190,8 @@ def evaluate_stream(
     save_debug_examples_dir: Optional[str] = None,
     historical_best_per_segment: Optional[Dict[int, float]] = None,
     historical_best_task_aware_per_segment: Optional[Dict[int, float]] = None,
+    debug_max_examples: Optional[int] = None,
+    return_eval_examples: bool = False,
 ) -> Dict[str, Any]:
     """
     Unified evaluation for continual instruction tuning.
@@ -338,12 +359,17 @@ def evaluate_stream(
     extra["likely_assistant_start_or_continuation_boundary"] = bool(
         extra["prefix_1_match_mean"] < 0.5 if (len(all_prefix1) > 0) else False
     )
+    dump_limit = _resolve_debug_max_examples(debug_max_examples, normalization_cfg)
+    extra["debug_max_examples"] = int(dump_limit)
+    extra["num_eval_examples"] = int(len(all_examples_for_dump))
+    if return_eval_examples:
+        extra["eval_examples"] = all_examples_for_dump
     if save_debug_examples_dir:
         tok = getattr(model, "tokenizer", None)
         _save_debug_examples(
             save_dir=save_debug_examples_dir,
             segment_id=segment_id,
-            examples=all_examples_for_dump[: max(5, min(50, len(all_examples_for_dump)))],
+            examples=_slice_debug_examples(all_examples_for_dump, dump_limit),
             normalization_cfg=normalization_cfg or {},
             generation_cfg={
                 "requested_max_new_tokens": max_new_tokens,
@@ -355,6 +381,7 @@ def evaluate_stream(
                 "do_sample": False,
                 "eos_token_id": getattr(tok, "eos_token_id", None),
                 "pad_token_id": getattr(tok, "pad_token_id", None),
+                "debug_max_examples": int(dump_limit),
             },
         )
     return asdict(

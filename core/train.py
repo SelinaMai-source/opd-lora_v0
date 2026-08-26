@@ -468,6 +468,8 @@ def run_baseline(
     method = _build_baseline_method(baseline_name, cfg)
     debug_tools = cfg.get("debug_tools", {}) if isinstance(cfg.get("debug_tools", {}), dict) else {}
     normalization_cfg = cfg.get("eval_normalization", {}) if isinstance(cfg.get("eval_normalization", {}), dict) else {}
+    eval_cfg = cfg.get("eval", {}) if isinstance(cfg.get("eval", {}), dict) else {}
+    debug_max_examples = int(eval_cfg.get("debug_max_examples", 50))
     output_cfg = cfg.get("output", {}) if isinstance(cfg.get("output", {}), dict) else {}
     save_segment_adapters = bool(output_cfg.get("save_segment_adapters", False))
 
@@ -553,6 +555,7 @@ def run_baseline(
             save_debug_examples_dir=str(Path(run_paths.run_dir) / "eval_debug"),
             historical_best_per_segment=historical_best_per_segment,
             historical_best_task_aware_per_segment=historical_best_task_aware_per_segment,
+            debug_max_examples=debug_max_examples,
         )
         last_eval_metrics = eval_metrics
         if lora_bank.list_branches() and active_adapter_before_eval in lora.list_adapters():
@@ -701,6 +704,8 @@ def run_ours(
     overlap_cfg = cfg.get("overlap", {}) if isinstance(cfg.get("overlap", {}), dict) else {}
     beta = float(overlap_cfg.get("beta", 0.1))
     normalization_cfg = cfg.get("eval_normalization", {}) if isinstance(cfg.get("eval_normalization", {}), dict) else {}
+    eval_cfg = cfg.get("eval", {}) if isinstance(cfg.get("eval", {}), dict) else {}
+    debug_max_examples = int(eval_cfg.get("debug_max_examples", 50))
     drift_anchor_set: Optional[AnchorSet] = None
     anchor_refresh_segments = _drift_anchor_refresh_segment_count(cfg)
     ssrg_cfg = cfg.get("spectral_replay", {}) if isinstance(cfg.get("spectral_replay", {}), dict) else {}
@@ -854,6 +859,7 @@ def run_ours(
             save_debug_examples_dir=str(Path(run_paths.run_dir) / "eval_debug"),
             historical_best_per_segment=historical_best_per_segment,
             historical_best_task_aware_per_segment=historical_best_task_aware_per_segment,
+            debug_max_examples=debug_max_examples,
         )
         last_eval_metrics = eval_metrics
         if active_adapter_before_eval in lora.list_adapters():
@@ -999,6 +1005,22 @@ def _build_baseline_method(baseline_name: str, cfg: Dict[str, Any]) -> Any:
         from baselines.basic_baselines.opsd.method import OPSDMethod
 
         return OPSDMethod(cfg)
+    if baseline_name == "seg_opsd":
+        from baselines.basic_baselines.seg_opsd.method import SegOPSDMethod
+
+        return SegOPSDMethod(cfg)
+    if baseline_name == "seg_opsd_replay":
+        from baselines.basic_baselines.seg_opsd.method import SegOPSDReplayMethod
+
+        return SegOPSDReplayMethod(cfg)
+    if baseline_name == "gold_opsd":
+        from baselines.basic_baselines.gold_opsd.method import GoldOPSDMethod
+
+        return GoldOPSDMethod(cfg)
+    if baseline_name == "neg_opsd":
+        from baselines.basic_baselines.neg_opsd.method import NegOPSDMethod
+
+        return NegOPSDMethod(cfg)
     if baseline_name == "replay_lora":
         from baselines.basic_baselines.replay_lora.method import ReplayLoRAMethod
 
@@ -1032,7 +1054,8 @@ def _build_baseline_method(baseline_name: str, cfg: Dict[str, Any]) -> Any:
         return ContinualT0Method(cfg)
     raise ValueError(
         "Unknown baseline_name. Expected one of: "
-        "sequential_lora | opsd | replay_lora | periodic_multilora | router_only | bank_no_router | "
+        "sequential_lora | opsd | seg_opsd | seg_opsd_replay | gold_opsd | neg_opsd | "
+        "replay_lora | periodic_multilora | router_only | bank_no_router | "
         "o_lora | lb_cl | progressive_prompts | continual_t0"
     )
 

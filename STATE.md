@@ -1,4 +1,49 @@
-# RP-LoRA v0 进度存档(2026-08-17 22:25;2026-08-20 追加 v1;2026-08-24 追加 InstrDialog 重跑)
+# RP-LoRA v0 进度存档(2026-08-17 22:25;2026-08-20 追加 v1;2026-08-24 追加 InstrDialog 重跑;2026-08-26 追加 v1 五变体迭代)
+
+## v1 迭代实验(2026-08-26 完成)
+
+- [x] 全量导出 v0_SFT 在 InstrDialog / InstrDialog++ 上 pred vs gold CSV(`experiments_v1/v0_LoRA_SFT/predictions/`,不入库)
+- [x] 五个新变体实现并冒烟:teacher_enhance / seg_OPSD(K 网格) / seg_OPSD_replay / gold_OPSD / neg_OPSD
+- [x] 正式跑全部完成(含 `v1_neg_opsd` InstrDialog++ 在 CNN/DM 段 OOM 修复后重跑 `20260826_203109`,有 `final_metrics.json`)
+- [x] `token_mean_logprob` 改为 fused CE nll + chunk=16;neg_opsd 对 ≥1024 token 跳过 pairwise 只留 CE
+- [x] 结果写入 `experiments_v1/<name>/results/`;飞书表见 `/root/autodl-tmp/docs/v1_experiment_report.md`
+
+### v1 迭代最终结果(全指标,提取自 final_metrics.json,数值保留 3 位小数)
+
+| 版本 | 内容 | Data | Seen-Avg Acc↑ | Seen-Avg Task-aware Acc↑ | Forgetting↓ | Task-Aware Forgetting↓ | Token F1↑ | ROUGE-L↑ | BLEU↑ | LCS Overlap↑ | Current-Seg Acc↑ | Current-Seg Task-aware Acc↑ | Task-aware Score Mean↑ | 结果解释 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| v0_LoRA_SFT | fresh LoRA 顺序 SFT(v0 基线) | InstrDialog | 0.346 | 0.362 | 0.089 | 0.083 | 0.430 | 0.425 | 0.451 | 0.422 | 0.000 | 0.000 | 0.332 | 合理:SFT 基线,19 段流遗忘低(F 0.089),生成质量指标为全表最高档,作为 v1 对照起点 |
+| v0_LoRA_SFT | fresh LoRA 顺序 SFT(v0 基线) | InstrDialog++ | 0.285 | 0.298 | 0.180 | 0.175 | 0.392 | 0.388 | 0.461 | 0.383 | 0.100 | 0.100 | 0.261 | 合理:38 段长流遗忘明显加重(F 0.180 vs 19 段 0.089),符合流越长越难抗遗忘的预期 |
+| v1_OPSD | fresh LoRA 直接 OPSD,无 SFT 初始化 | InstrDialog | 0.289 | 0.299 | 0.128 | 0.133 | 0.361 | 0.357 | 0.385 | 0.357 | 0.000 | 0.000 | 0.270 | 合理但偏弱:训练稳定无崩盘、F 与 v0 相当,但 Score 低于 SFT 约 5.8pp——仅 on-policy 蒸馏不足以替代 SFT 起点 |
+| v1_OPSD | fresh LoRA 直接 OPSD,无 SFT 初始化 | InstrDialog++ | 0.223 | 0.255 | 0.171 | 0.154 | 0.359 | 0.352 | 0.423 | 0.370 | 0.100 | 0.300 | 0.224 | 合理但偏弱:同样稳定无崩盘,Score 低于 v0 约 6.2pp、F 与 v0 接近,结论与 19 段流一致 |
+| v1_SFT_OPSD | 加载 SFT 最终 adapter 初始化,继续 OPSD(原 run seed 123) | InstrDialog | 0.011 | 0.211 | 0.367 | 0.171 | 0.153 | 0.146 | 0.197 | 0.165 | 0.000 | 0.000 | 0.190 | 异常(单次):末段崩盘;同 seed 重跑与 seed 456 未崩 → GPU 非确定性 + seed 敏感临界点 |
+| v1_SFT_OPSD | 同 seed 123 重跑(每段保存 adapter) | InstrDialog | 0.263 | 0.283 | 0.182 | 0.172 | 0.361 | 0.353 | 0.396 | 0.366 | 0.000 | 0.000 | 0.256 | 未崩:段 18 后 Score 0.263,无法复现原 0.011 崩盘 |
+| v1_SFT_OPSD | seed 456 稳健性(同 SFT init adapter) | InstrDialog | 0.347 | 0.358 | 0.033 | 0.033 | 0.420 | 0.415 | 0.443 | 0.423 | 0.000 | 0.000 | 0.322 | 未崩且最优档:Score 0.347 与 v0 SFT 持平,F 0.033 为 InstrDialog 全表最低 |
+| v1_SFT_OPSD | 加载 SFT 最终 adapter 初始化,继续 OPSD | InstrDialog++ | 0.300 | 0.313 | 0.084 | 0.082 | 0.409 | 0.402 | 0.457 | 0.412 | 0.000 | 0.200 | 0.272 | 合理:Score 0.300、F 0.084 显著优于 v0 的 0.180 |
+| v1_teacher_enhance_OPSD | SFT init OPSD + teacher 格式约束 | InstrDialog | 0.153 | 0.189 | 0.194 | 0.178 | 0.253 | 0.245 | 0.321 | 0.259 | 0.000 | 0.000 | 0.171 | 负向:Score 0.153 远低于无约束 SFT+OPSD 与 v0,格式约束伤害大 |
+| v1_teacher_enhance_OPSD | SFT init OPSD + teacher 格式约束 | InstrDialog++ | 0.244 | 0.249 | 0.139 | 0.139 | 0.379 | 0.373 | 0.428 | 0.387 | 0.000 | 0.100 | 0.220 | 负向:Score 低于无约束 SFT+OPSD(0.300)与 v0(0.285),未兑现压修饰词 |
+| v1_seg_OPSD | 段内 SFT/OPSD 交替,K=25 | InstrDialog | 0.289 | 0.304 | 0.156 | 0.156 | 0.376 | 0.372 | 0.415 | 0.371 | 0.000 | 0.000 | 0.280 | 网格最优(三条 K 中 Score 最高、F 最低),仍低于 v0 SFT |
+| v1_seg_OPSD | 段内 SFT/OPSD 交替,K=50 | InstrDialog | 0.268 | 0.283 | 0.183 | 0.178 | 0.349 | 0.343 | 0.388 | 0.345 | 0.000 | 0.000 | 0.261 | 更长 phase 无收益 |
+| v1_seg_OPSD | 段内 SFT/OPSD 交替,K=75 | InstrDialog | 0.205 | 0.247 | 0.232 | 0.199 | 0.285 | 0.278 | 0.343 | 0.279 | 0.100 | 0.100 | 0.227 | 最差:K 越大过拟合风险越高 |
+| v1_seg_OPSD | 胜出 K=25 打长流 | InstrDialog++ | 0.289 | 0.305 | 0.151 | 0.146 | 0.404 | 0.395 | 0.466 | 0.394 | 0.000 | 0.000 | 0.267 | 合理:Score 与 v0 持平,F 0.151 优于 v0 的 0.180,弱于 SFT+OPSD 的 0.084 |
+| v1_seg_OPSD_replay | 段内交替 K=25 + 20% replay | InstrDialog | 0.378 | 0.389 | 0.083 | 0.072 | 0.443 | 0.440 | 0.463 | 0.435 | 0.100 | 0.100 | 0.355 | 本轮最强短流:Score 0.378 超过 v0 的 0.346,F 与 v0 持平 |
+| v1_seg_OPSD_replay | 段内交替 K=25 + 20% replay | InstrDialog++ | 0.379 | 0.381 | 0.108 | 0.111 | 0.466 | 0.461 | 0.517 | 0.460 | 0.200 | 0.200 | 0.330 | 本轮最强长流:Score 0.379 超过 v0 与 SFT+OPSD;NLG 同为长流最高档 |
+| v1_gold_OPSD | 同一步 CE + gold KL(λ=0.3) | InstrDialog | 0.341 | 0.357 | 0.106 | 0.089 | 0.403 | 0.400 | 0.430 | 0.399 | 0.000 | 0.000 | 0.327 | 合理:与 v0 SFT 几乎持平,符合主项仍是 CE |
+| v1_gold_OPSD | 同一步 CE + gold KL(λ=0.3) | InstrDialog++ | 0.303 | 0.316 | 0.157 | 0.147 | 0.402 | 0.397 | 0.464 | 0.394 | 0.100 | 0.100 | 0.276 | 合理:Score 略高于 v0,F 优于 v0、弱于 SFT+OPSD |
+| v1_neg_OPSD | 模板负样本 pairwise + CE(μ=0.3) | InstrDialog | 0.325 | 0.336 | 0.100 | 0.089 | 0.383 | 0.378 | 0.424 | 0.377 | 0.000 | 0.000 | 0.308 | 合理偏弱:Score 略低于 v0,格式 pairwise 未超过纯 SFT |
+| v1_neg_OPSD | 模板负样本 pairwise + CE(μ=0.3) | InstrDialog++ | 0.337 | 0.358 | 0.113 | 0.102 | 0.425 | 0.420 | 0.484 | 0.419 | 0.000 | 0.000 | 0.310 | 合理且较强:Score 0.337 超过 v0 与 SFT+OPSD,F 0.113 优于 v0;CNN/DM OOM 已修 |
+
+### v1 迭代结论
+
+1. **teacher 格式约束负向**:两条流 Score 都掉,不能当默认开关
+2. **seg 交替**:K=25 胜出;单独交替不足以超过 SFT,加上 **20% replay 后成为本轮最强**(两条流 Score 0.378 / 0.379)
+3. **gold CE+KL**:近似 SFT,λ=0.3 的蒸馏增量有限
+4. **neg pairwise**:短流略低于 SFT;长流 Score 0.337 / F 0.113 超过 v0,CNN/DM 需跳过超长 pairwise
+5. 长流抗遗忘仍以 **SFT+OPSD(F 0.084)** 与 **seg+replay(F 0.108)** 为优
+
+完整报告:/root/autodl-tmp/docs/v1_experiment_report.md;GitHub v1 分支:`experiments_v1/`
+
+---
 
 ## v1 OPSD 对比实验(2026-08-20 完成;2026-08-24 InstrDialog 重跑)
 
