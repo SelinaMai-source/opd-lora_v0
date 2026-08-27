@@ -22,11 +22,18 @@
 
 完成 14/14。指标提取自各 run 的 `final_metrics.json`，保留 3 位小数。
 
-确认重跑（不覆盖上表 14 行，另开 run_name；串行 nohup 中）：`v1_teacher_enhance_opsd_instrdialog_seed123_rerun2`、`v1_teacher_enhance_opsd_instrdialog_seed789`、`v1_seg_opsd_k25_instrdialog_seed456_rerun`、`v1_seg_opsd_k25_instrdialog_seed789`。
+确认重跑 4/4 完成（不覆盖上表 14 行，另开 run_name）。指标提取自 `results/runs/<run_name>/final_metrics.json`。
 
-## 飞书全表（历史行 + 14 重跑行）
+| # | 方法 | Data | seed | 内容 | run_name | run 目录 | seen_avg↑ | F↓ | token_f1↑ | rouge_l↑ | bleu↑ |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 15 | v1_teacher_enhance_OPSD | InstrDialog | 123 | seed123 rerun2 | `v1_teacher_enhance_opsd_instrdialog_seed123_rerun2` | `results/runs/v1_teacher_enhance_opsd_instrdialog_seed123_rerun2` | 0.258 | 0.094 | 0.342 | 0.336 | 0.377 |
+| 16 | v1_teacher_enhance_OPSD | InstrDialog | 789 | seed789 | `v1_teacher_enhance_opsd_instrdialog_seed789` | `results/runs/v1_teacher_enhance_opsd_instrdialog_seed789` | 0.152 | 0.211 | 0.231 | 0.227 | 0.348 |
+| 17 | v1_seg_OPSD K=25 | InstrDialog | 456 | seed456 rerun | `v1_seg_opsd_k25_instrdialog_seed456_rerun` | `results/runs/v1_seg_opsd_k25_instrdialog_seed456_rerun` | 0.220 | 0.233 | 0.312 | 0.308 | 0.358 |
+| 18 | v1_seg_OPSD K=25 | InstrDialog | 789 | seed789 | `v1_seg_opsd_k25_instrdialog_seed789` | `results/runs/v1_seg_opsd_k25_instrdialog_seed789` | 0.325 | 0.111 | 0.394 | 0.390 | 0.432 |
 
-历史行沿用 `STATE.md` / `v1_experiment_report.md` 第 10.1 节；原 0.011 行保留。14 重跑行追加在表末，内容列写明 seed。数值来自 `final.eval.*`，3 位小数。
+## 飞书全表（历史行 + 14 重跑行 + 4 确认重跑）
+
+历史行沿用 `STATE.md` / `v1_experiment_report.md` 第 10.1 节；原 0.011 行保留。14 重跑行与 4 确认重跑行追加在表末，内容列写明 seed。数值来自 `final.eval.*`，3 位小数。
 
 | 版本 | 内容 | Data | Seen-Avg Acc↑ | Seen-Avg Task-aware Acc↑ | Forgetting↓ | Task-Aware Forgetting↓ | Token F1↑ | ROUGE-L↑ | BLEU↑ | LCS Overlap↑ | Current-Seg Acc↑ | Current-Seg Task-aware Acc↑ | Task-aware Score Mean↑ | 结果解释 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -64,3 +71,7 @@
 | v1_seg_OPSD | seed 456（K=25） | InstrDialog++ | 0.263 | 0.281 | 0.187 | 0.171 | 0.379 | 0.373 | 0.440 | 0.381 | 0.000 | 0.000 | 0.248 | 合理偏弱：Score 0.263 低于原跑，双 seed 未再现短流那种崩盘 |
 | v1_SFT_OPSD | seed 123 重跑 | InstrDialog++ | 0.287 | 0.313 | 0.111 | 0.097 | 0.411 | 0.405 | 0.464 | 0.416 | 0.000 | 0.200 | 0.274 | 合理但原值偏乐观：Score 0.287 略低于原 0.300，F 0.111 仍优于 v0 的 0.180 |
 | v1_SFT_OPSD | seed 456 | InstrDialog++ | 0.268 | 0.295 | 0.114 | 0.100 | 0.404 | 0.398 | 0.448 | 0.414 | 0.000 | 0.200 | 0.259 | 合理同向：Score 0.268/F 0.114，长流抗遗忘仍优于 v0，绝对值低于原单点 |
+| v1_teacher_enhance_OPSD | seed123 rerun2 | InstrDialog | 0.258 | 0.274 | 0.094 | 0.094 | 0.342 | 0.336 | 0.377 | 0.341 | 0.000 | 0.000 | 0.246 | 负向减弱复现：Score 0.258 近首次重跑 0.253，高于原 0.153，仍低于 v0 与无约束 SFT+OPSD |
+| v1_teacher_enhance_OPSD | seed789 | InstrDialog | 0.152 | 0.346 | 0.211 | 0.022 | 0.231 | 0.227 | 0.348 | 0.236 | 0.000 | 0.000 | 0.318 | 负向复现原档：Score 0.152 贴近原 0.153、F 0.211，格式约束伤害对 seed 高度敏感 |
+| v1_seg_OPSD | seed456 rerun（K=25） | InstrDialog | 0.220 | 0.262 | 0.233 | 0.200 | 0.312 | 0.308 | 0.358 | 0.310 | 0.000 | 0.000 | 0.242 | 未崩：同 seed456 重跑 Score 0.220/F 0.233，未复现原 0.005 崩盘，属 GPU 非确定性 |
+| v1_seg_OPSD | seed789（K=25） | InstrDialog | 0.325 | 0.341 | 0.111 | 0.106 | 0.394 | 0.390 | 0.432 | 0.391 | 0.000 | 0.000 | 0.313 | 未崩且合理：Score 0.325/F 0.111 近原 K=25 与 seed123，确认 0.005 崩盘非方法必然 |
