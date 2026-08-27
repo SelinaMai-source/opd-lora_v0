@@ -1,0 +1,60 @@
+experiment_name: "v1_teacher_enhance_opsd_instrdialog"
+mode: "baseline"  # debug | baseline | ours
+
+seed: 123
+baseline_name: "opsd"
+
+paths:
+  project_root: "."
+  processed_stream_dir: "data/processed"
+  processed_stream_file: "citb_cl_dialogue_tasks_train50_eval10.json"  # instrdialog, 19 段
+  assets_dir: "assets"
+  results_dir: "results"
+
+data:
+  stream_format: "citb_processed"
+  split: "default"
+  max_segments: -1
+  max_train_examples_per_segment: -1
+  max_eval_examples_per_segment: -1
+
+model:
+  backbone_name: "llama31-8b-instruct"
+  hf_model_name_or_path: "assets/pretrained/Meta-Llama-3.1-8B-Instruct"
+  torch_dtype: "bfloat16"
+  device: "auto"
+  mask_eos_token_in_labels: false
+  mask_all_special_tokens_in_labels: false
+  # 加载 v0 SFT final_adapter，再做 OPSD
+  init_adapter_path: "results/runs/v0_sft_instrdialog/final_adapter"
+
+lora:
+  enabled: true
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: ["q_proj", "v_proj"]
+
+train:
+  epochs_per_segment: 1
+  batch_size: 2
+  lr: 2.0e-4
+  weight_decay: 0.0
+  grad_clip_norm: 1.0
+  log_every: 50
+
+opsd:
+  divergence: "jsd"
+  beta: 0.5
+  rollout_temperature: 1.0
+  rollout_top_p: 1.0
+  rollout_max_new_tokens: 0
+  teacher_format_constraint: true
+
+output:
+  run_name: "v1_teacher_enhance_opsd_instrdialog_seed123_rerun"
+  save_every_segment: true
+  write_tables: true
+  write_logs: true
+  tracking:
+    use_wandb: false
