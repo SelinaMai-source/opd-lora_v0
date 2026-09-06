@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from core.data import Example, Segment
 from core.formatting import format_for_infer, format_for_teacher
@@ -108,6 +108,9 @@ def run_opsd_step(
     teacher_source: str = "base",
     teacher_adapter: str = "teacher",
     teacher_format_constraint: bool = False,
+    rollouts: Optional[List[List[int]]] = None,
+    do_step: bool = True,
+    teacher_prototypes: Optional[List[Optional[Sequence[Mapping[str, Any]]]]] = None,
 ) -> Dict[str, Any]:
     """
     One OPSD optimizer step (rollout + dual forward + divergence + backward + step).
@@ -115,6 +118,12 @@ def run_opsd_step(
     teacher_source:
       - "base": frozen backbone via PEFT disable_adapter()
       - "adapter": frozen LoRA named `teacher_adapter` (must already exist)
+
+    rollouts: optional precomputed continuation token ids (one list per pair). When
+      set, sampling is skipped so a caller can pick teacher golds from the same
+      on-policy sample.
+    do_step: if False, skip backward/optimizer and return `loss_tensor` for the
+      caller to combine (e.g. CE + λ OPSD) before a single step.
     """
     import torch
 
@@ -129,16 +138,28 @@ def run_opsd_step(
     peft_model = getattr(lora, "peft_model", None)
 
     student_prompts = [format_for_infer(tokenizer, ins, inp) for ins, inp in b_pairs]
-    teacher_prompts = [
-        format_for_teacher(tokenizer, ins, inp, ref, format_constraint=teacher_format_constraint)
-        for (ins, inp), ref in zip(b_pairs, b_targets)
-    ]
-    rollouts = model.sample_rollouts(
-        student_prompts,
-        max_new_tokens=max_new,
-        temperature=rollout_temperature,
-        top_p=rollout_top_p,
-    )
+    teacher_prompts = []
+    for i, ((ins, inp), ref) in enumerate(zip(b_pairs, b_targets)):
+        protos = None
+        if teacher_prototypes is not None and i < len(teacher_prototypes):
+            protos = teacher_prototypes[i]
+        teacher_prompts.append(
+            format_for_teacher(
+                tokenizer,
+                ins,
+                inp,
+                ref,
+                format_constraint=teacher_format_constraint,
+                prototypes=protos,
+            )
+        )
+    if rollouts is None:
+        rollouts = model.sample_rollouts(
+            student_prompts,
+            max_new_tokens=max_new,
+            temperature=rollout_temperature,
+            top_p=rollout_top_p,
+        )
 
     student_ids_list: List[List[int]] = []
     teacher_ids_list: List[List[int]] = []
@@ -189,6 +210,15 @@ def run_opsd_step(
     loss = torch.stack(per_example_losses).mean()
     if bool(torch.isnan(loss).item()) or bool(torch.isinf(loss).item()):
         raise RuntimeError(f"OPSD loss is NaN/Inf: {float(loss.item())}")
+
+    if not do_step:
+        return {
+            "skipped": False,
+            "loss": float(loss.detach().item()),
+            "loss_tensor": loss,
+            "rollout_token_total": int(rollout_token_total),
+            "rollout_count": int(rollout_count),
+        }
 
     model._last_lr = float(lr)
     loss.backward()

@@ -7,7 +7,7 @@ import re
 from typing import Any, Dict, List, Optional, Tuple
 
 from core.causal_lm_metrics import count_supervised_label_tokens, teacher_forced_token_accuracy_shifted
-from core.data import Example, Segment
+from core.data import Example, Segment, example_golds
 from core.formatting import format_for_infer, format_for_train
 from core.train_labels import build_supervised_labels
 from core.metrics_utils import (
@@ -403,6 +403,107 @@ def evaluate_stream(
     )
 
 
+def _collapse_eval_examples(examples: List[Example]) -> List[Example]:
+    """One eval case per unique (instruction, input); merge golds.
+
+    New processed streams already keep `outputs: list` on one row. Legacy
+    data/processed files expanded multi-gold into separate rows; collapsing
+    them here still generates once and scores max-over-golds.
+    """
+    merged: Dict[Tuple[str, str], Example] = {}
+    order: List[Tuple[str, str]] = []
+    for ex in examples:
+        key = (str(ex.instruction), str(ex.input))
+        golds = example_golds(ex)
+        if key not in merged:
+            order.append(key)
+            merged[key] = Example(
+                instruction=ex.instruction,
+                input=ex.input,
+                output=golds[0],
+                outputs=list(golds),
+            )
+            continue
+        existing = merged[key]
+        seen = set(existing.outputs)
+        for g in golds:
+            if g not in seen:
+                existing.outputs.append(g)
+                seen.add(g)
+    return [merged[k] for k in order]
+
+
+def _best_pred_gold_metrics(
+    *,
+    pred: str,
+    golds: List[str],
+    prompt: str,
+    instruction: str,
+    input_text: str,
+    normalization_cfg: Dict[str, Any],
+) -> Dict[str, Any]:
+    """Score pred against every gold; keep the best pair.
+
+    Preference: any gold with EM=1, else max token F1. All other metrics
+    (task-aware, ROUGE-L, BLEU, LCS) come from that same pair.
+    """
+    if not golds:
+        golds = [""]
+    norm_pred = _normalize(pred, prompt=prompt, cfg=normalization_cfg)
+    slot_error = _dialogue_slot_error_rate(input_text, norm_pred)
+
+    best: Optional[Dict[str, Any]] = None
+    best_key: Optional[Tuple[int, float]] = None
+    for gold_idx, y in enumerate(golds):
+        norm_gold = _normalize(y, prompt=prompt, cfg=normalization_cfg)
+        matched = norm_pred == norm_gold
+        token_f1 = _token_f1(norm_pred, norm_gold)
+        lcs_overlap = _lcs_overlap(norm_pred, norm_gold)
+        rouge_l = _rouge_l_fscore(norm_pred, norm_gold)
+        bleu = _sentence_bleu4(norm_pred, norm_gold)
+        task_score = _score_task_aware(
+            pred=pred,
+            gold=y,
+            norm_pred=norm_pred,
+            norm_gold=norm_gold,
+            instruction=instruction,
+            input_text=input_text,
+            cfg=normalization_cfg,
+        )
+        bad_prefix = _starts_incorrectly(norm_pred, norm_gold)
+        pred_tokens = [t for t in norm_pred.split() if t]
+        gold_tokens = [t for t in norm_gold.split() if t]
+        prefix_1_match = pred_tokens[:1] == gold_tokens[:1]
+        prefix_3_match = pred_tokens[:3] == gold_tokens[:3]
+        prefix_5_match = pred_tokens[:5] == gold_tokens[:5]
+        key = (int(matched), float(token_f1))
+        if best is not None and best_key is not None and key <= best_key:
+            continue
+        best_key = key
+        best = {
+            "gold_output": y,
+            "gold_outputs": list(golds),
+            "num_golds": int(len(golds)),
+            "selected_gold_index": int(gold_idx),
+            "normalized_prediction": norm_pred,
+            "normalized_gold": norm_gold,
+            "match": bool(matched),
+            "strict_match": bool(matched),
+            **task_score,
+            "token_f1": float(token_f1),
+            "lcs_overlap": float(lcs_overlap),
+            "rouge_l": float(rouge_l),
+            "bleu": float(bleu),
+            "slot_error_rate": None if slot_error is None else float(slot_error),
+            "bad_prefix_mismatch": bool(bad_prefix),
+            "prefix_1_match": bool(prefix_1_match),
+            "prefix_3_match": bool(prefix_3_match),
+            "prefix_5_match": bool(prefix_5_match),
+        }
+    assert best is not None
+    return best
+
+
 def _eval_segment(
     *,
     model: Any,
@@ -431,14 +532,26 @@ def _eval_segment(
     tok = getattr(model, "tokenizer", None)
     if tok is None:
         raise RuntimeError("Model has no tokenizer; cannot format chat prompts for evaluation.")
-    eval_examples = list(segment.eval)
+    on_eval_segment = getattr(model, "on_eval_segment", None)
+    if callable(on_eval_segment):
+        on_eval_segment(segment)
+    eval_examples = _collapse_eval_examples(list(segment.eval))
     enable_infer_token_audit = bool(normalization_cfg.get("enable_infer_token_audit", False))
     enable_teacher_forced_eval = bool(normalization_cfg.get("enable_teacher_forced_eval", False))
     infer_token_audit_max_examples = int(normalization_cfg.get("infer_token_audit_max_examples", 8))
     teacher_forced_eval_max_examples = int(normalization_cfg.get("teacher_forced_eval_max_examples", 8))
 
-    prompts = [format_for_infer(tok, ex.instruction, ex.input, add_generation_prompt=True) for ex in eval_examples]
-    targets = [ex.output for ex in eval_examples]
+    include_instruction = bool(getattr(model, "eval_include_instruction", True))
+    prompts = [
+        format_for_infer(
+            tok,
+            ex.instruction,
+            ex.input,
+            add_generation_prompt=True,
+            include_instruction=include_instruction,
+        )
+        for ex in eval_examples
+    ]
     effective_max_new_tokens = _resolve_eval_max_new_tokens(
         max_new_tokens=max_new_tokens,
         eval_examples=eval_examples,
@@ -597,39 +710,29 @@ def _eval_segment(
         routing_details = [{} for _ in preds]
 
     details: List[Dict[str, Any]] = []
-    for example_idx, (ex, p, pred, y, routing_detail) in enumerate(zip(eval_examples, prompts, preds, targets, routing_details)):
+    for example_idx, (ex, p, pred, routing_detail) in enumerate(
+        zip(eval_examples, prompts, preds, routing_details)
+    ):
         total += 1
-        norm_pred = _normalize(pred, prompt=p, cfg=normalization_cfg)
-        norm_gold = _normalize(y, prompt=p, cfg=normalization_cfg)
-        matched = norm_pred == norm_gold
-        token_f1 = _token_f1(norm_pred, norm_gold)
-        lcs_overlap = _lcs_overlap(norm_pred, norm_gold)
-        rouge_l = _rouge_l_fscore(norm_pred, norm_gold)
-        bleu = _sentence_bleu4(norm_pred, norm_gold)
-        slot_error = _dialogue_slot_error_rate(ex.input, norm_pred)
-        task_score = _score_task_aware(
+        golds = example_golds(ex)
+        pair = _best_pred_gold_metrics(
             pred=pred,
-            gold=y,
-            norm_pred=norm_pred,
-            norm_gold=norm_gold,
+            golds=golds,
+            prompt=p,
             instruction=ex.instruction,
             input_text=ex.input,
-            cfg=normalization_cfg,
+            normalization_cfg=normalization_cfg,
         )
-        bad_prefix = _starts_incorrectly(norm_pred, norm_gold)
-
-        pred_tokens = [t for t in norm_pred.split() if t]
-        gold_tokens = [t for t in norm_gold.split() if t]
-        prefix_1_match = pred_tokens[:1] == gold_tokens[:1]
-        prefix_3_match = pred_tokens[:3] == gold_tokens[:3]
-        prefix_5_match = pred_tokens[:5] == gold_tokens[:5]
+        y = str(pair["gold_output"])
+        matched = bool(pair["match"])
+        task_score_match = bool(pair.get("task_aware_match"))
 
         teacher_forced_loss: Optional[float] = None
         teacher_forced_answer_token_acc: Optional[float] = None
         teacher_forced_num_loss_tokens: Optional[int] = None
         teacher_forced_num_supervised_label_tokens: Optional[int] = None
         if enable_teacher_forced_eval and total <= teacher_forced_eval_max_examples:
-            # Teacher-forced forward pass over (prompt + gold assistant target).
+            # Teacher-forced forward pass over (prompt + primary gold assistant target).
             # Token accuracy must use the same shifted span as HF causal LM loss
             # (argmax(logits[:, :-1]) vs labels[:, 1:], ignoring -100); same-index
             # argmax vs labels was incorrect and inflated mismatch diagnostics.
@@ -665,7 +768,7 @@ def _eval_segment(
                     tok,
                     ex.instruction,
                     ex.input,
-                    str(y),
+                    str(ex.output or golds[0]),
                     max_len=max_len,
                     min_target_tokens=min_tgt,
                     mask_eos_token_in_labels=mask_eos,
@@ -695,33 +798,41 @@ def _eval_segment(
 
         if matched:
             correct += 1
-        if bool(task_score["task_aware_match"]):
+        if task_score_match:
             task_aware_correct += 1
         details.append(
             {
                 "instruction": ex.instruction,
                 "input_text": ex.input,
                 "gold_output": y,
+                "gold_outputs": list(pair["gold_outputs"]),
+                "num_golds": int(pair["num_golds"]),
+                "selected_gold_index": int(pair["selected_gold_index"]),
                 "source_segment_id": int(segment.segment_id),
                 "source_segment_name": str(segment.segment_name),
                 "source_example_idx": int(example_idx),
                 "requested_max_new_tokens": int(max_new_tokens),
                 "effective_max_new_tokens": int(effective_max_new_tokens),
                 "raw_generated_output": pred,
-                "normalized_prediction": norm_pred,
-                "normalized_gold": norm_gold,
+                "normalized_prediction": pair["normalized_prediction"],
+                "normalized_gold": pair["normalized_gold"],
                 "match": matched,
                 "strict_match": matched,
-                **task_score,
-                "token_f1": float(token_f1),
-                "lcs_overlap": float(lcs_overlap),
-                "rouge_l": float(rouge_l),
-                "bleu": float(bleu),
-                "slot_error_rate": None if slot_error is None else float(slot_error),
-                "bad_prefix_mismatch": bool(bad_prefix),
-                "prefix_1_match": bool(prefix_1_match),
-                "prefix_3_match": bool(prefix_3_match),
-                "prefix_5_match": bool(prefix_5_match),
+                "task_aware_match": pair.get("task_aware_match"),
+                "task_aware_score": pair.get("task_aware_score"),
+                "task_score_type": pair.get("task_score_type"),
+                "extracted_prediction": pair.get("extracted_prediction"),
+                "extracted_gold": pair.get("extracted_gold"),
+                "prediction_for_scoring": pair.get("prediction_for_scoring"),
+                "token_f1": float(pair["token_f1"]),
+                "lcs_overlap": float(pair["lcs_overlap"]),
+                "rouge_l": float(pair["rouge_l"]),
+                "bleu": float(pair["bleu"]),
+                "slot_error_rate": pair["slot_error_rate"],
+                "bad_prefix_mismatch": bool(pair["bad_prefix_mismatch"]),
+                "prefix_1_match": bool(pair["prefix_1_match"]),
+                "prefix_3_match": bool(pair["prefix_3_match"]),
+                "prefix_5_match": bool(pair["prefix_5_match"]),
                 "formatted_infer_prompt": p,
                 "teacher_forced_loss": teacher_forced_loss,
                 "teacher_forced_answer_token_acc": teacher_forced_answer_token_acc,
@@ -790,7 +901,11 @@ def _resolve_eval_max_new_tokens(
         return int(max_new_tokens)
     short_limit = int(normalization_cfg.get("short_answer_max_new_tokens", 16))
     step_limit = int(normalization_cfg.get("step_answer_max_new_tokens", 8))
-    golds = [str(ex.output or "") for ex in eval_examples]
+    golds: List[str] = []
+    for ex in eval_examples:
+        golds.extend(example_golds(ex))
+    if not golds:
+        golds = [""]
     if all(_extract_after_step(g) is not None for g in golds):
         return int(min(max_new_tokens, step_limit))
     normalized_golds = [_basic_answer_normalize(g) for g in golds]

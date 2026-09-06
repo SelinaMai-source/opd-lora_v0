@@ -466,6 +466,8 @@ def run_baseline(
     anchor_refresh_segments = _drift_anchor_refresh_segment_count(cfg)
 
     method = _build_baseline_method(baseline_name, cfg)
+    if hasattr(method, "bind_stream"):
+        method.bind_stream(stream)
     debug_tools = cfg.get("debug_tools", {}) if isinstance(cfg.get("debug_tools", {}), dict) else {}
     normalization_cfg = cfg.get("eval_normalization", {}) if isinstance(cfg.get("eval_normalization", {}), dict) else {}
     eval_cfg = cfg.get("eval", {}) if isinstance(cfg.get("eval", {}), dict) else {}
@@ -558,6 +560,8 @@ def run_baseline(
             debug_max_examples=debug_max_examples,
         )
         last_eval_metrics = eval_metrics
+        if hasattr(method, "on_eval_end"):
+            method.on_eval_end(eval_metrics)
         if lora_bank.list_branches() and active_adapter_before_eval in lora.list_adapters():
             lora.set_active_adapter(active_adapter_before_eval)
         logger.log(f"Eval metrics: {json.dumps(eval_metrics, ensure_ascii=False)}")
@@ -1021,6 +1025,18 @@ def _build_baseline_method(baseline_name: str, cfg: Dict[str, Any]) -> Any:
         from baselines.basic_baselines.neg_opsd.method import NegOPSDMethod
 
         return NegOPSDMethod(cfg)
+    if baseline_name == "ce_opsd":
+        from baselines.basic_baselines.ce_opsd.method import CeOpsdMethod
+
+        return CeOpsdMethod(cfg)
+    if baseline_name == "ce_opsd_replay":
+        from baselines.basic_baselines.ce_opsd_replay.method import CeOpsdReplayMethod
+
+        return CeOpsdReplayMethod(cfg)
+    if baseline_name == "metric_opsd":
+        from baselines.basic_baselines.metric_opsd.method import MetricOpsdMethod
+
+        return MetricOpsdMethod(cfg)
     if baseline_name == "replay_lora":
         from baselines.basic_baselines.replay_lora.method import ReplayLoRAMethod
 
@@ -1052,11 +1068,50 @@ def _build_baseline_method(baseline_name: str, cfg: Dict[str, Any]) -> Any:
         from baselines.advanced_baselines.continual_t0.method import ContinualT0Method
 
         return ContinualT0Method(cfg)
+    if baseline_name == "lcia":
+        from baselines.advanced_baselines.lcia.method import LCIAMethod
+
+        return LCIAMethod(cfg)
+    if baseline_name == "citb_init":
+        from baselines.citb.init.method import CITBInitMethod
+
+        return CITBInitMethod(cfg)
+    if baseline_name == "citb_multi":
+        from baselines.citb.multi.method import CITBMultiMethod
+
+        return CITBMultiMethod(cfg)
+    if baseline_name == "citb_ft_no_instr":
+        from baselines.citb.ft_no_instr.method import CITBFTNoInstrMethod
+
+        return CITBFTNoInstrMethod(cfg)
+    if baseline_name == "citb_replay":
+        from baselines.citb.replay.method import CITBReplayMethod
+
+        return CITBReplayMethod(cfg)
+    if baseline_name == "citb_ewc":
+        from baselines.citb.ewc.method import CITBEWCMethod
+
+        return CITBEWCMethod(cfg)
+    if baseline_name == "citb_agem":
+        from baselines.citb.agem.method import CITBAGEMMethod
+
+        return CITBAGEMMethod(cfg)
+    if baseline_name == "citb_adaptercl":
+        from baselines.citb.adaptercl.method import CITBAdapterCLMethod
+
+        return CITBAdapterCLMethod(cfg)
+    if baseline_name == "citb_l2":
+        from baselines.citb.l2.method import CITBL2Method
+
+        return CITBL2Method(cfg)
     raise ValueError(
         "Unknown baseline_name. Expected one of: "
-        "sequential_lora | opsd | seg_opsd | seg_opsd_replay | gold_opsd | neg_opsd | "
+        "sequential_lora | opsd | seg_opsd | seg_opsd_replay | gold_opsd | neg_opsd | ce_opsd | "
+        "ce_opsd_replay | metric_opsd | "
         "replay_lora | periodic_multilora | router_only | bank_no_router | "
-        "o_lora | lb_cl | progressive_prompts | continual_t0"
+        "o_lora | lb_cl | progressive_prompts | continual_t0 | lcia | "
+        "citb_init | citb_multi | citb_ft_no_instr | citb_replay | citb_ewc | "
+        "citb_agem | citb_adaptercl | citb_l2"
     )
 
 

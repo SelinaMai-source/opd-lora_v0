@@ -1,0 +1,59 @@
+experiment_name: v2_multiref_gold_opsd_instrdialog
+mode: baseline
+seed: 456
+baseline_name: ce_opsd
+paths:
+  project_root: .
+  processed_stream_dir: benchmark/instrdialog
+  processed_stream_file: citb_cl_dialogue_tasks_train50_eval10_multiref.json
+  assets_dir: assets
+  results_dir: results
+data:
+  stream_format: citb_processed
+  split: default
+  max_segments: -1
+  max_train_examples_per_segment: -1
+  max_eval_examples_per_segment: -1
+model:
+  backbone_name: llama31-8b-instruct
+  hf_model_name_or_path: assets/pretrained/Meta-Llama-3.1-8B-Instruct
+  torch_dtype: bfloat16
+  device: auto
+  mask_eos_token_in_labels: false
+  mask_all_special_tokens_in_labels: false
+lora:
+  enabled: true
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+  - q_proj
+  - v_proj
+train:
+  epochs_per_segment: 1
+  batch_size: 2
+  lr: 0.0002
+  weight_decay: 0.0
+  grad_clip_norm: 1.0
+  log_every: 50
+opsd:
+  divergence: jsd
+  beta: 0.5
+  rollout_temperature: 1.0
+  rollout_top_p: 1.0
+  rollout_max_new_tokens: 0
+  teacher_format_constraint: true
+ce_opsd:
+  lambda_opsd: 0.2
+output:
+  run_name: v2_multiref_gold_opsd_instrdialog_l02_seed456
+  save_every_segment: true
+  write_tables: true
+  write_logs: true
+  tracking:
+    use_wandb: false
+  save_final_adapter: true
+eval:
+  debug_max_examples: 0
+eval_normalization:
+  format_normalize: true

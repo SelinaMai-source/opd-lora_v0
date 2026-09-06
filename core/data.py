@@ -1,5 +1,5 @@
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 import random
 from typing import Any, Dict, List, Optional, Tuple
@@ -12,6 +12,17 @@ class Example:
     instruction: str
     input: str
     output: str
+    outputs: List[str] = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        golds = [str(x) for x in (self.outputs or [])]
+        if not golds:
+            golds = [str(self.output if self.output is not None else "")]
+        self.outputs = golds
+        if self.output is None or str(self.output) == "":
+            self.output = golds[0]
+        else:
+            self.output = str(self.output)
 
 
 @dataclass
@@ -46,15 +57,15 @@ KNOWN_PROCESSED_STREAMS: Tuple[ProcessedStreamSpec, ...] = (
         processed_file="citb_cl_dialogue_tasks_train50_eval10.json",
         split_name="cl_dialogue_tasks",
         benchmark_name="CITB-InstrDialog",
-        version="citb_instrdialog_train50_eval10_v1",
+        version="citb_instrdialog_train50_eval10_multigold_v2",
     ),
     ProcessedStreamSpec(
         stream_name="instrdialog++",
         aliases=("instrdialog++", "instrdialogpp", "citb_38_random", "38_random_tasks", "random38"),
         processed_file="citb_cl_38_random_tasks_train50_eval10.json",
-        split_name="38_random_tasks",
+        split_name="cl_38_random_tasks",
         benchmark_name="CITB-InstrDialog++",
-        version="citb_instrdialogpp_train50_eval10_v1",
+        version="citb_instrdialogpp_train50_eval10_multigold_v2",
     ),
     ProcessedStreamSpec(
         stream_name="trace",
@@ -105,14 +116,57 @@ def list_known_processed_streams() -> List[Dict[str, str]]:
     ]
 
 
+def _as_str_list(value: Any) -> List[str]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return [str(x) for x in value]
+    return [str(value)]
+
+
+def _unique_keep_order(items: List[str]) -> List[str]:
+    seen = set()
+    out: List[str] = []
+    for x in items:
+        if x in seen:
+            continue
+        seen.add(x)
+        out.append(x)
+    return out
+
+
+def example_golds(ex: Example) -> List[str]:
+    """All gold strings for an example (eval may have several; train usually one)."""
+    golds = [str(g) for g in (ex.outputs or [])]
+    if not golds:
+        golds = [str(ex.output if ex.output is not None else "")]
+    golds = _unique_keep_order(golds)
+    return golds or [""]
+
+
 def _parse_example(obj: Dict[str, Any]) -> Example:
-    for k in ["instruction", "input", "output"]:
-        if k not in obj:
-            raise ValueError(f"Example missing key '{k}': {obj}")
+    if "instruction" not in obj:
+        raise ValueError(f"Example missing key 'instruction': {obj}")
+    golds = _as_str_list(obj.get("outputs"))
+    if not golds:
+        if "output" not in obj:
+            raise ValueError(f"Example missing golds (output/outputs): {obj}")
+        golds = _as_str_list(obj.get("output"))
+    golds = _unique_keep_order(golds) or [""]
+    primary = obj.get("output")
+    if isinstance(primary, list):
+        primary = str(primary[0]) if primary else golds[0]
+    elif primary is None:
+        primary = golds[0]
+    else:
+        primary = str(primary)
+    if not primary:
+        primary = golds[0]
     return Example(
         instruction=str(obj["instruction"]),
         input=str(obj.get("input", "")),
-        output=str(obj["output"]),
+        output=primary,
+        outputs=golds,
     )
 
 
@@ -171,7 +225,8 @@ def load_continual_stream(
     Unified stream loader.
 
     - debug 模式：读取 data/sample/mock_stream.json
-    - baseline/ours：读取 data/processed 下的 CITB 处理后流式文件（JSON）
+    - baseline/ours：读取 processed JSON（新实验推荐 benchmark/instrdialog|instrdialogpp；
+      旧路径 data/processed 仍可用）。loader 同时接受 output 为 str 或 list，以及 outputs:list。
     """
 
     if mode == "debug":
@@ -246,7 +301,8 @@ def resolve_processed_stream_path(
     if not d.exists():
         raise FileNotFoundError(
             f"Processed data directory not found: {processed_stream_dir}. "
-            f"Please generate processed stream under data/processed/."
+            f"New streams live under benchmark/instrdialog and benchmark/instrdialogpp; "
+            f"legacy files remain in data/processed/."
         )
 
     if processed_stream_file:
@@ -273,7 +329,7 @@ def resolve_processed_stream_path(
     if len(candidates) == 0:
         raise FileNotFoundError(
             f"No processed stream json found in {processed_stream_dir}. "
-            f"Expected a single *.json. See data/processed/README.md."
+            f"Expected a single *.json. See benchmark/README.md."
         )
     raise FileExistsError(
         f"Multiple processed stream json files found in {processed_stream_dir}: "
@@ -336,20 +392,15 @@ def preprocess_citb_raw_to_processed(
     max_train_instances_per_task: int = 50,
     max_eval_instances_per_task: int = 10,
     limit_tasks: int = -1,
+    expand_eval_multi_gold: bool = False,
 ) -> None:
     """
-    Preprocessing scaffold (NOT a fake implementation).
+    Convert raw CITB SuperNI task JSONs into a unified continual stream.
 
-    This function is the intended extension point to convert raw CITB data in
-    data/raw/citb/ into the unified continual stream JSON format under data/processed/.
-
-    Current behavior:
-      - validates input directories exist
-      - creates output directory
-      - raises an informative error describing what to implement
-
-    Why keep it here?
-      - Repo structure constraint: preprocessing logic must live in core/data.py.
+    Train: each gold string is a separate supervised example (same as v0/v1).
+    Eval (default): one row per SuperNI instance with `output` (primary/first gold)
+    and `outputs` (full gold list). Set expand_eval_multi_gold=True to restore the
+    old "one eval row per gold" layout.
     """
 
     raw_root_p = Path(raw_root)
@@ -366,6 +417,10 @@ def preprocess_citb_raw_to_processed(
     splits_dir = citb_root / "data" / "splits" / "CIT_splits"
 
     split_txt_path = splits_dir / f"{split_name}.txt"
+    if not split_txt_path.exists() and not str(split_name).startswith("cl_"):
+        alt = splits_dir / f"cl_{split_name}.txt"
+        if alt.exists():
+            split_txt_path = alt
     if not split_txt_path.exists():
         raise FileNotFoundError(f"CITB split txt not found: {split_txt_path}")
     if not tasks_dir.exists():
@@ -393,20 +448,27 @@ def preprocess_citb_raw_to_processed(
         return str(def_obj)
 
     def to_outputs(output_obj: Any) -> List[str]:
-        # CITB task json typically uses `output: [str, ...]` inside each instance.
-        if output_obj is None:
-            return [""]
-        if isinstance(output_obj, list):
-            return [str(x) for x in output_obj]
-        return [str(output_obj)]
+        # CITB / SuperNI task json typically uses `output: [str, ...]` per instance.
+        golds = _unique_keep_order(_as_str_list(output_obj))
+        return golds or [""]
 
-    def instance_to_examples(task_instruction: str, inst: Dict[str, Any]) -> List[Dict[str, str]]:
+    def instance_to_train_examples(task_instruction: str, inst: Dict[str, Any]) -> List[Dict[str, Any]]:
         in_text = str(inst.get("input", ""))
         outs = to_outputs(inst.get("output"))
         return [
-            {"instruction": task_instruction, "input": in_text, "output": o}
+            {"instruction": task_instruction, "input": in_text, "output": o, "outputs": [o]}
             for o in outs
         ]
+
+    def instance_to_eval_example(task_instruction: str, inst: Dict[str, Any]) -> Dict[str, Any]:
+        in_text = str(inst.get("input", ""))
+        outs = to_outputs(inst.get("output"))
+        return {
+            "instruction": task_instruction,
+            "input": in_text,
+            "output": outs[0],
+            "outputs": outs,
+        }
 
     segments: List[Dict[str, Any]] = []
     for seg_id, task_name in enumerate(task_order):
@@ -434,14 +496,19 @@ def preprocess_citb_raw_to_processed(
         rng.shuffle(remaining)
         train_instances = remaining[:max_train]
 
-        train_examples: List[Dict[str, str]] = []
+        train_examples: List[Dict[str, Any]] = []
         for inst in train_instances:
-            train_examples.extend(instance_to_examples(instruction, inst))
+            train_examples.extend(instance_to_train_examples(instruction, inst))
 
-        eval_examples: List[Dict[str, str]] = []
-        for inst in test_instances:
-            eval_examples.extend(instance_to_examples(instruction, inst))
+        eval_examples: List[Dict[str, Any]] = []
+        if expand_eval_multi_gold:
+            for inst in test_instances:
+                eval_examples.extend(instance_to_train_examples(instruction, inst))
+        else:
+            for inst in test_instances:
+                eval_examples.append(instance_to_eval_example(instruction, inst))
 
+        n_eval_multi = sum(1 for ex in eval_examples if len(ex.get("outputs") or []) > 1)
         segments.append(
             {
                 "segment_id": seg_id,
@@ -454,7 +521,8 @@ def preprocess_citb_raw_to_processed(
         print(
             f"[{seg_id:03d}] {task_name}: "
             f"train_instances={len(train_instances)} train_examples={len(train_examples)} "
-            f"eval_instances={len(test_instances)} eval_examples={len(eval_examples)}"
+            f"eval_instances={len(test_instances)} eval_examples={len(eval_examples)} "
+            f"eval_multi_gold={n_eval_multi}"
         )
 
     out = {"benchmark": benchmark_name, "version": version, "stream": segments}

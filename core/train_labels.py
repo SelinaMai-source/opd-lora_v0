@@ -92,9 +92,22 @@ def build_supervised_labels(
     mask_all_special_tokens_in_labels: bool,
     labeling_mode: str,
     completion_only_response_template: str,
+    include_instruction: bool = True,
 ) -> SupervisedEncoding:
-    prompt_text = format_for_infer(tokenizer, instruction, input_text, add_generation_prompt=True)
-    full_text = format_for_train(tokenizer, instruction, input_text, str(target))["full_text"]
+    prompt_text = format_for_infer(
+        tokenizer,
+        instruction,
+        input_text,
+        add_generation_prompt=True,
+        include_instruction=include_instruction,
+    )
+    full_text = format_for_train(
+        tokenizer,
+        instruction,
+        input_text,
+        str(target),
+        include_instruction=include_instruction,
+    )["full_text"]
 
     prompt_ids = tokenizer(prompt_text, add_special_tokens=False, truncation=False)["input_ids"]
     full_ids_raw = tokenizer(full_text, add_special_tokens=False, truncation=False)["input_ids"]

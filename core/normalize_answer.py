@@ -6,6 +6,9 @@ import string
 import unicodedata
 from typing import Any, Dict, Optional
 
+# Imported lazily inside normalize_for_eval to avoid a circular import:
+# output_format_normalize.py uses drop_eos_tokens from this module.
+
 _EOS_TOKENS = (
     "<|eot_id|>",
     "<s>",
@@ -56,10 +59,14 @@ def normalize_for_eval(
     """Normalize prediction/gold for EM/F1.
 
     Contract keys (eval_normalization):
-      strip, drop_copy, collapse_whitespace, remove_punctuation, unicode_nfkc, drop_eos
+      strip, drop_copy, collapse_whitespace, remove_punctuation, unicode_nfkc, drop_eos,
+      format_normalize (default True; surface wrapping/punct/prefixes, pred+gold symmetric).
 
     Legacy aliases still honored: strip_whitespace, lowercase, remove_special_tokens,
     remove_prompt_prefix, keep_text_after_output_marker, truncate_*.
+
+    evaluate.py scores via this function; keep format rules here rather than
+    duplicating them in the scoring loop.
     """
     c = dict(cfg or {})
     out = str(text or "")
@@ -112,6 +119,12 @@ def normalize_for_eval(
 
     if bool(c.get("collapse_whitespace", False)):
         out = re.sub(r"\s+", " ", out).strip()
+
+    # Default on for subsequent eval. Surface format only (see output_format_normalize).
+    if bool(c.get("format_normalize", True)):
+        from core.output_format_normalize import normalize_output_format
+
+        out = normalize_output_format(out)
 
     return out
 
