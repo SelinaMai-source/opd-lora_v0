@@ -55,3 +55,35 @@ PGDR+OPSD 三个 seed 的样本标准差（n−1）：InstrDialog Acc 0.394737±
 - `results/tables/proto_opsd_seeds.csv`：已有的 6 个 PGDR+OPSD seed。
 - `results/tables/allocation_existing_seed456.csv`：已有的 20% 随机、20% 近邻、10%+10%、20% 退化，都是 λ=0.2。没有 15/5 和 5/15。
 - `results/tables/replay_selector_audit.csv`、`results/tables/wall_clock.csv`。
+
+## 补跑（2026-10-31）
+
+审计写这份清单时，seed 789/42 的 `v3_{rand_ce,proto_ce,rand_opsd}` 十二个目录还不存在。这十二个旧协议 run 与八个 seed 456 的 `v3h_` 全流程 run 现已完成，产物在 `/root/autodl-tmp/rp_lora_v3_runs/runs/<run_id>/final_metrics.json`。上文十二格表与原始末点保持审计当时的实测，不改写。本节数字只来自补跑目录自己的 `final.eval`。
+
+旧协议补跑使用 `eval_split_monitor`。`v3h_` 使用 `train_holdout`（每段 50 条训练里留出 5 条，seed 456 的四个方法共用同一划分），不读取官方 eval 做选样。冒烟 `v3h_proto_opsd_instrdialog_seed456_smoke2seg` 审计为 SMOKE_HOLDOUT_OK，只跑 2 段，不进入 `eleven_metrics_comparable.csv`。
+
+| run | monitor | Acc | F | segments |
+|---|---|---:|---:|---:|
+| `v3_proto_ce_instrdialog_seed42` | eval_split_monitor | 0.411 | 0.039 | 19 |
+| `v3_proto_ce_instrdialog_seed789` | eval_split_monitor | 0.374 | 0.056 | 19 |
+| `v3_proto_ce_instrdialogpp_seed42` | eval_split_monitor | 0.453 | 0.076 | 38 |
+| `v3_proto_ce_instrdialogpp_seed789` | eval_split_monitor | 0.434 | 0.089 | 38 |
+| `v3_rand_ce_instrdialog_seed42` | eval_split_monitor | 0.326 | 0.122 | 19 |
+| `v3_rand_ce_instrdialog_seed789` | eval_split_monitor | 0.368 | 0.078 | 19 |
+| `v3_rand_ce_instrdialogpp_seed42` | eval_split_monitor | 0.416 | 0.089 | 38 |
+| `v3_rand_ce_instrdialogpp_seed789` | eval_split_monitor | 0.389 | 0.127 | 38 |
+| `v3_rand_opsd_instrdialog_seed42` | eval_split_monitor | 0.321 | 0.122 | 19 |
+| `v3_rand_opsd_instrdialog_seed789` | eval_split_monitor | 0.368 | 0.083 | 19 |
+| `v3_rand_opsd_instrdialogpp_seed42` | eval_split_monitor | 0.400 | 0.105 | 38 |
+| `v3_rand_opsd_instrdialogpp_seed789` | eval_split_monitor | 0.411 | 0.100 | 38 |
+| `v3h_proto_ce_instrdialog_seed456` | train_holdout | 0.363 | 0.083 | 19 |
+| `v3h_proto_ce_instrdialogpp_seed456` | train_holdout | 0.426 | 0.095 | 38 |
+| `v3h_proto_opsd_instrdialog_seed456` | train_holdout | 0.384 | 0.089 | 19 |
+| `v3h_proto_opsd_instrdialogpp_seed456` | train_holdout | 0.461 | 0.062 | 38 |
+| `v3h_rand_ce_instrdialog_seed456` | train_holdout | 0.321 | 0.128 | 19 |
+| `v3h_rand_ce_instrdialogpp_seed456` | train_holdout | 0.411 | 0.124 | 38 |
+| `v3h_rand_opsd_instrdialog_seed456` | train_holdout | 0.395 | 0.078 | 19 |
+| `v3h_rand_opsd_instrdialogpp_seed456` | train_holdout | 0.416 | 0.103 | 38 |
+
+冒烟末点：Acc 0.000，F 0.000，Token F1 0.309，段数 2。`v3h_rand_opsd_instrdialogpp_seed456` 的 `config_snapshot.yaml` 在开跑后曾被移到同名 `.aborted_before_segment0` 目录，训练继续写回原路径并写出 `final_metrics.json`；快照已按该次启动时写入的文件拷回原 run 目录，指标文件未改。
+
