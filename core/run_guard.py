@@ -25,7 +25,10 @@ def fingerprint(cfg: Dict[str, Any]) -> Dict[str, Any]:
     data = cfg.get("data") if isinstance(cfg.get("data"), dict) else {}
     paths = cfg.get("paths") if isinstance(cfg.get("paths"), dict) else {}
     ce = cfg.get("ce_opsd") if isinstance(cfg.get("ce_opsd"), dict) else {}
+    opsd = cfg.get("opsd") if isinstance(cfg.get("opsd"), dict) else {}
+    model = cfg.get("model") if isinstance(cfg.get("model"), dict) else {}
     monitor = str(replay.get("monitor", "eval_split_monitor")).strip().lower()
+    order = data.get("segment_order") or []
     out = {
         "seed": int(cfg.get("seed", 0)),
         "baseline_name": str(cfg.get("baseline_name", "")),
@@ -40,6 +43,9 @@ def fingerprint(cfg: Dict[str, Any]) -> Dict[str, Any]:
         "neighbor_ratio": float(replay.get("neighbor_ratio", 0.0)),
         "forgotten_ratio": float(replay.get("forgotten_ratio", 0.0)),
         "buffer_k": int(replay.get("buffer_k", replay.get("k", 10))),
+        "student_tokens": str(opsd.get("student_tokens", "on_policy")).strip().lower(),
+        "segment_order": [int(x) for x in order],
+        "init_adapter_path": str(model.get("init_adapter_path", "")).strip(),
         "format_normalize": bool(
             (cfg.get("eval_normalization") or {}).get("format_normalize", False)
             if isinstance(cfg.get("eval_normalization"), dict)

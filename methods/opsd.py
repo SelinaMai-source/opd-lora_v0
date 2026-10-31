@@ -4,6 +4,13 @@ The teacher forward used in training is ``baselines.basic_baselines.opsd.method.
 with ``teacher_source='base'``, which runs under ``torch.no_grad`` and PEFT
 ``disable_adapter()``. This module owns the divergence so that formula is not
 duplicated. CE is added by the caller as ``L = L_CE + λ L_OPSD``.
+
+``opsd.rollout_temperature`` (default 1.0) is the student sampling temperature.
+JSD has no separate distillation temperature T; do not invent T=2/4.
+
+``opsd.student_tokens`` (default ``on_policy``) selects the token span for JSD:
+on-policy student rollout, or ``gold`` (off-policy fixed reference). The default
+algorithm is unchanged.
 """
 from __future__ import annotations
 

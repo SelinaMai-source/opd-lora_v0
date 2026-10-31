@@ -274,6 +274,9 @@ def _load_stream(cfg: Dict[str, Any], *, mode: str, logger: SimpleLogger) -> Con
     max_segments = int(data_cfg.get("max_segments", -1))
     max_train = int(data_cfg.get("max_train_examples_per_segment", -1))
     max_eval = int(data_cfg.get("max_eval_examples_per_segment", -1))
+    segment_order = data_cfg.get("segment_order") or None
+    if segment_order is not None:
+        segment_order = [int(x) for x in segment_order]
 
     if processed_dir is None:
         raise ValueError("processed_stream_dir is required for baseline/ours modes")
@@ -282,6 +285,11 @@ def _load_stream(cfg: Dict[str, Any], *, mode: str, logger: SimpleLogger) -> Con
         logger.log(
             f"Requested processed stream alias='{processed_stream_name}' "
             f"(auto_prepare_processed={auto_prepare_processed})"
+        )
+    if segment_order:
+        logger.log(
+            f"Applied data.segment_order n={len(segment_order)} "
+            f"name={data_cfg.get('segment_order_name', '')} ids={segment_order}"
         )
 
     return load_continual_stream(
@@ -299,6 +307,7 @@ def _load_stream(cfg: Dict[str, Any], *, mode: str, logger: SimpleLogger) -> Con
         max_segments=max_segments,
         max_train_examples_per_segment=max_train,
         max_eval_examples_per_segment=max_eval,
+        segment_order=segment_order,
     )
 
 

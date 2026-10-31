@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 import random
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 from core.utils import ensure_dir
 
@@ -204,6 +204,44 @@ def _parse_stream_json(path: str) -> ContinualStream:
     )
 
 
+def apply_segment_order(stream: ContinualStream, order: Sequence[int]) -> ContinualStream:
+    """Reorder whole segments. Does not mix examples across tasks.
+
+    ``order`` is a permutation of the original ``segment_id`` values. After
+    reorder, ids are rewritten to ``0..n-1`` in the new training order so the
+    trainer, memory, and forgetting tables only ever see already-trained
+    prefixes. Future tasks stay in later list slots and are not read.
+    """
+    if not order:
+        return stream
+    by_id = {int(seg.segment_id): seg for seg in stream.stream}
+    wanted = [int(x) for x in order]
+    if len(wanted) != len(by_id) or len(set(wanted)) != len(wanted):
+        raise ValueError(
+            f"segment_order must be a permutation of {len(by_id)} original ids, got {wanted}"
+        )
+    if set(wanted) != set(by_id):
+        raise ValueError(
+            f"segment_order ids {sorted(wanted)} != original ids {sorted(by_id)}"
+        )
+    new_segments: List[Segment] = []
+    for new_id, old_id in enumerate(wanted):
+        seg = by_id[int(old_id)]
+        new_segments.append(
+            Segment(
+                segment_id=int(new_id),
+                segment_name=seg.segment_name,
+                train=list(seg.train),
+                eval=list(seg.eval),
+            )
+        )
+    return ContinualStream(
+        benchmark=stream.benchmark,
+        version=stream.version,
+        stream=new_segments,
+    )
+
+
 def load_continual_stream(
     *,
     mode: str,
@@ -220,6 +258,7 @@ def load_continual_stream(
     max_segments: int = -1,
     max_train_examples_per_segment: int = -1,
     max_eval_examples_per_segment: int = -1,
+    segment_order: Optional[Sequence[int]] = None,
 ) -> ContinualStream:
     """
     Unified stream loader.
@@ -248,6 +287,9 @@ def load_continual_stream(
             limit_tasks=processed_stream_limit_tasks,
         )
         stream = _parse_stream_json(stream_path)
+
+    if segment_order:
+        stream = apply_segment_order(stream, segment_order)
 
     stream = truncate_stream(
         stream,

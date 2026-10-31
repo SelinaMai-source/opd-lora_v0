@@ -265,8 +265,146 @@
 | v3h_rand_opsd_instrdialog_seed456 | 2026-10-31T18:11:41+08:00 | 2026-10-31T18:32:39+08:00 | 1257.5 | 0 MiB, 48509 MiB |
 | v3h_rand_opsd_instrdialogpp_seed456 | 2026-10-31T20:22:40+08:00 | 2026-10-31T21:14:29+08:00 | 3109.5 | 0 MiB, 48509 MiB |
 
-## 待补（本轮不跑）
+<!-- BEGIN PENDING_EXT -->
+## Pending extensions（seed 456，本轮新跑）
 
-- E2：replay 槽 15/5 与 5/15。Pending。
-- E6：replay 比例网格。Pending。
-- E9–E11：Pending。
+数字只来自 `final_metrics.json`。缺测写 —。JSD 无单独蒸馏温度；`rollout_temperature` 保持 1.0。
+E3 SFT→OPSD：Blocked（CITB Sequential adapter 走非 multiref 流且快照无 format_normalize，不是合法 v3 协议 init）。
+不重跑 20% 随机 / 全相关 / 全退化 / 10+10 历史格，也不开 50–90% replay 或新的 789/42。
+
+### E2 15/5 与 5/15 槽混合（train_holdout）
+
+| run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| v3h_proto_opsd_n15f5_instrdialog_seed456 | 0.363 | 0.363 | 0.078 | 0.078 | 0.460 | 0.454 | 0.482 | 0.452 | 0.000 | 0.000 | 0.363 |
+| v3h_proto_opsd_n5f15_instrdialog_seed456 | 0.411 | 0.411 | 0.044 | 0.044 | 0.507 | 0.502 | 0.524 | 0.494 | 0.000 | 0.000 | 0.411 |
+| v3h_proto_opsd_n15f5_instrdialogpp_seed456 | 0.400 | 0.403 | 0.108 | 0.108 | 0.513 | 0.507 | 0.562 | 0.504 | 0.000 | 0.000 | 0.403 |
+| v3h_proto_opsd_n5f15_instrdialogpp_seed456 | 0.426 | 0.429 | 0.084 | 0.084 | 0.544 | 0.536 | 0.595 | 0.531 | 0.000 | 0.000 | 0.429 |
+
+| run | start | end | elapsed_sec | gpu_after |
+|---|---|---|---|---|
+| v3h_proto_opsd_n15f5_instrdialog_seed456 | 2026-11-01T03:39:19+08:00 | 2026-11-01T03:59:13+08:00 | 1193.2 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_n5f15_instrdialog_seed456 | 2026-11-01T03:59:13+08:00 | 2026-11-01T04:19:49+08:00 | 1236.4 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_n15f5_instrdialogpp_seed456 | 2026-11-01T04:19:50+08:00 | 2026-11-01T05:07:59+08:00 | 2889.5 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_n5f15_instrdialogpp_seed456 | 2026-11-01T05:08:00+08:00 | 2026-11-01T05:58:21+08:00 | 3021.2 | 0 MiB, 48509 MiB |
+
+### E4 λ ∈ {0.05, 0.10, 0.50}（PGDR+CE+OPSD holdout）
+
+| run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| v3h_proto_opsd_lam005_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_lam010_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_lam050_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_lam005_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_lam010_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_lam050_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+
+| run | start | end | elapsed_sec | gpu_after |
+|---|---|---|---|---|
+| v3h_proto_opsd_lam005_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_lam010_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_lam050_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_lam005_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_lam010_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_lam050_instrdialogpp_seed456 | — | — | — | — |
+
+### E4 off-policy gold tokens vs on-policy（λ=0.2 holdout）
+
+| run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| v3h_proto_opsd_offpol_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_offpol_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+
+| run | start | end | elapsed_sec | gpu_after |
+|---|---|---|---|---|
+| v3h_proto_opsd_offpol_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_offpol_instrdialogpp_seed456 | — | — | — | — |
+
+### E6 replay_ratio ∈ {0, 0.10, 0.30, 0.40}
+
+| run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| v3_proto_opsd_rr0_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_rr10_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_rr30_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_rr40_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3_proto_opsd_rr0_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_rr10_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_rr30_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_rr40_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+
+| run | start | end | elapsed_sec | gpu_after |
+|---|---|---|---|---|
+| v3_proto_opsd_rr0_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_rr10_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_rr30_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_rr40_instrdialog_seed456 | — | — | — | — |
+| v3_proto_opsd_rr0_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_rr10_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_rr30_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_rr40_instrdialogpp_seed456 | — | — | — | — |
+
+### E3 v3 协议对照（direct OPSD / seg_opsd K=25）
+
+| run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| v3_opsd_direct_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3_opsd_direct_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3_seg_opsd_k25_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3_seg_opsd_k25_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+
+| run | start | end | elapsed_sec | gpu_after |
+|---|---|---|---|---|
+| v3_opsd_direct_instrdialog_seed456 | — | — | — | — |
+| v3_opsd_direct_instrdialogpp_seed456 | — | — | — | — |
+| v3_seg_opsd_k25_instrdialog_seed456 | — | — | — | — |
+| v3_seg_opsd_k25_instrdialogpp_seed456 | — | — | — | — |
+
+### E9 buffer_k ∈ {5, 20, 50}
+
+| run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| v3h_proto_opsd_bufk5_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_bufk20_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_bufk50_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_bufk5_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_bufk20_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_bufk50_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+
+| run | start | end | elapsed_sec | gpu_after |
+|---|---|---|---|---|
+| v3h_proto_opsd_bufk5_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_bufk20_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_bufk50_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_bufk5_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_bufk20_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_bufk50_instrdialogpp_seed456 | — | — | — | — |
+
+### E10 InstrDialog 任务顺序置换
+
+| run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| v3h_proto_opsd_ordrev_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_ordshuf_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+
+| run | start | end | elapsed_sec | gpu_after |
+|---|---|---|---|---|
+| v3h_proto_opsd_ordrev_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_ordshuf_instrdialog_seed456 | — | — | — | — |
+
+### E11 holdout 全相关 / 全退化 20%
+
+| run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| v3h_proto_opsd_allnb_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_allfg_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_allnb_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_allfg_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+
+| run | start | end | elapsed_sec | gpu_after |
+|---|---|---|---|---|
+| v3h_proto_opsd_allnb_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_allfg_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_allnb_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_allfg_instrdialogpp_seed456 | — | — | — | — |
+<!-- END PENDING_EXT -->

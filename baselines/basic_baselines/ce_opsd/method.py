@@ -45,6 +45,11 @@ class CeOpsdMethod:
         self.rollout_top_p = float(opsd_cfg.get("rollout_top_p", 1.0))
         self.rollout_max_new_tokens = int(opsd_cfg.get("rollout_max_new_tokens", 0))
         self.teacher_format_constraint = bool(opsd_cfg.get("teacher_format_constraint", True))
+        self.student_tokens = str(opsd_cfg.get("student_tokens", "on_policy")).strip().lower()
+        if self.student_tokens not in {"on_policy", "gold"}:
+            raise ValueError(
+                f"opsd.student_tokens must be 'on_policy' or 'gold', got: {self.student_tokens}"
+            )
 
     def on_segment_start(self, *, segment: Segment, model: Any, lora: Any) -> Dict[str, Any]:
         if "default" in lora.list_adapters():
@@ -103,6 +108,7 @@ class CeOpsdMethod:
                         {
                             "ex": ex,
                             "golds": golds,
+                            "ce_gold": ce_gold,
                             "enc": enc,
                             "long": len(enc.full_ids) >= _LONG_SEQ_SKIP_OPSD,
                         }
@@ -117,21 +123,28 @@ class CeOpsdMethod:
                     torch.cuda.empty_cache()
 
                 # λ<=0 is true CE: do not rollout / run_opsd_step / backprop 0*opsd.
+                # student_tokens=gold: fixed-reference (off-policy) span; default on_policy.
                 rollouts: List[List[int]] = []
                 if apply_opsd and opsd_rows:
-                    student_prompts = [
-                        format_for_infer(tokenizer, row["ex"].instruction, row["ex"].input)
-                        for row in opsd_rows
-                    ]
-                    rollouts = model.sample_rollouts(
-                        student_prompts,
-                        max_new_tokens=max_new,
-                        temperature=self.rollout_temperature,
-                        top_p=self.rollout_top_p,
-                    )
-                    for row, ro in zip(opsd_rows, rollouts):
-                        pred = tokenizer.decode(ro, skip_special_tokens=True) if ro else ""
-                        row["teacher_gold"] = _pick_nearest_gold(pred, row["golds"])
+                    if self.student_tokens == "gold":
+                        for row in opsd_rows:
+                            gold = str(row["ce_gold"])
+                            row["teacher_gold"] = gold
+                            rollouts.append(_gold_rollout_ids(tokenizer, gold))
+                    else:
+                        student_prompts = [
+                            format_for_infer(tokenizer, row["ex"].instruction, row["ex"].input)
+                            for row in opsd_rows
+                        ]
+                        rollouts = model.sample_rollouts(
+                            student_prompts,
+                            max_new_tokens=max_new,
+                            temperature=self.rollout_temperature,
+                            top_p=self.rollout_top_p,
+                        )
+                        for row, ro in zip(opsd_rows, rollouts):
+                            pred = tokenizer.decode(ro, skip_special_tokens=True) if ro else ""
+                            row["teacher_gold"] = _pick_nearest_gold(pred, row["golds"])
 
                 if hasattr(model, "model") and hasattr(model.model, "train"):
                     model.model.train()
@@ -225,6 +238,7 @@ class CeOpsdMethod:
         metrics["lambda_opsd"] = float(self.lambda_opsd)
         metrics["opsd_applied"] = bool(float(self.lambda_opsd) > 0.0)
         metrics["opsd_skipped_lambda"] = bool(float(self.lambda_opsd) <= 0.0)
+        metrics["student_tokens"] = str(self.student_tokens)
         metrics["teacher_format_constraint"] = bool(self.teacher_format_constraint)
         metrics["opsd_skipped_long"] = int(skipped_long)
         metrics["rollout_mean_tokens"] = rollout_token_total / max(1, rollout_count)
@@ -235,6 +249,12 @@ class CeOpsdMethod:
         metrics["train.n_steps"] = int(metrics.get("batches", 0))
         metrics["active_adapter"] = lora.get_active_adapter_name()
         return metrics
+
+
+def _gold_rollout_ids(tokenizer: Any, gold: str) -> List[int]:
+    """Encode a fixed gold string as continuation tokens (off-policy span)."""
+    ids = tokenizer(str(gold), add_special_tokens=False)["input_ids"]
+    return [int(x) for x in ids]
 
 
 def _example_golds(ex: Example) -> List[str]:

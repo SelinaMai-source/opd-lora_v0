@@ -9,9 +9,10 @@ from pathlib import Path
 import torch
 import torch.nn as nn
 
+from baselines.basic_baselines.ce_opsd.method import _gold_rollout_ids
 from baselines.basic_baselines.ce_opsd_replay.method import CeOpsdReplayMethod, SegmentMemory
 from baselines.basic_baselines.opsd.method import _teacher_forward_logits, token_divergence
-from core.data import Example, Segment
+from core.data import Example, Segment, ContinualStream, apply_segment_order
 from core.evaluate import _best_pred_gold_metrics
 from core.metrics_utils import token_f1
 from methods.opsd import ce_plus_opsd
@@ -349,6 +350,52 @@ class MetricFormulaTests(unittest.TestCase):
         sample = {f"eval.{key}": 0.0 for key in FEISHU_KEYS}
         missing = [key for key in FEISHU_KEYS if f"eval.{key}" not in sample]
         self.assertEqual(missing, [])
+
+
+class PendingExtensionTests(unittest.TestCase):
+    def test_mix_15_5_and_5_15_quota(self) -> None:
+        a = replay_quota(45, strategy="proto", replay_ratio=0.2, neighbor_ratio=0.15, forgotten_ratio=0.05)
+        self.assertEqual(a["n_neighbor"], 7)
+        self.assertEqual(a["n_forgotten"], 2)
+        self.assertEqual(a["n_replay"], 9)
+        b = replay_quota(45, strategy="proto", replay_ratio=0.2, neighbor_ratio=0.05, forgotten_ratio=0.15)
+        self.assertEqual(b["n_neighbor"], 2)
+        self.assertEqual(b["n_forgotten"], 7)
+
+    def test_replay_ratio_zero_does_not_sample_memory(self) -> None:
+        method = CeOpsdReplayMethod(_cfg(MONITOR_EVAL_SPLIT, "proto"))
+        method.replay_ratio = 0.0
+        method.neighbor_ratio = 0.0
+        method.forgotten_ratio = 0.0
+        method._memories = [
+            SegmentMemory(0, "a", "strict_em", 1.0, [1.0, 0.0], [_ex(0, i) for i in range(10)])
+        ]
+        method._forgetting_by_segment = {0: 0.9}
+        mixed = method._mix_current_and_replay(_segment(1, n_train=8))
+        self.assertEqual(len(mixed), 8)
+        self.assertEqual(method._n_replay_used, 0)
+        self.assertEqual(method._n_forgotten_used, 0)
+
+    def test_segment_order_rewrites_ids_without_mixing_examples(self) -> None:
+        segs = [_segment(i, n_train=3, n_eval=2) for i in range(4)]
+        stream = ContinualStream("bench", "v", segs)
+        out = apply_segment_order(stream, [3, 0, 2, 1])
+        self.assertEqual([s.segment_id for s in out.stream], [0, 1, 2, 3])
+        self.assertEqual([s.segment_name for s in out.stream], ["seg-3", "seg-0", "seg-2", "seg-1"])
+        self.assertEqual(out.stream[0].train[0].instruction, "task-3-train")
+        self.assertEqual(out.stream[1].eval[0].instruction, "task-0-eval")
+        with self.assertRaises(ValueError):
+            apply_segment_order(stream, [0, 1, 1, 2])
+
+    def test_gold_rollout_ids_are_tokenizer_continuation(self) -> None:
+        class _Tok:
+            def __call__(self, text, add_special_tokens=False):
+                self.seen = (text, add_special_tokens)
+                return {"input_ids": [11, 12, 13]}
+
+        tok = _Tok()
+        self.assertEqual(_gold_rollout_ids(tok, "hello"), [11, 12, 13])
+        self.assertEqual(tok.seen, ("hello", False))
 
 
 if __name__ == "__main__":
