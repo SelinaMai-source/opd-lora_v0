@@ -301,7 +301,7 @@ E3 SFT→OPSD：Blocked（CITB Sequential adapter 走非 multiref 流且快照�
 
 | run | start | end | elapsed_sec | gpu_after |
 |---|---|---|---|---|
-| v3h_proto_opsd_lam005_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_lam005_instrdialog_seed456 | 2026-11-01T06:01:49+08:00 | — | — | — |
 | v3h_proto_opsd_lam010_instrdialog_seed456 | — | — | — | — |
 | v3h_proto_opsd_lam050_instrdialog_seed456 | — | — | — | — |
 | v3h_proto_opsd_lam005_instrdialogpp_seed456 | — | — | — | — |

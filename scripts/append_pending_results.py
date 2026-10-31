@@ -189,15 +189,22 @@ def queue_body() -> str:
         lines.append(f"### {title}")
         for name in GROUPS[group]:
             metrics = load_eleven(name)
-            status = "done" if metrics.get("seen_avg_score") is not None else "pending"
+            run_dir = RUNS / name
+            if metrics.get("seen_avg_score") is not None:
+                status = "done"
+            elif run_dir.exists() and not (run_dir / "final_metrics.json").is_file():
+                status = "interrupted (no resume; directory left untouched)"
+            else:
+                status = "pending"
             lines.append(f"- `{name}`: {status}")
         lines.append("")
     lines.extend(
         [
-            "### Blocked",
+            "### Blocked / Interrupted",
             "",
             "- E3 SFT→OPSD：无合法 init adapter（Sequential 快照为非 `*_multiref.json` 且无 `format_normalize`）。",
             "- 蒸馏温度扫描：不做。原目标 JSD 无单独 T，`rollout_temperature` 为 1.0。",
+            "- `v3h_proto_opsd_lam005_instrdialog_seed456`：Interrupted。队列与 trainer 在段 0–1 后断开；常规 CL trainer 不能从段中途续跑（`save_segment_adapters: false`）。不覆盖该目录，不重开同名 run。",
             "",
             "## 不做",
             "",

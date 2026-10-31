@@ -15,6 +15,18 @@ import run_v3_acl_queue as acl  # noqa: E402
 
 GROUPS = pending.GROUPS
 ORDER = ["e2", "e4lam", "e4off", "e6", "e3", "e9", "e10", "e11"]
+INTERRUPTED = [
+    {
+        "name": "v3h_proto_opsd_lam005_instrdialog_seed456",
+        "group": "e4lam",
+        "status": "interrupted",
+        "reason": (
+            "Queue and trainer died after segment 0-1 with no final_metrics.json. "
+            "Regular CL trainer has no mid-stream resume (save_segment_adapters is false). "
+            "Directory left untouched; do not overwrite."
+        ),
+    },
+]
 BLOCKED = [
     {
         "name": "v3_sft_then_opsd",
@@ -60,13 +72,29 @@ def main() -> None:
     summary = acl.load_summary()
     summary["pending_status"] = "running"
     summary["blocked"] = BLOCKED
+    summary["interrupted"] = INTERRUPTED
     acl.save_summary(summary)
     for row in BLOCKED:
         acl.record(row["name"], "BLOCKED", row["reason"])
+    interrupted_names = {row["name"] for row in INTERRUPTED}
+    for row in INTERRUPTED:
+        acl.record(row["name"], "INTERRUPTED", row["reason"])
+        (acl.LOGDIR / f"{row['name']}.interrupted").write_text(row["reason"] + "\n", encoding="utf-8")
     try:
         for group in wanted:
             acl.record(group, "GROUP_START", pending.TITLES[group])
             for name in GROUPS[group]:
+                if name in interrupted_names:
+                    rec = {
+                        "name": name,
+                        "ok": False,
+                        "skipped": True,
+                        "blocked": "interrupted",
+                        "run_dir": str(acl.RESULTS / name),
+                    }
+                    summary["runs"].append(rec)
+                    acl.save_summary(summary)
+                    continue
                 acl.run_one(name, summary)
             pending.main()
             acl.record(group, "GROUP_DONE", pending.TITLES[group])
