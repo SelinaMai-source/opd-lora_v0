@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+assets/
+benchmark
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+final_adapter/
+segment_adapters/
+official/
+.env
+*.pem
+credentials.json

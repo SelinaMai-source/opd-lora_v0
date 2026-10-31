@@ -1,0 +1,400 @@
+run_id,task_id,n_stages,acc_first,acc_max,acc_final,acc_class,task_aware_class,acc_series
+v2pre_citb_sequential_instrdialog_seed456,0,19,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialog_seed456,1,18,0.1,0.1,0,learned_then_forgotten,learned_then_forgotten,0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialog_seed456,2,17,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialog_seed456,3,16,1,1,0.3,learned_then_forgotten,learned_then_forgotten,1.000 0.900 0.800 0.600 0.200 0.400 0.000 0.100 0.200 0.300 0.200 0.300 0.000 0.000 0.000 0.300
+v2pre_citb_sequential_instrdialog_seed456,4,15,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 0.700 0.800 0.800 0.900 0.400 0.100 0.000 0.000 1.000 1.000 1.000 0.700 1.000
+v2pre_citb_sequential_instrdialog_seed456,5,14,0.7,0.7,0.7,retained,retained,0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v2pre_citb_sequential_instrdialog_seed456,6,13,0.9,0.9,0.6,learned_then_forgotten,learned_then_forgotten,0.900 0.300 0.400 0.100 0.000 0.200 0.000 0.000 0.000 0.500 0.300 0.300 0.600
+v2pre_citb_sequential_instrdialog_seed456,7,12,0.1,0.3,0.1,learned_then_forgotten_with_partial_recovery,forgotten_then_recovered,0.100 0.100 0.000 0.300 0.200 0.200 0.000 0.100 0.200 0.200 0.200 0.100
+v2pre_citb_sequential_instrdialog_seed456,8,11,0.4,0.4,0,learned_then_forgotten,learned_then_forgotten,0.400 0.300 0.200 0.000 0.000 0.100 0.100 0.100 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialog_seed456,9,10,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialog_seed456,10,9,0,0.1,0,learned_then_forgotten_with_partial_recovery,forgotten_then_recovered,0.000 0.100 0.100 0.000 0.000 0.100 0.100 0.100 0.000
+v2pre_citb_sequential_instrdialog_seed456,11,8,0.7,1,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.700 0.000 0.300 1.000 0.500 0.700 0.800
+v2pre_citb_sequential_instrdialog_seed456,12,7,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialog_seed456,13,6,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialog_seed456,14,5,0.6,0.6,0.6,forgotten_then_recovered,forgotten_then_recovered,0.600 0.300 0.200 0.500 0.600
+v2pre_citb_sequential_instrdialog_seed456,15,4,0.5,0.5,0.2,learned_then_forgotten,learned_then_forgotten,0.500 0.200 0.100 0.200
+v2pre_citb_sequential_instrdialog_seed456,16,3,0.9,0.9,0.7,learned_then_forgotten,learned_then_forgotten,0.900 0.800 0.700
+v2pre_citb_sequential_instrdialog_seed456,17,2,0.7,0.7,0.7,retained,retained,0.700 0.700
+v2pre_citb_sequential_instrdialog_seed456,18,1,0,0,0,never_learned,never_learned,0.000
+v2pre_citb_sequential_instrdialogpp_seed456,0,38,0.6,0.7,0.5,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.600 0.400 0.400 0.400 0.500 0.500 0.600 0.600 0.400 0.400 0.500 0.400 0.500 0.400 0.400 0.400 0.400 0.500 0.500 0.500 0.300 0.500 0.400 0.200 0.600 0.400 0.500 0.700 0.700 0.000 0.400 0.500 0.500 0.400 0.600 0.400 0.500
+v2pre_citb_sequential_instrdialogpp_seed456,1,37,0.6,0.7,0.5,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.200 0.200 0.000 0.100 0.300 0.300 0.300 0.100 0.000 0.100 0.200 0.100 0.100 0.000 0.100 0.400 0.400 0.400 0.400 0.300 0.700 0.700 0.500 0.400 0.200 0.600 0.400 0.400 0.000 0.400 0.100 0.500 0.500 0.500 0.500 0.500
+v2pre_citb_sequential_instrdialogpp_seed456,2,36,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.100 0.100 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,3,35,0.7,0.8,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.700 0.800 0.700 0.600 0.700 0.500 0.400 0.700 0.700 0.600 0.100 0.500 0.700 0.700 0.800 0.300 0.500 0.500 0.800 0.400 0.400 0.400 0.300 0.300 0.500 0.300 0.000 0.000 0.300 0.600 0.700 0.500 0.500 0.600
+v2pre_citb_sequential_instrdialogpp_seed456,4,34,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,5,33,1,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.000 0.700 0.900 0.900 1.000 1.000 1.000 1.000 0.800 0.600 0.000 0.000 0.000 0.000 0.300 0.900 0.000 0.000 1.000 1.000 1.000 0.900 0.800 0.900
+v2pre_citb_sequential_instrdialogpp_seed456,6,32,0.9,0.9,0.5,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.900 0.800 0.800 0.800 0.800 0.800 0.900 0.800 0.800 0.800 0.200 0.200 0.900 0.800 0.800 0.800 0.800 0.800 0.800 0.900 0.700 0.800 0.200 0.200 0.000 0.200 0.200 0.200 0.200 0.200 0.300 0.500
+v2pre_citb_sequential_instrdialogpp_seed456,7,31,0.8,0.8,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.600 0.500 0.500 0.600 0.600 0.500 0.400 0.600 0.800 0.700 0.700 0.600 0.600 0.700 0.700 0.600 0.600 0.600 0.600 0.600 0.600 0.600 0.000 0.700 0.600 0.700 0.600 0.600 0.600 0.600
+v2pre_citb_sequential_instrdialogpp_seed456,8,30,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,9,29,0.1,0.2,0.1,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.100 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.200 0.100 0.100 0.000 0.100 0.100 0.100 0.000 0.100 0.200 0.000 0.000 0.000 0.100 0.100
+v2pre_citb_sequential_instrdialogpp_seed456,10,28,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,11,27,0.4,0.6,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.300 0.100 0.100 0.400 0.500 0.100 0.400 0.000 0.500 0.300 0.100 0.100 0.200 0.400 0.200 0.400 0.500 0.600 0.000 0.100 0.100 0.100 0.100 0.100 0.200 0.200
+v2pre_citb_sequential_instrdialogpp_seed456,12,26,0.1,0.1,0,learned_then_forgotten,learned_then_forgotten,0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,13,25,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,14,24,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,15,23,0.7,1,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.300 0.300 0.900 0.700 0.800 0.700 0.900 0.900 0.900 1.000 1.000 1.000 0.600 0.300 0.000 0.300 0.300 0.900 0.800 0.700 0.900 0.800
+v2pre_citb_sequential_instrdialogpp_seed456,16,22,0,0.2,0,learned_then_forgotten,learned_then_forgotten,0.000 0.200 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,17,21,0.4,0.4,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.300 0.400 0.300 0.300 0.200 0.300 0.300 0.300 0.300 0.300 0.300 0.300 0.000 0.300 0.300 0.200 0.300 0.200 0.400 0.200
+v2pre_citb_sequential_instrdialogpp_seed456,18,20,1,1,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 0.700 0.800 0.700 0.900 0.900 0.900 0.900 0.900 0.900 1.000 0.300 0.000 0.300 0.300 0.800 0.500 0.300 0.800 0.800
+v2pre_citb_sequential_instrdialogpp_seed456,19,19,0.8,0.8,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.700 0.700 0.800 0.500 0.400 0.400 0.300 0.400 0.600 0.700 0.000 0.000 0.000 0.100 0.500 0.700 0.400 0.200
+v2pre_citb_sequential_instrdialogpp_seed456,20,18,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000
+v2pre_citb_sequential_instrdialogpp_seed456,21,17,0.6,0.7,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.000 0.700 0.700 0.700 0.700 0.700 0.700 0.600
+v2pre_citb_sequential_instrdialogpp_seed456,22,16,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 0.000 0.600 1.000 1.000 1.000 1.000 0.900 1.000
+v2pre_citb_sequential_instrdialogpp_seed456,23,15,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v2pre_citb_sequential_instrdialogpp_seed456,24,14,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,25,13,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,26,12,0.8,1,1,forgotten_then_recovered,forgotten_then_recovered,0.800 0.600 0.800 1.000 0.000 0.500 1.000 1.000 1.000 1.000 1.000 1.000
+v2pre_citb_sequential_instrdialogpp_seed456,27,11,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,28,10,0.7,0.7,0.5,learned_then_forgotten,learned_then_forgotten,0.700 0.500 0.000 0.500 0.500 0.500 0.500 0.500 0.500 0.500
+v2pre_citb_sequential_instrdialogpp_seed456,29,9,0.2,0.6,0.3,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.200 0.000 0.100 0.600 0.400 0.400 0.400 0.300 0.300
+v2pre_citb_sequential_instrdialogpp_seed456,30,8,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,31,7,0.9,0.9,0.2,learned_then_forgotten,learned_then_forgotten,0.900 0.200 0.200 0.200 0.200 0.300 0.200
+v2pre_citb_sequential_instrdialogpp_seed456,32,6,0.4,0.7,0.5,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.400 0.600 0.400 0.700 0.500
+v2pre_citb_sequential_instrdialogpp_seed456,33,5,0.8,0.8,0.8,retained,retained,0.800 0.800 0.800 0.800 0.800
+v2pre_citb_sequential_instrdialogpp_seed456,34,4,0.8,1,0.9,learned_then_forgotten,learned_then_forgotten,0.800 1.000 0.900 0.900
+v2pre_citb_sequential_instrdialogpp_seed456,35,3,0.5,0.5,0,learned_then_forgotten,learned_then_forgotten,0.500 0.100 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,36,2,0,0,0,never_learned,never_learned,0.000 0.000
+v2pre_citb_sequential_instrdialogpp_seed456,37,1,0.1,0.1,0.1,retained,retained,0.100
+v3_proto_ce_instrdialog_seed456,0,19,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialog_seed456,1,18,0,0.2,0.1,learned_then_forgotten,learned_then_forgotten,0.000 0.200 0.100 0.100 0.000 0.100 0.000 0.000 0.100 0.100 0.000 0.100 0.000 0.000 0.100 0.100 0.100 0.100
+v3_proto_ce_instrdialog_seed456,2,17,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialog_seed456,3,16,1,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 1.000 0.900 1.000 0.900 0.900 0.800 0.900 0.300 0.600 0.800 0.900 0.000 0.600 0.800 0.900
+v3_proto_ce_instrdialog_seed456,4,15,0.9,1,1,forgotten_then_recovered,forgotten_then_recovered,0.900 1.000 1.000 1.000 1.000 1.000 1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_ce_instrdialog_seed456,5,14,0.7,0.7,0.7,retained,retained,0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v3_proto_ce_instrdialog_seed456,6,13,0.8,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.700 0.700 0.700 0.700 0.600 0.400 0.000 1.000 0.900 0.900 0.900 0.900
+v3_proto_ce_instrdialog_seed456,7,12,0,0,0,never_learned,learned_then_forgotten_with_partial_recovery,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialog_seed456,8,11,0.4,0.5,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.100 0.500 0.400 0.100 0.100 0.300 0.200 0.200 0.300 0.200
+v3_proto_ce_instrdialog_seed456,9,10,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialog_seed456,10,9,0,0,0,never_learned,forgotten_then_recovered,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialog_seed456,11,8,0.7,0.9,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.400 0.300 0.900 0.800 0.800 0.900 0.700
+v3_proto_ce_instrdialog_seed456,12,7,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialog_seed456,13,6,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialog_seed456,14,5,0.4,0.6,0.6,retained,retained,0.400 0.600 0.600 0.600 0.600
+v3_proto_ce_instrdialog_seed456,15,4,0.7,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.700 0.000 0.600 0.700
+v3_proto_ce_instrdialog_seed456,16,3,0.7,0.8,0.8,retained,retained,0.700 0.700 0.800
+v3_proto_ce_instrdialog_seed456,17,2,0.8,0.8,0.7,learned_then_forgotten,learned_then_forgotten,0.800 0.700
+v3_proto_ce_instrdialog_seed456,18,1,0,0,0,never_learned,never_learned,0.000
+v3_proto_ce_instrdialogpp_seed456,0,38,0.6,0.8,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.600 0.600 0.500 0.500 0.500 0.600 0.700 0.500 0.500 0.300 0.500 0.600 0.500 0.600 0.700 0.600 0.800 0.600 0.700 0.600 0.600 0.700 0.700 0.600 0.600 0.500 0.300 0.700 0.700 0.500 0.600 0.600 0.600 0.600 0.600 0.600 0.600
+v3_proto_ce_instrdialogpp_seed456,1,37,0.8,0.8,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.400 0.500 0.400 0.300 0.400 0.400 0.500 0.400 0.400 0.700 0.800 0.800 0.700 0.600 0.600 0.700 0.700 0.500 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.700 0.700 0.700 0.700 0.800 0.800 0.700 0.700
+v3_proto_ce_instrdialogpp_seed456,2,36,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.100 0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.100 0.100 0.100 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,3,35,0.7,0.8,0.8,forgotten_then_recovered,forgotten_then_recovered,0.700 0.600 0.600 0.500 0.600 0.600 0.500 0.500 0.600 0.600 0.700 0.500 0.600 0.500 0.800 0.700 0.000 0.700 0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800
+v3_proto_ce_instrdialogpp_seed456,4,34,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,5,33,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 0.700 0.800 1.000 1.000 1.000 1.000 1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.800 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_ce_instrdialogpp_seed456,6,32,0.9,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.900 0.600 0.300 0.900 1.000 0.800 0.800 0.700 1.000 1.000 0.800 0.900 0.800 0.200 0.500 0.400 1.000 0.800 1.000 1.000 1.000 1.000 0.800 0.800 0.800 0.900 0.800 0.900 1.000 1.000 0.900 0.900
+v3_proto_ce_instrdialogpp_seed456,7,31,0.7,0.8,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.500 0.500 0.500 0.500 0.500 0.600 0.600 0.600 0.500 0.600 0.600 0.500 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.600 0.600 0.600 0.600 0.600 0.700 0.700 0.700 0.700
+v3_proto_ce_instrdialogpp_seed456,8,30,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,9,29,0,0.1,0,learned_then_forgotten,learned_then_forgotten,0.000 0.000 0.100 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,10,28,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,11,27,0.3,0.6,0.5,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.300 0.400 0.500 0.400 0.300 0.500 0.400 0.500 0.000 0.400 0.500 0.400 0.500 0.400 0.400 0.400 0.500 0.400 0.600 0.500 0.200 0.500 0.400 0.500 0.500 0.500 0.500
+v3_proto_ce_instrdialogpp_seed456,12,26,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,13,25,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,14,24,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,15,23,0.8,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.800 1.000 1.000 0.900 0.900 0.900 0.900 0.800 0.900 1.000 1.000 1.000 0.900 0.700 0.800 0.900 0.700 0.900 0.900 0.900 0.900 0.900
+v3_proto_ce_instrdialogpp_seed456,16,22,0.1,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.100 0.000 0.000 0.100 0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.100 0.000 0.100 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,17,21,0.3,0.4,0.3,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.300 0.400 0.400 0.400 0.300 0.300 0.400 0.400 0.400 0.400 0.300 0.300 0.300 0.300 0.300 0.300 0.400 0.300 0.300 0.400 0.300
+v3_proto_ce_instrdialogpp_seed456,18,20,0.9,1,1,forgotten_then_recovered,forgotten_then_recovered,0.900 0.400 0.600 0.600 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.700 0.900 1.000 0.700 1.000 1.000 1.000 1.000 1.000
+v3_proto_ce_instrdialogpp_seed456,19,19,0.7,1,1,forgotten_then_recovered,forgotten_then_recovered,0.700 0.000 0.700 0.800 0.700 0.600 0.900 1.000 1.000 0.800 0.600 1.000 1.000 1.000 1.000 0.900 1.000 1.000 1.000
+v3_proto_ce_instrdialogpp_seed456,20,18,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_ce_instrdialogpp_seed456,21,17,0.7,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.200 0.700 0.400 0.700 0.700 0.600 0.700
+v3_proto_ce_instrdialogpp_seed456,22,16,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_ce_instrdialogpp_seed456,23,15,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_ce_instrdialogpp_seed456,24,14,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,25,13,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,26,12,0.7,0.9,0.9,forgotten_then_recovered,forgotten_then_recovered,0.700 0.800 0.900 0.900 0.800 0.800 0.800 0.700 0.800 0.900 0.800 0.900
+v3_proto_ce_instrdialogpp_seed456,27,11,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,28,10,0.6,0.8,0.8,forgotten_then_recovered,forgotten_then_recovered,0.600 0.500 0.500 0.600 0.500 0.800 0.700 0.700 0.800 0.800
+v3_proto_ce_instrdialogpp_seed456,29,9,0.1,0.2,0.1,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.100 0.200 0.200 0.200 0.100 0.200 0.100 0.200 0.100
+v3_proto_ce_instrdialogpp_seed456,30,8,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,31,7,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 0.900 0.900 1.000 1.000 1.000 1.000
+v3_proto_ce_instrdialogpp_seed456,32,6,0.6,0.7,0.6,learned_then_forgotten,learned_then_forgotten,0.600 0.700 0.600 0.600 0.600 0.600
+v3_proto_ce_instrdialogpp_seed456,33,5,0.7,0.8,0.8,forgotten_then_recovered,forgotten_then_recovered,0.700 0.800 0.700 0.800 0.800
+v3_proto_ce_instrdialogpp_seed456,34,4,0.9,0.9,0.9,retained,retained,0.900 0.900 0.900 0.900
+v3_proto_ce_instrdialogpp_seed456,35,3,0.7,0.8,0.8,retained,retained,0.700 0.800 0.800
+v3_proto_ce_instrdialogpp_seed456,36,2,0,0,0,never_learned,never_learned,0.000 0.000
+v3_proto_ce_instrdialogpp_seed456,37,1,0,0,0,never_learned,never_learned,0.000
+v3_proto_opsd_instrdialog_seed42,0,19,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed42,1,18,0.1,0.2,0,learned_then_forgotten,learned_then_forgotten,0.100 0.100 0.100 0.200 0.000 0.100 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed42,2,17,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed42,3,16,0.9,0.9,0.8,learned_then_forgotten,learned_then_forgotten,0.900 0.900 0.900 0.700 0.500 0.500 0.800 0.800 0.800 0.400 0.700 0.700 0.600 0.700 0.700 0.800
+v3_proto_opsd_instrdialog_seed42,4,15,1,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 1.000 0.800 0.900 0.900 0.900 0.800 0.700 1.000 0.900 1.000 1.000 0.800 0.900 0.900
+v3_proto_opsd_instrdialog_seed42,5,14,0.7,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.700 0.000 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v3_proto_opsd_instrdialog_seed42,6,13,0.7,0.9,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.100 0.700 0.700 0.400 0.400 0.300 0.400 0.900 0.800 0.700 0.800 0.800
+v3_proto_opsd_instrdialog_seed42,7,12,0,0.3,0.1,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.100 0.300 0.100 0.200 0.100
+v3_proto_opsd_instrdialog_seed42,8,11,0.5,0.5,0.5,forgotten_then_recovered,forgotten_then_recovered,0.500 0.400 0.000 0.300 0.100 0.500 0.400 0.300 0.100 0.300 0.500
+v3_proto_opsd_instrdialog_seed42,9,10,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed42,10,9,0,0.1,0,learned_then_forgotten_with_partial_recovery,retained,0.000 0.000 0.100 0.000 0.100 0.100 0.100 0.100 0.000
+v3_proto_opsd_instrdialog_seed42,11,8,0.8,0.9,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.700 0.700 0.800 0.800 0.900 0.700 0.800
+v3_proto_opsd_instrdialog_seed42,12,7,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed42,13,6,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed42,14,5,0.6,0.6,0.5,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.500 0.500 0.600 0.500
+v3_proto_opsd_instrdialog_seed42,15,4,0.5,0.5,0.4,learned_then_forgotten,learned_then_forgotten,0.500 0.400 0.300 0.400
+v3_proto_opsd_instrdialog_seed42,16,3,0.8,0.8,0.7,learned_then_forgotten,learned_then_forgotten,0.800 0.800 0.700
+v3_proto_opsd_instrdialog_seed42,17,2,0.7,0.8,0.8,retained,retained,0.700 0.800
+v3_proto_opsd_instrdialog_seed42,18,1,0,0,0,never_learned,never_learned,0.000
+v3_proto_opsd_instrdialog_seed456,0,19,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed456,1,18,0,0.2,0.1,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.200 0.100 0.100 0.100 0.100 0.000 0.000 0.100 0.100 0.100 0.100 0.100 0.100 0.000 0.000 0.200 0.100
+v3_proto_opsd_instrdialog_seed456,2,17,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed456,3,16,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 0.900 0.900 0.800 0.800 0.900 0.700 0.700 0.900 0.700 0.800 0.800 0.500 0.800 1.000
+v3_proto_opsd_instrdialog_seed456,4,15,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 0.900 0.900 0.900 0.900 1.000 1.000 1.000 0.900 0.900 1.000 1.000 1.000
+v3_proto_opsd_instrdialog_seed456,5,14,0.7,0.7,0.7,retained,retained,0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v3_proto_opsd_instrdialog_seed456,6,13,0.7,0.9,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.600 0.700 0.700 0.700 0.900 0.700 0.900 0.800 0.700 0.900 0.800 0.800
+v3_proto_opsd_instrdialog_seed456,7,12,0,0.1,0.1,retained,forgotten_then_recovered,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100
+v3_proto_opsd_instrdialog_seed456,8,11,0.5,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.500 0.500 0.200 0.600 0.100 0.400 0.400 0.300 0.500 0.400 0.700
+v3_proto_opsd_instrdialog_seed456,9,10,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed456,10,9,0,0.1,0,learned_then_forgotten,retained,0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.000 0.000
+v3_proto_opsd_instrdialog_seed456,11,8,0.9,0.9,0.9,forgotten_then_recovered,forgotten_then_recovered,0.900 0.800 0.900 0.900 0.900 0.900 0.900 0.900
+v3_proto_opsd_instrdialog_seed456,12,7,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed456,13,6,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed456,14,5,0.6,0.6,0.6,retained,retained,0.600 0.600 0.600 0.600 0.600
+v3_proto_opsd_instrdialog_seed456,15,4,0.6,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.600 0.500 0.700 0.700
+v3_proto_opsd_instrdialog_seed456,16,3,0.8,0.8,0.8,retained,retained,0.800 0.800 0.800
+v3_proto_opsd_instrdialog_seed456,17,2,0.8,0.8,0.8,retained,retained,0.800 0.800
+v3_proto_opsd_instrdialog_seed456,18,1,0,0,0,never_learned,never_learned,0.000
+v3_proto_opsd_instrdialog_seed789,0,19,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed789,1,18,0.1,0.2,0.2,forgotten_then_recovered,forgotten_then_recovered,0.100 0.100 0.000 0.100 0.000 0.100 0.000 0.000 0.100 0.100 0.000 0.100 0.100 0.000 0.100 0.200 0.000 0.200
+v3_proto_opsd_instrdialog_seed789,2,17,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed789,3,16,1,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 0.900 0.900 1.000 0.900 0.900 0.900 0.900 0.700 0.800 0.900 0.600 0.400 0.700 0.500 0.900
+v3_proto_opsd_instrdialog_seed789,4,15,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 0.800 1.000 0.900 1.000 1.000 1.000 1.000 1.000 0.900 1.000 1.000 1.000
+v3_proto_opsd_instrdialog_seed789,5,14,0.3,0.7,0.7,retained,retained,0.300 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v3_proto_opsd_instrdialog_seed789,6,13,1,1,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 1.000 0.900 1.000 0.900 0.900 0.900 0.900 0.800 0.400 0.700 0.800 0.800
+v3_proto_opsd_instrdialog_seed789,7,12,0,0.1,0,learned_then_forgotten_with_partial_recovery,forgotten_then_recovered,0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000
+v3_proto_opsd_instrdialog_seed789,8,11,0.7,0.7,0.5,learned_then_forgotten,learned_then_forgotten,0.700 0.500 0.500 0.400 0.400 0.500 0.500 0.500 0.300 0.500 0.500
+v3_proto_opsd_instrdialog_seed789,9,10,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed789,10,9,0.1,0.1,0,learned_then_forgotten_with_partial_recovery,retained,0.100 0.000 0.000 0.100 0.100 0.100 0.100 0.100 0.000
+v3_proto_opsd_instrdialog_seed789,11,8,0.9,0.9,0.9,forgotten_then_recovered,forgotten_then_recovered,0.900 0.900 0.900 0.700 0.900 0.800 0.900 0.900
+v3_proto_opsd_instrdialog_seed789,12,7,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed789,13,6,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialog_seed789,14,5,0.6,0.6,0.6,retained,retained,0.600 0.600 0.600 0.600 0.600
+v3_proto_opsd_instrdialog_seed789,15,4,0.5,0.5,0.3,learned_then_forgotten,learned_then_forgotten,0.500 0.500 0.300 0.300
+v3_proto_opsd_instrdialog_seed789,16,3,0.7,0.8,0.8,retained,retained,0.700 0.700 0.800
+v3_proto_opsd_instrdialog_seed789,17,2,0.6,0.6,0.6,retained,retained,0.600 0.600
+v3_proto_opsd_instrdialog_seed789,18,1,0,0,0,never_learned,never_learned,0.000
+v3_proto_opsd_instrdialogpp_seed42,0,38,0.4,0.8,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.600 0.700 0.500 0.600 0.800 0.600 0.700 0.800 0.500 0.500 0.800 0.600 0.600 0.600 0.600 0.800 0.500 0.600 0.700 0.700 0.600 0.600 0.600 0.600 0.600 0.600 0.600 0.700 0.600 0.500 0.600 0.600 0.800 0.700 0.700 0.700 0.600
+v3_proto_opsd_instrdialogpp_seed42,1,37,0.5,0.8,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.500 0.500 0.700 0.800 0.700 0.700 0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.600 0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.700 0.700 0.800 0.700
+v3_proto_opsd_instrdialogpp_seed42,2,36,0,0.1,0,learned_then_forgotten_with_partial_recovery,retained,0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.100 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,3,35,0.6,0.8,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.700 0.800 0.700 0.700 0.800 0.700 0.700 0.800 0.500 0.600 0.700 0.700 0.500 0.700 0.800 0.700 0.800 0.800 0.700 0.700 0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.700 0.800 0.800 0.800 0.700
+v3_proto_opsd_instrdialogpp_seed42,4,34,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,5,33,0.9,1,1,forgotten_then_recovered,forgotten_then_recovered,0.900 0.900 0.800 1.000 0.900 0.800 1.000 0.900 0.900 1.000 1.000 1.000 0.900 1.000 1.000 0.800 0.900 0.900 0.800 0.800 1.000 1.000 1.000 0.900 1.000 1.000 1.000 1.000 0.900 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed42,6,32,0.8,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.900 0.900 0.600 0.900 0.900 0.900 0.800 0.900 0.900 0.800 1.000 0.900 0.800 0.200 0.800 0.700 0.900 0.900 1.000 1.000 0.900 0.200 0.700 0.400 1.000 1.000 0.200 0.900 0.800 0.800 0.900
+v3_proto_opsd_instrdialogpp_seed42,7,31,0.8,0.9,0.8,learned_then_forgotten,learned_then_forgotten,0.800 0.900 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.700 0.600 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.700 0.700 0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.800
+v3_proto_opsd_instrdialogpp_seed42,8,30,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,9,29,0.1,0.2,0.1,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.100 0.100 0.000 0.000 0.100 0.100 0.100 0.200 0.200 0.200 0.200 0.200 0.200 0.200 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100
+v3_proto_opsd_instrdialogpp_seed42,10,28,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,11,27,0.2,0.3,0.1,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.200 0.200 0.200 0.200 0.100 0.100 0.200 0.100 0.300 0.300 0.200 0.100 0.200 0.200 0.100 0.100 0.100 0.100 0.100 0.100 0.200 0.100 0.100 0.100 0.100 0.100 0.100
+v3_proto_opsd_instrdialogpp_seed42,12,26,0,0.2,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.100 0.000 0.100 0.200 0.000 0.000 0.100 0.100 0.100 0.000 0.000 0.100 0.100 0.100 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,13,25,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,14,24,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,15,23,0.9,0.9,0.9,forgotten_then_recovered,forgotten_then_recovered,0.900 0.700 0.700 0.900 0.700 0.600 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.500 0.800 0.800 0.800 0.800 0.500 0.800 0.800 0.900 0.900
+v3_proto_opsd_instrdialogpp_seed42,16,22,0.1,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.100 0.100 0.100 0.000 0.000 0.100 0.000 0.100 0.000 0.000 0.000 0.000 0.100 0.000 0.100 0.000 0.000 0.000 0.000 0.100 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,17,21,0.3,0.4,0.2,learned_then_forgotten,learned_then_forgotten,0.300 0.300 0.400 0.300 0.300 0.200 0.300 0.300 0.300 0.300 0.300 0.300 0.300 0.200 0.300 0.300 0.300 0.300 0.300 0.300 0.200
+v3_proto_opsd_instrdialogpp_seed42,18,20,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.800 0.800 0.900 1.000 1.000 0.300 0.800 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed42,19,19,0.9,1,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.900 0.800 0.900 0.900 1.000 0.900 1.000 1.000 1.000 0.900 0.900 0.700 1.000 0.900 0.800 1.000 0.900 1.000 0.400
+v3_proto_opsd_instrdialogpp_seed42,20,18,1,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 0.900
+v3_proto_opsd_instrdialogpp_seed42,21,17,0.7,0.7,0.7,retained,retained,0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v3_proto_opsd_instrdialogpp_seed42,22,16,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed42,23,15,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed42,24,14,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,25,13,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,26,12,0.8,0.9,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.900 0.900 0.800 0.800
+v3_proto_opsd_instrdialogpp_seed42,27,11,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,28,10,0.5,0.7,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.500 0.700 0.600 0.600 0.700 0.500 0.500 0.600 0.600 0.600
+v3_proto_opsd_instrdialogpp_seed42,29,9,0.2,0.3,0.2,learned_then_forgotten,learned_then_forgotten,0.200 0.300 0.300 0.300 0.300 0.300 0.200 0.200 0.200
+v3_proto_opsd_instrdialogpp_seed42,30,8,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,31,7,0.9,1,1,forgotten_then_recovered,forgotten_then_recovered,0.900 1.000 1.000 0.900 0.900 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed42,32,6,0.8,0.8,0.6,learned_then_forgotten,learned_then_forgotten,0.800 0.400 0.400 0.400 0.400 0.600
+v3_proto_opsd_instrdialogpp_seed42,33,5,0.8,0.8,0.8,retained,retained,0.800 0.800 0.800 0.800 0.800
+v3_proto_opsd_instrdialogpp_seed42,34,4,0.9,1,1,retained,retained,0.900 0.900 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed42,35,3,0.7,0.8,0.8,retained,retained,0.700 0.800 0.800
+v3_proto_opsd_instrdialogpp_seed42,36,2,0,0,0,never_learned,never_learned,0.000 0.000
+v3_proto_opsd_instrdialogpp_seed42,37,1,0,0,0,never_learned,never_learned,0.000
+v3_proto_opsd_instrdialogpp_seed456,0,38,0.5,0.8,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.500 0.700 0.600 0.500 0.500 0.600 0.700 0.700 0.800 0.600 0.600 0.500 0.500 0.500 0.700 0.600 0.600 0.800 0.700 0.700 0.500 0.600 0.800 0.800 0.700 0.600 0.700 0.700 0.700 0.700 0.600 0.700 0.600 0.600 0.700 0.700 0.700 0.600
+v3_proto_opsd_instrdialogpp_seed456,1,37,0.8,0.8,0.8,forgotten_then_recovered,forgotten_then_recovered,0.800 0.700 0.800 0.800 0.700 0.400 0.700 0.700 0.600 0.600 0.800 0.700 0.700 0.700 0.700 0.800 0.800 0.800 0.700 0.700 0.600 0.800 0.800 0.800 0.800 0.700 0.700 0.700 0.600 0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.800
+v3_proto_opsd_instrdialogpp_seed456,2,36,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten,0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.100 0.000 0.100 0.100 0.100 0.100 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,3,35,0.7,0.8,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.200 0.700 0.600 0.700 0.600 0.600 0.600 0.600 0.600 0.600 0.400 0.600 0.700 0.700 0.700 0.500 0.800 0.700 0.800 0.700 0.600 0.700 0.800 0.600 0.600 0.700 0.700 0.600 0.800 0.700 0.800 0.700 0.800 0.700
+v3_proto_opsd_instrdialogpp_seed456,4,34,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,5,33,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.900 1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed456,6,32,0.4,1,1,forgotten_then_recovered,forgotten_then_recovered,0.400 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 1.000 0.800 0.900 0.900 1.000 0.900 0.900 1.000 1.000 0.900 0.900 0.900 0.900 0.800 0.800 0.800 0.900 0.800 0.900 0.400 0.900 0.500 1.000
+v3_proto_opsd_instrdialogpp_seed456,7,31,0.7,0.9,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.500 0.600 0.500 0.600 0.600 0.600 0.600 0.600 0.600 0.600 0.700 0.600 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.500 0.700 0.700 0.500 0.600 0.700 0.500 0.600 0.600
+v3_proto_opsd_instrdialogpp_seed456,8,30,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,9,29,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.000 0.100 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,10,28,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,11,27,0.4,0.6,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.500 0.400 0.400 0.400 0.400 0.400 0.400 0.400 0.500 0.600 0.500 0.500 0.500 0.500 0.500 0.600 0.600 0.600 0.400 0.400 0.500 0.600 0.500 0.500 0.400 0.400
+v3_proto_opsd_instrdialogpp_seed456,12,26,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,13,25,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,14,24,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,15,23,0.6,1,0.9,learned_then_forgotten,learned_then_forgotten,0.600 0.900 1.000 0.900 0.900 0.800 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.700 0.800 0.900 0.700 0.800 0.900 0.900 0.900 0.900
+v3_proto_opsd_instrdialogpp_seed456,16,22,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,17,21,0.2,0.4,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten,0.200 0.400 0.300 0.300 0.300 0.200 0.300 0.300 0.300 0.200 0.200 0.200 0.300 0.400 0.400 0.400 0.300 0.200 0.300 0.300 0.200
+v3_proto_opsd_instrdialogpp_seed456,18,20,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 0.800 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.700 0.900 1.000 0.700 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed456,19,19,0.9,1,1,forgotten_then_recovered,forgotten_then_recovered,0.900 1.000 1.000 1.000 0.900 0.900 0.900 0.900 0.900 0.900 0.800 0.800 0.900 0.800 0.900 0.700 0.900 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed456,20,18,1,1,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 0.800 0.800 0.900 0.800 1.000 1.000 1.000 1.000 0.900 1.000 0.900 0.800 0.900 0.900 0.900 0.900 0.800
+v3_proto_opsd_instrdialogpp_seed456,21,17,0.7,0.8,0.7,learned_then_forgotten,learned_then_forgotten,0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.800 0.600 0.700 0.700 0.700
+v3_proto_opsd_instrdialogpp_seed456,22,16,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed456,23,15,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed456,24,14,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,25,13,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,26,12,0.9,1,0.9,learned_then_forgotten,learned_then_forgotten,0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.900 1.000 1.000 0.900 0.900
+v3_proto_opsd_instrdialogpp_seed456,27,11,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,28,10,0.5,0.6,0.5,learned_then_forgotten,learned_then_forgotten,0.500 0.500 0.500 0.500 0.500 0.600 0.500 0.500 0.500 0.500
+v3_proto_opsd_instrdialogpp_seed456,29,9,0.2,0.3,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.200 0.100 0.100 0.100 0.100 0.300 0.200 0.100 0.200
+v3_proto_opsd_instrdialogpp_seed456,30,8,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,31,7,1,1,0.9,learned_then_forgotten,learned_then_forgotten,1.000 0.700 0.800 0.700 0.700 0.900 0.900
+v3_proto_opsd_instrdialogpp_seed456,32,6,0.6,0.7,0.6,learned_then_forgotten,learned_then_forgotten,0.600 0.700 0.600 0.500 0.600 0.600
+v3_proto_opsd_instrdialogpp_seed456,33,5,0.7,0.8,0.8,retained,retained,0.700 0.800 0.800 0.800 0.800
+v3_proto_opsd_instrdialogpp_seed456,34,4,0.9,0.9,0.9,retained,retained,0.900 0.900 0.900 0.900
+v3_proto_opsd_instrdialogpp_seed456,35,3,0.8,0.8,0.5,learned_then_forgotten,learned_then_forgotten,0.800 0.400 0.500
+v3_proto_opsd_instrdialogpp_seed456,36,2,0,0,0,never_learned,never_learned,0.000 0.000
+v3_proto_opsd_instrdialogpp_seed456,37,1,0.1,0.1,0.1,retained,retained,0.100
+v3_proto_opsd_instrdialogpp_seed789,0,38,0.6,0.7,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.700 0.400 0.600 0.500 0.500 0.500 0.500 0.500 0.100 0.500 0.500 0.500 0.600 0.500 0.500 0.500 0.600 0.400 0.500 0.600 0.600 0.500 0.400 0.500 0.600 0.700 0.700 0.600 0.500 0.700 0.700 0.500 0.500 0.500 0.600 0.600 0.600
+v3_proto_opsd_instrdialogpp_seed789,1,37,0.8,0.8,0.8,forgotten_then_recovered,forgotten_then_recovered,0.800 0.800 0.400 0.400 0.500 0.800 0.800 0.600 0.700 0.700 0.700 0.800 0.800 0.700 0.500 0.800 0.700 0.400 0.600 0.700 0.700 0.000 0.400 0.400 0.400 0.800 0.800 0.800 0.500 0.500 0.500 0.400 0.800 0.800 0.800 0.800 0.800
+v3_proto_opsd_instrdialogpp_seed789,2,36,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,3,35,0.8,0.8,0.8,forgotten_then_recovered,forgotten_then_recovered,0.800 0.700 0.700 0.800 0.700 0.700 0.600 0.600 0.800 0.800 0.800 0.600 0.700 0.800 0.700 0.700 0.000 0.700 0.700 0.600 0.600 0.700 0.700 0.700 0.700 0.700 0.700 0.800 0.700 0.700 0.800 0.800 0.800 0.800 0.800
+v3_proto_opsd_instrdialogpp_seed789,4,34,0,0.1,0,learned_then_forgotten,learned_then_forgotten,0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,5,33,0.9,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.900 0.800 0.800 0.800 0.700 0.800 0.700 0.800 0.800 0.800 0.400 0.800 0.900 0.300 0.800 0.800 1.000 1.000 1.000 1.000 0.900 0.900 0.900 1.000 1.000 1.000 0.900 1.000 0.900 0.800 0.800 0.900 0.900
+v3_proto_opsd_instrdialogpp_seed789,6,32,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 0.200 0.900 0.500 0.600 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.200 0.500 1.000 1.000 1.000 0.800 0.900 0.900 1.000 0.900 0.200 0.200 1.000 1.000 0.800 0.900 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed789,7,31,0.5,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.500 0.500 0.500 0.500 0.500 0.500 0.500 0.700 0.500 0.500 0.600 0.500 0.500 0.500 0.700 0.700 0.700 0.700 0.600 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v3_proto_opsd_instrdialogpp_seed789,8,30,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,9,29,0.1,0.2,0.2,forgotten_then_recovered,forgotten_then_recovered,0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.200 0.200 0.200 0.200 0.200 0.200
+v3_proto_opsd_instrdialogpp_seed789,10,28,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,11,27,0.3,0.5,0.3,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.300 0.200 0.200 0.300 0.500 0.400 0.500 0.200 0.000 0.400 0.400 0.200 0.100 0.300 0.300 0.300 0.300 0.300 0.400 0.300 0.200 0.400 0.300 0.400 0.200 0.200 0.300
+v3_proto_opsd_instrdialogpp_seed789,12,26,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,13,25,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,14,24,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,15,23,0.7,1,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.700 0.700 0.400 0.900 0.900 0.800 0.800 0.600 0.900 0.900 0.900 0.900 0.300 0.300 0.700 0.900 0.700 1.000 0.900 0.900 0.900 0.700
+v3_proto_opsd_instrdialogpp_seed789,16,22,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.100 0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,17,21,0.3,0.4,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.300 0.200 0.300 0.300 0.300 0.200 0.200 0.200 0.100 0.300 0.300 0.200 0.200 0.100 0.200 0.200 0.200 0.300 0.400 0.300 0.200
+v3_proto_opsd_instrdialogpp_seed789,18,20,0.4,1,1,forgotten_then_recovered,forgotten_then_recovered,0.400 1.000 0.700 1.000 0.800 0.900 1.000 1.000 1.000 0.900 0.300 0.300 0.900 0.800 0.800 0.300 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed789,19,19,0.9,1,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.900 0.500 1.000 0.800 0.800 0.800 0.700 0.700 1.000 1.000 0.800 0.500 0.900 0.700 0.600 0.600 0.900 1.000 0.800
+v3_proto_opsd_instrdialogpp_seed789,20,18,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed789,21,17,0.7,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.700 0.700 0.700 0.700 0.700 0.600 0.400 0.700 0.700 0.700 0.700 0.700 0.700 0.600 0.000 0.700 0.700
+v3_proto_opsd_instrdialogpp_seed789,22,16,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed789,23,15,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed789,24,14,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,25,13,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,26,12,0.7,0.8,0.7,learned_then_forgotten,learned_then_forgotten,0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.700
+v3_proto_opsd_instrdialogpp_seed789,27,11,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,28,10,0.5,0.8,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.500 0.500 0.700 0.500 0.700 0.500 0.700 0.800 0.700 0.700
+v3_proto_opsd_instrdialogpp_seed789,29,9,0.1,0.3,0.3,forgotten_then_recovered,forgotten_then_recovered,0.100 0.000 0.300 0.200 0.300 0.300 0.300 0.300 0.300
+v3_proto_opsd_instrdialogpp_seed789,30,8,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,31,7,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 0.800 0.900 0.900 0.800 1.000 1.000
+v3_proto_opsd_instrdialogpp_seed789,32,6,0.6,0.6,0.4,learned_then_forgotten,learned_then_forgotten,0.600 0.400 0.400 0.400 0.500 0.400
+v3_proto_opsd_instrdialogpp_seed789,33,5,0.7,0.7,0.7,retained,retained,0.700 0.700 0.700 0.700 0.700
+v3_proto_opsd_instrdialogpp_seed789,34,4,0.9,1,1,retained,retained,0.900 0.900 0.900 1.000
+v3_proto_opsd_instrdialogpp_seed789,35,3,0.5,0.7,0.7,retained,retained,0.500 0.700 0.700
+v3_proto_opsd_instrdialogpp_seed789,36,2,0,0,0,never_learned,never_learned,0.000 0.000
+v3_proto_opsd_instrdialogpp_seed789,37,1,0.1,0.1,0.1,retained,retained,0.100
+v3_rand_ce_instrdialog_seed456,0,19,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialog_seed456,1,18,0.1,0.2,0.1,learned_then_forgotten,learned_then_forgotten,0.100 0.200 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.100
+v3_rand_ce_instrdialog_seed456,2,17,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialog_seed456,3,16,1,1,0.9,learned_then_forgotten,learned_then_forgotten,1.000 0.900 0.700 0.900 0.500 0.800 0.600 0.600 0.600 0.700 0.500 0.400 0.500 0.900 0.600 0.900
+v3_rand_ce_instrdialog_seed456,4,15,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_ce_instrdialog_seed456,5,14,0.7,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.700 0.000 0.000 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v3_rand_ce_instrdialog_seed456,6,13,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.600 0.800 1.000
+v3_rand_ce_instrdialog_seed456,7,12,0,0.3,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.000 0.000 0.000 0.000 0.200 0.200 0.200 0.100 0.300 0.000 0.200
+v3_rand_ce_instrdialog_seed456,8,11,0.4,0.5,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.200 0.400 0.400 0.500 0.500 0.500 0.300 0.400 0.300 0.400
+v3_rand_ce_instrdialog_seed456,9,10,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialog_seed456,10,9,0,0.1,0,learned_then_forgotten,learned_then_forgotten_with_partial_recovery,0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialog_seed456,11,8,0.9,0.9,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.900 0.800 0.900 0.300 0.900 0.900 0.300 0.400
+v3_rand_ce_instrdialog_seed456,12,7,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialog_seed456,13,6,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialog_seed456,14,5,0.4,0.6,0.6,retained,retained,0.400 0.600 0.600 0.600 0.600
+v3_rand_ce_instrdialog_seed456,15,4,0.7,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.700 0.700 0.600 0.700
+v3_rand_ce_instrdialog_seed456,16,3,0.8,1,0.7,learned_then_forgotten,learned_then_forgotten,0.800 1.000 0.700
+v3_rand_ce_instrdialog_seed456,17,2,0.8,0.8,0.8,retained,retained,0.800 0.800
+v3_rand_ce_instrdialog_seed456,18,1,0,0,0,never_learned,never_learned,0.000
+v3_rand_ce_instrdialogpp_seed456,0,38,0.6,0.8,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.700 0.700 0.600 0.600 0.600 0.600 0.600 0.700 0.600 0.400 0.500 0.600 0.500 0.500 0.500 0.500 0.600 0.600 0.600 0.500 0.600 0.600 0.600 0.600 0.600 0.600 0.700 0.500 0.600 0.500 0.600 0.800 0.800 0.800 0.800 0.700 0.700
+v3_rand_ce_instrdialogpp_seed456,1,37,0.8,0.8,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.700 0.100 0.000 0.700 0.800 0.700 0.700 0.400 0.300 0.600 0.600 0.600 0.400 0.200 0.500 0.700 0.600 0.600 0.800 0.600 0.700 0.500 0.500 0.500 0.600 0.600 0.400 0.500 0.500 0.500 0.300 0.800 0.800 0.800 0.700 0.700
+v3_rand_ce_instrdialogpp_seed456,2,36,0,0.1,0,learned_then_forgotten,learned_then_forgotten,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,3,35,0.8,0.8,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.600 0.800 0.700 0.800 0.800 0.700 0.400 0.700 0.800 0.600 0.700 0.700 0.800 0.500 0.600 0.600 0.600 0.600 0.600 0.600 0.600 0.500 0.400 0.400 0.200 0.200 0.200 0.600 0.200 0.400 0.500 0.800 0.200 0.200
+v3_rand_ce_instrdialogpp_seed456,4,34,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,5,33,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 0.900 0.900 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.700 1.000 1.000 1.000 1.000 1.000 1.000 0.300 0.900 0.700 0.900 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_ce_instrdialogpp_seed456,6,32,1,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 0.800 0.600 0.200 0.200 0.800 0.800 0.800 0.800 0.800 0.800 1.000 0.900 0.900 0.800 0.800 0.800 0.800 0.800 0.800 0.800 1.000 0.800 0.700 0.800 1.000 0.200 0.500 0.800 0.800 0.900 0.900
+v3_rand_ce_instrdialogpp_seed456,7,31,0.5,0.9,0.9,forgotten_then_recovered,forgotten_then_recovered,0.500 0.800 0.500 0.500 0.500 0.500 0.500 0.600 0.700 0.700 0.600 0.700 0.700 0.500 0.500 0.500 0.500 0.700 0.600 0.600 0.600 0.500 0.600 0.700 0.600 0.900 0.900 0.900 0.900 0.900 0.900
+v3_rand_ce_instrdialogpp_seed456,8,30,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,9,29,0,0.1,0.1,forgotten_then_recovered,forgotten_then_recovered,0.000 0.100 0.000 0.000 0.000 0.000 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.000 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.100
+v3_rand_ce_instrdialogpp_seed456,10,28,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,11,27,0.5,0.6,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.500 0.500 0.500 0.600 0.600 0.600 0.400 0.600 0.500 0.400 0.400 0.400 0.300 0.300 0.400 0.600 0.600 0.500 0.400 0.500 0.200 0.500 0.200 0.200 0.300 0.400 0.400
+v3_rand_ce_instrdialogpp_seed456,12,26,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000
+v3_rand_ce_instrdialogpp_seed456,13,25,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,14,24,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,15,23,1,1,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 1.000 1.000 0.900 0.900 0.900 1.000 1.000 1.000 0.900 0.900 0.900 0.900 0.700 0.900 0.800 0.900 0.900 0.800 0.700 0.800 0.900 0.700
+v3_rand_ce_instrdialogpp_seed456,16,22,0.1,0.1,0.1,forgotten_then_recovered,forgotten_then_recovered,0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.100 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.100
+v3_rand_ce_instrdialogpp_seed456,17,21,0.4,0.4,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.400 0.300 0.100 0.300 0.300 0.300 0.400 0.400 0.400 0.400 0.000 0.100 0.200 0.300 0.300 0.200 0.400 0.300 0.200 0.200
+v3_rand_ce_instrdialogpp_seed456,18,20,1,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 0.800 0.800 1.000 1.000 1.000 0.900 0.800 0.800 0.800 0.800 1.000 0.900 0.900 0.500 0.900 0.900 1.000 0.700 0.900
+v3_rand_ce_instrdialogpp_seed456,19,19,0.9,1,0.4,learned_then_forgotten,learned_then_forgotten,0.900 0.900 0.900 0.900 0.900 0.900 0.900 1.000 1.000 0.100 0.300 0.200 0.800 0.600 0.700 0.900 0.800 0.500 0.400
+v3_rand_ce_instrdialogpp_seed456,20,18,1,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 0.900 1.000 0.800 1.000 0.900 0.900 1.000 0.900
+v3_rand_ce_instrdialogpp_seed456,21,17,0.7,0.7,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.300 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,22,16,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 1.000 1.000 0.800 1.000 0.900 0.900 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_ce_instrdialogpp_seed456,23,15,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_ce_instrdialogpp_seed456,24,14,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,25,13,0,0.1,0,learned_then_forgotten,learned_then_forgotten,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.100 0.100 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,26,12,0.8,1,0.8,learned_then_forgotten,learned_then_forgotten,0.800 0.800 0.800 0.900 0.900 0.900 1.000 1.000 0.800 0.800 0.800 0.800
+v3_rand_ce_instrdialogpp_seed456,27,11,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,28,10,0.5,0.7,0.5,learned_then_forgotten,learned_then_forgotten,0.500 0.600 0.600 0.700 0.600 0.500 0.500 0.600 0.500 0.500
+v3_rand_ce_instrdialogpp_seed456,29,9,0.3,0.3,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.300 0.200 0.300 0.300 0.300 0.300 0.300 0.100 0.200
+v3_rand_ce_instrdialogpp_seed456,30,8,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,31,7,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_ce_instrdialogpp_seed456,32,6,0.6,0.6,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.600 0.500 0.600 0.600 0.500 0.400
+v3_rand_ce_instrdialogpp_seed456,33,5,0.6,0.6,0.6,forgotten_then_recovered,forgotten_then_recovered,0.600 0.600 0.500 0.600 0.600
+v3_rand_ce_instrdialogpp_seed456,34,4,0.9,0.9,0.6,learned_then_forgotten,learned_then_forgotten,0.900 0.900 0.800 0.600
+v3_rand_ce_instrdialogpp_seed456,35,3,0.5,0.5,0.1,learned_then_forgotten,learned_then_forgotten,0.500 0.100 0.100
+v3_rand_ce_instrdialogpp_seed456,36,2,0,0,0,never_learned,never_learned,0.000 0.000
+v3_rand_ce_instrdialogpp_seed456,37,1,0,0,0,never_learned,never_learned,0.000
+v3_rand_opsd_instrdialog_seed456,0,19,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialog_seed456,1,18,0.1,0.2,0.1,learned_then_forgotten,learned_then_forgotten,0.100 0.200 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.100
+v3_rand_opsd_instrdialog_seed456,2,17,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialog_seed456,3,16,1,1,0.8,learned_then_forgotten,learned_then_forgotten,1.000 0.900 0.500 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.800 0.700 0.200 0.600 0.400 0.800
+v3_rand_opsd_instrdialog_seed456,4,15,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_opsd_instrdialog_seed456,5,14,0.7,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.700 0.600 0.200 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700
+v3_rand_opsd_instrdialog_seed456,6,13,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 0.700 0.900 0.800 1.000 1.000 1.000 0.800 0.700 1.000 0.400 0.800 1.000
+v3_rand_opsd_instrdialog_seed456,7,12,0,0.2,0.1,learned_then_forgotten,learned_then_forgotten_with_partial_recovery,0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.200 0.000 0.000 0.100 0.100
+v3_rand_opsd_instrdialog_seed456,8,11,0.4,0.5,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.400 0.500 0.500 0.400 0.400 0.500 0.300 0.300 0.300 0.400 0.400
+v3_rand_opsd_instrdialog_seed456,9,10,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialog_seed456,10,9,0,0.1,0.1,forgotten_then_recovered,retained,0.000 0.100 0.000 0.000 0.000 0.100 0.100 0.000 0.100
+v3_rand_opsd_instrdialog_seed456,11,8,0.9,0.9,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.900 0.900 0.900 0.400 0.800 0.900 0.800 0.700
+v3_rand_opsd_instrdialog_seed456,12,7,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialog_seed456,13,6,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialog_seed456,14,5,0.6,0.6,0.6,retained,retained,0.600 0.600 0.600 0.600 0.600
+v3_rand_opsd_instrdialog_seed456,15,4,0.6,0.6,0.6,forgotten_then_recovered,forgotten_then_recovered,0.600 0.400 0.600 0.600
+v3_rand_opsd_instrdialog_seed456,16,3,0.8,0.9,0.8,learned_then_forgotten,learned_then_forgotten,0.800 0.900 0.800
+v3_rand_opsd_instrdialog_seed456,17,2,0.7,0.7,0.7,retained,retained,0.700 0.700
+v3_rand_opsd_instrdialog_seed456,18,1,0,0,0,never_learned,never_learned,0.000
+v3_rand_opsd_instrdialogpp_seed456,0,38,0.5,0.7,0.7,forgotten_then_recovered,forgotten_then_recovered,0.500 0.600 0.600 0.500 0.500 0.700 0.600 0.500 0.500 0.500 0.500 0.500 0.500 0.600 0.400 0.600 0.600 0.500 0.600 0.500 0.700 0.600 0.600 0.600 0.600 0.500 0.600 0.600 0.600 0.500 0.600 0.500 0.600 0.500 0.600 0.500 0.700 0.700
+v3_rand_opsd_instrdialogpp_seed456,1,37,0.8,0.8,0.8,forgotten_then_recovered,forgotten_then_recovered,0.800 0.700 0.300 0.000 0.800 0.800 0.800 0.800 0.700 0.700 0.800 0.700 0.600 0.500 0.400 0.600 0.600 0.600 0.500 0.600 0.800 0.800 0.800 0.800 0.700 0.700 0.700 0.500 0.500 0.600 0.500 0.500 0.600 0.800 0.800 0.800 0.800
+v3_rand_opsd_instrdialogpp_seed456,2,36,0,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,3,35,0.7,0.9,0.3,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.700 0.700 0.700 0.700 0.700 0.800 0.600 0.800 0.800 0.700 0.700 0.900 0.800 0.700 0.700 0.200 0.600 0.700 0.700 0.600 0.600 0.500 0.500 0.600 0.500 0.500 0.700 0.700 0.700 0.700 0.800 0.700 0.000 0.300
+v3_rand_opsd_instrdialogpp_seed456,4,34,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,5,33,1,1,1,forgotten_then_recovered,forgotten_then_recovered,1.000 1.000 1.000 1.000 0.900 0.900 1.000 1.000 1.000 1.000 0.900 0.900 1.000 0.900 0.900 0.900 0.800 1.000 0.800 0.900 1.000 1.000 0.900 0.900 1.000 0.800 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_opsd_instrdialogpp_seed456,6,32,0.2,1,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.200 1.000 0.400 0.200 0.200 0.800 0.800 0.800 0.900 0.900 0.900 1.000 0.800 0.500 0.800 0.800 0.800 0.800 0.800 0.800 0.800 1.000 0.800 0.800 1.000 0.800 0.800 0.700 0.800 0.800 0.800 0.800
+v3_rand_opsd_instrdialogpp_seed456,7,31,0.5,0.9,0.7,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.500 0.900 0.800 0.700 0.600 0.500 0.600 0.500 0.500 0.500 0.500 0.500 0.500 0.500 0.500 0.500 0.500 0.600 0.600 0.600 0.700 0.700 0.700 0.600 0.700 0.900 0.900 0.700 0.800 0.800 0.700
+v3_rand_opsd_instrdialogpp_seed456,8,30,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,9,29,0,0.1,0.1,forgotten_then_recovered,forgotten_then_recovered,0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.100 0.000 0.000 0.100 0.100
+v3_rand_opsd_instrdialogpp_seed456,10,28,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,11,27,0.5,0.7,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.500 0.600 0.400 0.500 0.700 0.700 0.700 0.600 0.000 0.600 0.400 0.600 0.500 0.500 0.500 0.600 0.500 0.600 0.600 0.500 0.400 0.400 0.300 0.400 0.400 0.300 0.400
+v3_rand_opsd_instrdialogpp_seed456,12,26,0,0.1,0,learned_then_forgotten,learned_then_forgotten,0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,13,25,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,14,24,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,15,23,0.9,1,0.8,learned_then_forgotten,learned_then_forgotten,0.900 0.900 0.900 1.000 0.900 0.900 0.700 0.700 0.900 0.800 0.900 0.900 0.900 0.800 0.700 0.600 0.900 0.700 0.900 0.700 0.700 0.900 0.800
+v3_rand_opsd_instrdialogpp_seed456,16,22,0.1,0.1,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,17,21,0.3,0.4,0,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.300 0.200 0.200 0.200 0.300 0.200 0.200 0.200 0.100 0.300 0.300 0.400 0.300 0.300 0.300 0.300 0.200 0.400 0.200 0.100 0.000
+v3_rand_opsd_instrdialogpp_seed456,18,20,0.9,1,0.9,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.900 0.900 1.000 0.900 1.000 1.000 1.000 1.000 1.000 1.000 0.800 0.700 1.000 1.000 1.000 1.000 0.900 0.900 0.900 0.900
+v3_rand_opsd_instrdialogpp_seed456,19,19,0.8,1,0.4,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.800 0.900 0.200 0.800 0.500 0.800 0.900 0.900 1.000 0.400 0.400 0.300 0.600 0.700 0.800 0.800 0.900 0.600 0.400
+v3_rand_opsd_instrdialogpp_seed456,20,18,1,1,0.8,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,1.000 0.900 0.900 0.900 0.900 0.800 0.900 1.000 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.900 0.800
+v3_rand_opsd_instrdialogpp_seed456,21,17,0.7,0.7,0.1,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.700 0.200 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.700 0.300 0.100 0.000 0.100
+v3_rand_opsd_instrdialogpp_seed456,22,16,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_opsd_instrdialogpp_seed456,23,15,1,1,1,retained,retained,1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000 1.000
+v3_rand_opsd_instrdialogpp_seed456,24,14,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,25,13,0,0.1,0,learned_then_forgotten,learned_then_forgotten,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.100 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,26,12,0.7,0.8,0.8,retained,retained,0.700 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800 0.800
+v3_rand_opsd_instrdialogpp_seed456,27,11,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,28,10,0.5,0.7,0.6,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.500 0.500 0.500 0.600 0.500 0.700 0.600 0.600 0.600 0.600
+v3_rand_opsd_instrdialogpp_seed456,29,9,0.2,0.3,0.2,learned_then_forgotten_with_partial_recovery,learned_then_forgotten_with_partial_recovery,0.200 0.100 0.200 0.200 0.300 0.300 0.300 0.300 0.200
+v3_rand_opsd_instrdialogpp_seed456,30,8,0,0,0,never_learned,never_learned,0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,31,7,1,1,1,forgotten_then_recovered,learned_then_forgotten_with_partial_recovery,1.000 0.800 0.800 0.900 1.000 1.000 1.000
+v3_rand_opsd_instrdialogpp_seed456,32,6,0.3,0.6,0.6,forgotten_then_recovered,forgotten_then_recovered,0.300 0.400 0.600 0.500 0.600 0.600
+v3_rand_opsd_instrdialogpp_seed456,33,5,0.7,0.7,0.5,learned_then_forgotten,learned_then_forgotten,0.700 0.400 0.500 0.400 0.500
+v3_rand_opsd_instrdialogpp_seed456,34,4,0.9,0.9,0.8,learned_then_forgotten,learned_then_forgotten,0.900 0.700 0.800 0.800
+v3_rand_opsd_instrdialogpp_seed456,35,3,0.4,0.4,0.4,retained,retained,0.400 0.400 0.400
+v3_rand_opsd_instrdialogpp_seed456,36,2,0,0,0,never_learned,never_learned,0.000 0.000
+v3_rand_opsd_instrdialogpp_seed456,37,1,0.1,0.1,0.1,retained,retained,0.100
