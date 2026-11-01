@@ -324,87 +324,87 @@ E3 SFT→OPSD：Blocked（CITB Sequential adapter 走非 multiref 流且快照�
 
 | run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| v3_proto_opsd_rr0_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_rr10_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_rr30_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_rr40_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3_proto_opsd_rr0_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_rr10_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_rr30_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_rr40_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3_proto_opsd_rr0_instrdialog_seed456 | 0.384 | 0.400 | 0.056 | 0.044 | 0.493 | 0.487 | 0.504 | 0.482 | 0.000 | 0.000 | 0.400 |
+| v3h_proto_opsd_rr10_instrdialog_seed456 | 0.395 | 0.395 | 0.067 | 0.072 | 0.482 | 0.478 | 0.499 | 0.468 | 0.000 | 0.000 | 0.395 |
+| v3h_proto_opsd_rr30_instrdialog_seed456 | 0.411 | 0.421 | 0.044 | 0.039 | 0.532 | 0.527 | 0.540 | 0.524 | 0.000 | 0.000 | 0.421 |
+| v3h_proto_opsd_rr40_instrdialog_seed456 | 0.379 | 0.379 | 0.078 | 0.078 | 0.484 | 0.480 | 0.500 | 0.473 | 0.000 | 0.000 | 0.379 |
+| v3_proto_opsd_rr0_instrdialogpp_seed456 | 0.339 | 0.342 | 0.168 | 0.178 | 0.471 | 0.464 | 0.525 | 0.458 | 0.100 | 0.100 | 0.342 |
+| v3h_proto_opsd_rr10_instrdialogpp_seed456 | 0.345 | 0.347 | 0.168 | 0.165 | 0.446 | 0.440 | 0.522 | 0.438 | 0.000 | 0.000 | 0.347 |
+| v3h_proto_opsd_rr30_instrdialogpp_seed456 | 0.363 | 0.374 | 0.116 | 0.114 | 0.477 | 0.470 | 0.521 | 0.468 | 0.100 | 0.100 | 0.374 |
+| v3h_proto_opsd_rr40_instrdialogpp_seed456 | 0.424 | 0.429 | 0.095 | 0.092 | 0.556 | 0.551 | 0.590 | 0.548 | 0.000 | 0.000 | 0.429 |
 
 | run | start | end | elapsed_sec | gpu_after |
 |---|---|---|---|---|
-| v3_proto_opsd_rr0_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_rr10_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_rr30_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_rr40_instrdialog_seed456 | — | — | — | — |
-| v3_proto_opsd_rr0_instrdialogpp_seed456 | — | — | — | — |
-| v3h_proto_opsd_rr10_instrdialogpp_seed456 | — | — | — | — |
-| v3h_proto_opsd_rr30_instrdialogpp_seed456 | — | — | — | — |
-| v3h_proto_opsd_rr40_instrdialogpp_seed456 | — | — | — | — |
+| v3_proto_opsd_rr0_instrdialog_seed456 | 2026-11-01T10:19:53+08:00 | 2026-11-01T10:35:29+08:00 | 935.5 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_rr10_instrdialog_seed456 | 2026-11-01T10:35:29+08:00 | 2026-11-01T10:54:08+08:00 | 1119.0 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_rr30_instrdialog_seed456 | 2026-11-01T10:54:09+08:00 | 2026-11-01T11:16:26+08:00 | 1337.5 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_rr40_instrdialog_seed456 | 2026-11-01T11:16:27+08:00 | 2026-11-01T11:39:14+08:00 | 1367.2 | 0 MiB, 48509 MiB |
+| v3_proto_opsd_rr0_instrdialogpp_seed456 | 2026-11-01T11:39:14+08:00 | 2026-11-01T12:16:50+08:00 | 2255.5 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_rr10_instrdialogpp_seed456 | 2026-11-01T12:16:50+08:00 | 2026-11-01T13:03:04+08:00 | 2774.0 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_rr30_instrdialogpp_seed456 | 2026-11-01T13:03:05+08:00 | 2026-11-01T13:54:58+08:00 | 3113.0 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_rr40_instrdialogpp_seed456 | 2026-11-01T13:54:58+08:00 | 2026-11-01T14:48:40+08:00 | 3222.2 | 0 MiB, 48509 MiB |
 
 ### E3 v3 协议对照（direct OPSD / seg_opsd K=25）
 
 | run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| v3_opsd_direct_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3_opsd_direct_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3_seg_opsd_k25_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3_seg_opsd_k25_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3_opsd_direct_instrdialog_seed456 | 0.221 | 0.237 | 0.128 | 0.128 | 0.352 | 0.347 | 0.373 | 0.349 | 0.000 | 0.000 | 0.237 |
+| v3_opsd_direct_instrdialogpp_seed456 | 0.334 | 0.345 | 0.114 | 0.119 | 0.476 | 0.467 | 0.521 | 0.490 | 0.000 | 0.000 | 0.345 |
+| v3_seg_opsd_k25_instrdialog_seed456 | 0.316 | 0.337 | 0.133 | 0.117 | 0.439 | 0.430 | 0.441 | 0.442 | 0.000 | 0.000 | 0.337 |
+| v3_seg_opsd_k25_instrdialogpp_seed456 | 0.247 | 0.250 | 0.235 | 0.235 | 0.354 | 0.348 | 0.430 | 0.349 | 0.100 | 0.100 | 0.250 |
 
 | run | start | end | elapsed_sec | gpu_after |
 |---|---|---|---|---|
-| v3_opsd_direct_instrdialog_seed456 | — | — | — | — |
-| v3_opsd_direct_instrdialogpp_seed456 | — | — | — | — |
-| v3_seg_opsd_k25_instrdialog_seed456 | — | — | — | — |
-| v3_seg_opsd_k25_instrdialogpp_seed456 | — | — | — | — |
+| v3_opsd_direct_instrdialog_seed456 | 2026-11-01T14:48:41+08:00 | 2026-11-01T15:04:14+08:00 | 933.3 | 0 MiB, 48509 MiB |
+| v3_opsd_direct_instrdialogpp_seed456 | 2026-11-01T15:04:15+08:00 | 2026-11-01T15:44:30+08:00 | 2415.5 | 0 MiB, 48509 MiB |
+| v3_seg_opsd_k25_instrdialog_seed456 | 2026-11-01T15:44:30+08:00 | 2026-11-01T16:05:20+08:00 | 1249.8 | 0 MiB, 48509 MiB |
+| v3_seg_opsd_k25_instrdialogpp_seed456 | 2026-11-01T16:05:21+08:00 | 2026-11-01T16:54:22+08:00 | 2940.9 | 0 MiB, 48509 MiB |
 
 ### E9 buffer_k ∈ {5, 20, 50}
 
 | run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| v3h_proto_opsd_bufk5_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_bufk20_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_bufk50_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_bufk5_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_bufk20_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_bufk50_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_bufk5_instrdialog_seed456 | 0.400 | 0.400 | 0.056 | 0.061 | 0.500 | 0.497 | 0.511 | 0.487 | 0.000 | 0.000 | 0.400 |
+| v3h_proto_opsd_bufk20_instrdialog_seed456 | 0.342 | 0.358 | 0.100 | 0.083 | 0.452 | 0.447 | 0.473 | 0.439 | 0.000 | 0.000 | 0.358 |
+| v3h_proto_opsd_bufk50_instrdialog_seed456 | 0.358 | 0.374 | 0.100 | 0.089 | 0.469 | 0.464 | 0.487 | 0.462 | 0.000 | 0.000 | 0.374 |
+| v3h_proto_opsd_bufk5_instrdialogpp_seed456 | 0.418 | 0.421 | 0.081 | 0.081 | 0.541 | 0.534 | 0.583 | 0.530 | 0.000 | 0.000 | 0.421 |
+| v3h_proto_opsd_bufk20_instrdialogpp_seed456 | 0.424 | 0.424 | 0.089 | 0.092 | 0.537 | 0.529 | 0.581 | 0.524 | 0.000 | 0.000 | 0.424 |
+| v3h_proto_opsd_bufk50_instrdialogpp_seed456 | 0.411 | 0.413 | 0.111 | 0.111 | 0.533 | 0.525 | 0.579 | 0.521 | 0.100 | 0.100 | 0.413 |
 
 | run | start | end | elapsed_sec | gpu_after |
 |---|---|---|---|---|
-| v3h_proto_opsd_bufk5_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_bufk20_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_bufk50_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_bufk5_instrdialogpp_seed456 | — | — | — | — |
-| v3h_proto_opsd_bufk20_instrdialogpp_seed456 | — | — | — | — |
-| v3h_proto_opsd_bufk50_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_bufk5_instrdialog_seed456 | 2026-11-01T16:54:22+08:00 | 2026-11-01T17:14:28+08:00 | 1205.7 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_bufk20_instrdialog_seed456 | 2026-11-01T17:14:28+08:00 | 2026-11-01T17:34:10+08:00 | 1181.4 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_bufk50_instrdialog_seed456 | 2026-11-01T17:34:10+08:00 | 2026-11-01T17:54:52+08:00 | 1242.0 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_bufk5_instrdialogpp_seed456 | 2026-11-01T17:54:52+08:00 | 2026-11-01T18:43:42+08:00 | 2929.7 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_bufk20_instrdialogpp_seed456 | 2026-11-01T18:43:42+08:00 | 2026-11-01T19:32:53+08:00 | 2950.2 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_bufk50_instrdialogpp_seed456 | 2026-11-01T19:32:53+08:00 | 2026-11-01T20:21:44+08:00 | 2930.7 | 0 MiB, 48509 MiB |
 
 ### E10 InstrDialog 任务顺序置换
 
 | run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| v3h_proto_opsd_ordrev_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_ordshuf_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_ordrev_instrdialog_seed456 | 0.374 | 0.374 | 0.083 | 0.094 | 0.509 | 0.503 | 0.522 | 0.503 | 0.000 | 0.000 | 0.374 |
+| v3h_proto_opsd_ordshuf_instrdialog_seed456 | 0.300 | 0.305 | 0.150 | 0.150 | 0.422 | 0.417 | 0.457 | 0.409 | 0.600 | 0.600 | 0.305 |
 
 | run | start | end | elapsed_sec | gpu_after |
 |---|---|---|---|---|
-| v3h_proto_opsd_ordrev_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_ordshuf_instrdialog_seed456 | — | — | — | — |
+| v3h_proto_opsd_ordrev_instrdialog_seed456 | 2026-11-01T20:21:44+08:00 | 2026-11-01T20:39:59+08:00 | 1095.0 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_ordshuf_instrdialog_seed456 | 2026-11-01T20:40:00+08:00 | 2026-11-01T20:58:30+08:00 | 1110.6 | 0 MiB, 48509 MiB |
 
 ### E11 holdout 全相关 / 全退化 20%
 
 | run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| v3h_proto_opsd_allnb_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_allfg_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_allnb_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_allfg_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_allnb_instrdialog_seed456 | 0.374 | 0.389 | 0.078 | 0.061 | 0.481 | 0.476 | 0.493 | 0.469 | 0.000 | 0.000 | 0.389 |
+| v3h_proto_opsd_allfg_instrdialog_seed456 | 0.311 | 0.326 | 0.133 | 0.122 | 0.421 | 0.415 | 0.469 | 0.414 | 0.000 | 0.000 | 0.326 |
+| v3h_proto_opsd_allnb_instrdialogpp_seed456 | 0.374 | 0.374 | 0.146 | 0.149 | 0.498 | 0.491 | 0.551 | 0.486 | 0.000 | 0.000 | 0.374 |
+| v3h_proto_opsd_allfg_instrdialogpp_seed456 | 0.397 | 0.397 | 0.116 | 0.116 | 0.508 | 0.500 | 0.557 | 0.499 | 0.000 | 0.000 | 0.397 |
 
 | run | start | end | elapsed_sec | gpu_after |
 |---|---|---|---|---|
-| v3h_proto_opsd_allnb_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_allfg_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_allnb_instrdialogpp_seed456 | — | — | — | — |
-| v3h_proto_opsd_allfg_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_allnb_instrdialog_seed456 | 2026-11-01T20:58:31+08:00 | 2026-11-01T21:18:54+08:00 | 1223.6 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_allfg_instrdialog_seed456 | 2026-11-01T21:18:55+08:00 | 2026-11-01T21:39:36+08:00 | 1241.0 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_allnb_instrdialogpp_seed456 | 2026-11-01T21:39:36+08:00 | 2026-11-01T22:27:59+08:00 | 2902.6 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_allfg_instrdialogpp_seed456 | 2026-11-01T22:27:59+08:00 | 2026-11-01T23:15:52+08:00 | 2872.2 | 0 MiB, 48509 MiB |
 <!-- END PENDING_EXT -->

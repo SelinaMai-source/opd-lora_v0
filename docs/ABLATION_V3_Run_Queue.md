@@ -34,38 +34,38 @@ E2 → E4 λ → E4 off-policy → E6 → E3 → E9 → E10 → E11。`forgotten
 - `v3h_proto_opsd_offpol_instrdialogpp_seed456`: done
 
 ### E6 replay_ratio ∈ {0, 0.10, 0.30, 0.40}
-- `v3_proto_opsd_rr0_instrdialog_seed456`: pending
-- `v3h_proto_opsd_rr10_instrdialog_seed456`: pending
-- `v3h_proto_opsd_rr30_instrdialog_seed456`: pending
-- `v3h_proto_opsd_rr40_instrdialog_seed456`: pending
-- `v3_proto_opsd_rr0_instrdialogpp_seed456`: pending
-- `v3h_proto_opsd_rr10_instrdialogpp_seed456`: pending
-- `v3h_proto_opsd_rr30_instrdialogpp_seed456`: pending
-- `v3h_proto_opsd_rr40_instrdialogpp_seed456`: pending
+- `v3_proto_opsd_rr0_instrdialog_seed456`: done
+- `v3h_proto_opsd_rr10_instrdialog_seed456`: done
+- `v3h_proto_opsd_rr30_instrdialog_seed456`: done
+- `v3h_proto_opsd_rr40_instrdialog_seed456`: done
+- `v3_proto_opsd_rr0_instrdialogpp_seed456`: done
+- `v3h_proto_opsd_rr10_instrdialogpp_seed456`: done
+- `v3h_proto_opsd_rr30_instrdialogpp_seed456`: done
+- `v3h_proto_opsd_rr40_instrdialogpp_seed456`: done
 
 ### E3 v3 协议对照（direct OPSD / seg_opsd K=25）
-- `v3_opsd_direct_instrdialog_seed456`: pending
-- `v3_opsd_direct_instrdialogpp_seed456`: pending
-- `v3_seg_opsd_k25_instrdialog_seed456`: pending
-- `v3_seg_opsd_k25_instrdialogpp_seed456`: pending
+- `v3_opsd_direct_instrdialog_seed456`: done
+- `v3_opsd_direct_instrdialogpp_seed456`: done
+- `v3_seg_opsd_k25_instrdialog_seed456`: done
+- `v3_seg_opsd_k25_instrdialogpp_seed456`: done
 
 ### E9 buffer_k ∈ {5, 20, 50}
-- `v3h_proto_opsd_bufk5_instrdialog_seed456`: pending
-- `v3h_proto_opsd_bufk20_instrdialog_seed456`: pending
-- `v3h_proto_opsd_bufk50_instrdialog_seed456`: pending
-- `v3h_proto_opsd_bufk5_instrdialogpp_seed456`: pending
-- `v3h_proto_opsd_bufk20_instrdialogpp_seed456`: pending
-- `v3h_proto_opsd_bufk50_instrdialogpp_seed456`: pending
+- `v3h_proto_opsd_bufk5_instrdialog_seed456`: done
+- `v3h_proto_opsd_bufk20_instrdialog_seed456`: done
+- `v3h_proto_opsd_bufk50_instrdialog_seed456`: done
+- `v3h_proto_opsd_bufk5_instrdialogpp_seed456`: done
+- `v3h_proto_opsd_bufk20_instrdialogpp_seed456`: done
+- `v3h_proto_opsd_bufk50_instrdialogpp_seed456`: done
 
 ### E10 InstrDialog 任务顺序置换
-- `v3h_proto_opsd_ordrev_instrdialog_seed456`: pending
-- `v3h_proto_opsd_ordshuf_instrdialog_seed456`: pending
+- `v3h_proto_opsd_ordrev_instrdialog_seed456`: done
+- `v3h_proto_opsd_ordshuf_instrdialog_seed456`: done
 
 ### E11 holdout 全相关 / 全退化 20%
-- `v3h_proto_opsd_allnb_instrdialog_seed456`: pending
-- `v3h_proto_opsd_allfg_instrdialog_seed456`: pending
-- `v3h_proto_opsd_allnb_instrdialogpp_seed456`: pending
-- `v3h_proto_opsd_allfg_instrdialogpp_seed456`: pending
+- `v3h_proto_opsd_allnb_instrdialog_seed456`: done
+- `v3h_proto_opsd_allfg_instrdialog_seed456`: done
+- `v3h_proto_opsd_allnb_instrdialogpp_seed456`: done
+- `v3h_proto_opsd_allfg_instrdialogpp_seed456`: done
 
 ### Blocked
 
