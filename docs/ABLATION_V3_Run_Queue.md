@@ -30,8 +30,8 @@ E2 → E4 λ → E4 off-policy → E6 → E3 → E9 → E10 → E11。`forgotten
 - `v3h_proto_opsd_lam050_instrdialogpp_seed456`: done
 
 ### E4 off-policy gold tokens vs on-policy（λ=0.2 holdout）
-- `v3h_proto_opsd_offpol_instrdialog_seed456`: pending
-- `v3h_proto_opsd_offpol_instrdialogpp_seed456`: pending
+- `v3h_proto_opsd_offpol_instrdialog_seed456`: done
+- `v3h_proto_opsd_offpol_instrdialogpp_seed456`: done
 
 ### E6 replay_ratio ∈ {0, 0.10, 0.30, 0.40}
 - `v3_proto_opsd_rr0_instrdialog_seed456`: pending

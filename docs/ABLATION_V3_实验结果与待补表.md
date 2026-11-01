@@ -312,13 +312,13 @@ E3 SFT→OPSD：Blocked（CITB Sequential adapter 走非 multiref 流且快照�
 
 | run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| v3h_proto_opsd_offpol_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_offpol_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_offpol_instrdialog_seed456 | 0.289 | 0.300 | 0.133 | 0.122 | 0.373 | 0.367 | 0.411 | 0.362 | 0.000 | 0.000 | 0.300 |
+| v3h_proto_opsd_offpol_instrdialogpp_seed456 | 0.418 | 0.426 | 0.092 | 0.089 | 0.543 | 0.537 | 0.582 | 0.532 | 0.000 | 0.000 | 0.426 |
 
 | run | start | end | elapsed_sec | gpu_after |
 |---|---|---|---|---|
-| v3h_proto_opsd_offpol_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_offpol_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_offpol_instrdialog_seed456 | 2026-11-01T09:28:56+08:00 | 2026-11-01T09:43:03+08:00 | 846.4 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_offpol_instrdialogpp_seed456 | 2026-11-01T09:43:03+08:00 | 2026-11-01T10:19:53+08:00 | 2209.5 | 0 MiB, 48509 MiB |
 
 ### E6 replay_ratio ∈ {0, 0.10, 0.30, 0.40}
 
