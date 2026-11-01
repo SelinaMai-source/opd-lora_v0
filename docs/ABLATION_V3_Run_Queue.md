@@ -22,12 +22,12 @@ E2 → E4 λ → E4 off-policy → E6 → E3 → E9 → E10 → E11。`forgotten
 - `v3h_proto_opsd_n5f15_instrdialogpp_seed456`: done
 
 ### E4 λ ∈ {0.05, 0.10, 0.50}（PGDR+CE+OPSD holdout）
-- `v3h_proto_opsd_lam005_instrdialog_seed456`: interrupted (no resume; directory left untouched)
-- `v3h_proto_opsd_lam010_instrdialog_seed456`: pending
-- `v3h_proto_opsd_lam050_instrdialog_seed456`: pending
-- `v3h_proto_opsd_lam005_instrdialogpp_seed456`: pending
-- `v3h_proto_opsd_lam010_instrdialogpp_seed456`: pending
-- `v3h_proto_opsd_lam050_instrdialogpp_seed456`: pending
+- `v3h_proto_opsd_lam005_instrdialog_seed456`: done
+- `v3h_proto_opsd_lam010_instrdialog_seed456`: done
+- `v3h_proto_opsd_lam050_instrdialog_seed456`: done
+- `v3h_proto_opsd_lam005_instrdialogpp_seed456`: done
+- `v3h_proto_opsd_lam010_instrdialogpp_seed456`: done
+- `v3h_proto_opsd_lam050_instrdialogpp_seed456`: done
 
 ### E4 off-policy gold tokens vs on-policy（λ=0.2 holdout）
 - `v3h_proto_opsd_offpol_instrdialog_seed456`: pending
@@ -67,11 +67,10 @@ E2 → E4 λ → E4 off-policy → E6 → E3 → E9 → E10 → E11。`forgotten
 - `v3h_proto_opsd_allnb_instrdialogpp_seed456`: pending
 - `v3h_proto_opsd_allfg_instrdialogpp_seed456`: pending
 
-### Blocked / Interrupted
+### Blocked
 
 - E3 SFT→OPSD：无合法 init adapter（Sequential 快照为非 `*_multiref.json` 且无 `format_normalize`）。
 - 蒸馏温度扫描：不做。原目标 JSD 无单独 T，`rollout_temperature` 为 1.0。
-- `v3h_proto_opsd_lam005_instrdialog_seed456`：Interrupted。队列与 trainer 在段 0–1 后断开；常规 CL trainer 不能从段中途续跑（`save_segment_adapters: false`）。不覆盖该目录，不重开同名 run。
 
 ## 不做
 

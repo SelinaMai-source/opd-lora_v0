@@ -292,21 +292,21 @@ E3 SFT→OPSD：Blocked（CITB Sequential adapter 走非 multiref 流且快照�
 
 | run | Seen-Avg Acc | Seen-Avg Task-aware Acc | Forgetting | Task-Aware Forgetting | Token F1 | ROUGE-L | BLEU | LCS Overlap | Current-Seg Acc | Current-Seg Task-aware Acc | Task-aware Score Mean |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| v3h_proto_opsd_lam005_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_lam010_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_lam050_instrdialog_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_lam005_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_lam010_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
-| v3h_proto_opsd_lam050_instrdialogpp_seed456 | — | — | — | — | — | — | — | — | — | — | — |
+| v3h_proto_opsd_lam005_instrdialog_seed456 | 0.332 | 0.342 | 0.122 | 0.111 | 0.445 | 0.440 | 0.481 | 0.432 | 0.000 | 0.000 | 0.342 |
+| v3h_proto_opsd_lam010_instrdialog_seed456 | 0.311 | 0.347 | 0.133 | 0.117 | 0.422 | 0.417 | 0.465 | 0.419 | 0.000 | 0.000 | 0.347 |
+| v3h_proto_opsd_lam050_instrdialog_seed456 | 0.374 | 0.389 | 0.083 | 0.067 | 0.487 | 0.479 | 0.502 | 0.473 | 0.000 | 0.000 | 0.389 |
+| v3h_proto_opsd_lam005_instrdialogpp_seed456 | 0.413 | 0.411 | 0.105 | 0.111 | 0.535 | 0.529 | 0.573 | 0.523 | 0.000 | 0.000 | 0.411 |
+| v3h_proto_opsd_lam010_instrdialogpp_seed456 | 0.418 | 0.421 | 0.108 | 0.105 | 0.535 | 0.529 | 0.575 | 0.523 | 0.000 | 0.000 | 0.421 |
+| v3h_proto_opsd_lam050_instrdialogpp_seed456 | 0.395 | 0.395 | 0.105 | 0.108 | 0.513 | 0.505 | 0.552 | 0.503 | 0.000 | 0.000 | 0.395 |
 
 | run | start | end | elapsed_sec | gpu_after |
 |---|---|---|---|---|
-| v3h_proto_opsd_lam005_instrdialog_seed456 | 2026-11-01T06:01:49+08:00 | — | — | — |
-| v3h_proto_opsd_lam010_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_lam050_instrdialog_seed456 | — | — | — | — |
-| v3h_proto_opsd_lam005_instrdialogpp_seed456 | — | — | — | — |
-| v3h_proto_opsd_lam010_instrdialogpp_seed456 | — | — | — | — |
-| v3h_proto_opsd_lam050_instrdialogpp_seed456 | — | — | — | — |
+| v3h_proto_opsd_lam005_instrdialog_seed456 | 2026-11-01T06:01:49+08:00 | 2026-11-01T06:23:00+08:00 | 1270.2 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_lam010_instrdialog_seed456 | 2026-11-01T06:23:00+08:00 | 2026-11-01T06:43:39+08:00 | 1239.3 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_lam050_instrdialog_seed456 | 2026-11-01T06:43:40+08:00 | 2026-11-01T07:04:22+08:00 | 1242.1 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_lam005_instrdialogpp_seed456 | 2026-11-01T07:04:22+08:00 | 2026-11-01T07:52:40+08:00 | 2897.4 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_lam010_instrdialogpp_seed456 | 2026-11-01T07:52:40+08:00 | 2026-11-01T08:40:16+08:00 | 2855.9 | 0 MiB, 48509 MiB |
+| v3h_proto_opsd_lam050_instrdialogpp_seed456 | 2026-11-01T08:40:16+08:00 | 2026-11-01T09:28:56+08:00 | 2919.7 | 0 MiB, 48509 MiB |
 
 ### E4 off-policy gold tokens vs on-policy（λ=0.2 holdout）
 
