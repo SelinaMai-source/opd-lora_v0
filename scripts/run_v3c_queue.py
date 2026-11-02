@@ -354,6 +354,8 @@ def main() -> None:
             ),
             flush=True,
         )
+        if summary["status"] != "ok":
+            raise SystemExit(1)
     finally:
         fcntl.flock(lock_handle, fcntl.LOCK_UN)
 

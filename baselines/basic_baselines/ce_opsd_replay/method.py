@@ -955,12 +955,21 @@ class CeOpsdReplayMethod(CeOpsdMethod):
         for p in picks:
             row = per_seg.setdefault(
                 int(p.source_segment_id),
-                {"segment_id": int(p.source_segment_id), "n_replay": 0, "n_neighbor": 0, "n_forgotten": 0, "n_anti": 0, "n_uniform": 0},
+                {
+                    "segment_id": int(p.source_segment_id),
+                    "n_replay": 0,
+                    "n_neighbor": 0,
+                    "n_forgotten": 0,
+                    "n_anti": 0,
+                    "n_uniform": 0,
+                    "n_related": 0,
+                    "n_degraded": 0,
+                    "n_random": 0,
+                },
             )
             row["n_replay"] += 1
-            key = f"n_{p.pool}" if p.pool in {"neighbor", "forgotten", "anti", "uniform"} else "n_replay"
-            if key in row:
-                row[key] += 1
+            if p.pool in {"neighbor", "forgotten", "anti", "uniform", "related", "degraded", "random"}:
+                row[f"n_{p.pool}"] += 1
         n_replay = len(picks)
         return {
             "segment_id": int(segment.segment_id),

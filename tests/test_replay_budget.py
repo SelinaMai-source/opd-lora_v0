@@ -163,6 +163,8 @@ class BudgetMathTests(unittest.TestCase):
             )
             self.assertEqual(log["n_related"] + log["n_degraded"] + (log["n_replay_actual"] if strategy == "random" else 0), log["n_replay_actual"] if strategy == "random" else log["n_related"] + log["n_degraded"])
             self.assertEqual(log["shortfall"], 0)
+            per_sum = sum(int(row["n_replay"]) for row in log["per_segment"])
+            self.assertEqual(per_sum, log["n_replay_actual"])
         self.assertEqual(len(set(totals.values())), 1)
         self.assertEqual(totals["random"][0], 11)
         random_method_related = totals["random"]
