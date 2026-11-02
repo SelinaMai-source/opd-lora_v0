@@ -43,6 +43,11 @@ def fingerprint(cfg: Dict[str, Any]) -> Dict[str, Any]:
         "neighbor_ratio": float(replay.get("neighbor_ratio", 0.0)),
         "forgotten_ratio": float(replay.get("forgotten_ratio", 0.0)),
         "buffer_k": int(replay.get("buffer_k", replay.get("k", 10))),
+        "budget_policy": str(replay.get("budget_policy", "legacy")).strip().lower(),
+        "ratio_definition": str(replay.get("ratio_definition", "")).strip().lower(),
+        "target_fraction": float(
+            replay.get("target_fraction", replay.get("replay_ratio", 0.0))
+        ),
         "student_tokens": str(opsd.get("student_tokens", "on_policy")).strip().lower(),
         "segment_order": [int(x) for x in order],
         "init_adapter_path": str(model.get("init_adapter_path", "")).strip(),
