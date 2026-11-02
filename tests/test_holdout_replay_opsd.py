@@ -124,6 +124,26 @@ class HoldoutTests(unittest.TestCase):
         self.assertNotEqual(a, c)
         self.assertNotEqual(a, d)
 
+    def test_training_seed_789_and_42_keep_holdout_seed_456_split(self) -> None:
+        """holdout_seed stays 456. Training seed must not move the split."""
+        for sid in (0, 7, 18):
+            seg = _segment(sid)
+            _, _, expected = split_train_holdout(
+                seg.train, segment_id=sid, seed=456, holdout_n=5
+            )
+            for train_seed, strategy, lam in ((789, "proto", 0.2), (42, "uniform", 0.0)):
+                cfg = _cfg(MONITOR_TRAIN_HOLDOUT, strategy, seed=train_seed, lambda_opsd=lam)
+                cfg["replay"]["holdout_seed"] = 456
+                self.assertEqual(cfg["seed"], train_seed)
+                self.assertEqual(cfg["replay"]["holdout_seed"], 456)
+                self.assertNotEqual(cfg["seed"], cfg["replay"]["holdout_seed"])
+                method = CeOpsdReplayMethod(cfg)
+                self.assertEqual(method.holdout_seed, 456)
+                method._training_examples(segment=seg, model=_StubModel(), lora=_StubLora())
+                self.assertEqual(list(method._last_audit["holdout_indices"]), expected)
+                self.assertEqual(len(method._current_fit), 45)
+                self.assertEqual(len(method._current_holdout), 5)
+
     def test_holdout_never_enters_later_replay_and_eval_is_unread(self) -> None:
         method = CeOpsdReplayMethod(_cfg(MONITOR_TRAIN_HOLDOUT, "proto"))
         seg0 = _segment(0)
