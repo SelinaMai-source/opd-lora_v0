@@ -1,0 +1,468 @@
+# Completed v3c factorial. This file describes the 36 finished runs.
+# One training job still uses the matching configs/v3c_*.yaml.
+# Those yaml files keep the paths they were launched with.
+# data_root and results_root are ${DATA_ROOT} and ${RESULTS_ROOT}.
+# When a consumer does not expand them, read the same names from the environment.
+# scripts/run_v3c_queue.py still refuses a config that is missing
+# monitor: train_holdout or budget_policy: unified.
+name: v3c_corrected_factorial
+status: completed
+n_runs: 36
+holdout_seed: 456
+holdout_n: 5
+mixed_batch:
+  rho: 0.20
+  ratio_definition: mixed_batch
+  budget_policy: unified
+  monitor: train_holdout
+selectors:
+  R: random
+  U: compat_uniform
+  P: true_prototype
+objectives:
+  ce: 0.0
+  opsd: 0.2
+seeds: [456, 789, 42]
+streams:
+  instrdialog:
+    dirname: instrdialog
+    filename: citb_cl_dialogue_tasks_train50_eval10_multiref.json
+  instrdialogpp:
+    dirname: instrdialogpp
+    filename: citb_cl_38_random_tasks_train50_eval10_multiref.json
+paths:
+  data_root: ${DATA_ROOT}
+  results_root: ${RESULTS_ROOT}
+runs:
+  - id: v3c_R_ce_instrdialog_seed456
+    config: configs/v3c_R_ce_instrdialog_seed456.yaml
+    selector: random
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_ce_instrdialog_seed789
+    config: configs/v3c_R_ce_instrdialog_seed789.yaml
+    selector: random
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_ce_instrdialog_seed42
+    config: configs/v3c_R_ce_instrdialog_seed42.yaml
+    selector: random
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_ce_instrdialog_seed456
+    config: configs/v3c_U_ce_instrdialog_seed456.yaml
+    selector: compat_uniform
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_ce_instrdialog_seed789
+    config: configs/v3c_U_ce_instrdialog_seed789.yaml
+    selector: compat_uniform
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_ce_instrdialog_seed42
+    config: configs/v3c_U_ce_instrdialog_seed42.yaml
+    selector: compat_uniform
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_ce_instrdialog_seed456
+    config: configs/v3c_P_ce_instrdialog_seed456.yaml
+    selector: true_prototype
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_ce_instrdialog_seed789
+    config: configs/v3c_P_ce_instrdialog_seed789.yaml
+    selector: true_prototype
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_ce_instrdialog_seed42
+    config: configs/v3c_P_ce_instrdialog_seed42.yaml
+    selector: true_prototype
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialog
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_opsd_instrdialog_seed456
+    config: configs/v3c_R_opsd_instrdialog_seed456.yaml
+    selector: random
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_opsd_instrdialog_seed789
+    config: configs/v3c_R_opsd_instrdialog_seed789.yaml
+    selector: random
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_opsd_instrdialog_seed42
+    config: configs/v3c_R_opsd_instrdialog_seed42.yaml
+    selector: random
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_opsd_instrdialog_seed456
+    config: configs/v3c_U_opsd_instrdialog_seed456.yaml
+    selector: compat_uniform
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_opsd_instrdialog_seed789
+    config: configs/v3c_U_opsd_instrdialog_seed789.yaml
+    selector: compat_uniform
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_opsd_instrdialog_seed42
+    config: configs/v3c_U_opsd_instrdialog_seed42.yaml
+    selector: compat_uniform
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_opsd_instrdialog_seed456
+    config: configs/v3c_P_opsd_instrdialog_seed456.yaml
+    selector: true_prototype
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_opsd_instrdialog_seed789
+    config: configs/v3c_P_opsd_instrdialog_seed789.yaml
+    selector: true_prototype
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_opsd_instrdialog_seed42
+    config: configs/v3c_P_opsd_instrdialog_seed42.yaml
+    selector: true_prototype
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialog
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_ce_instrdialogpp_seed456
+    config: configs/v3c_R_ce_instrdialogpp_seed456.yaml
+    selector: random
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_ce_instrdialogpp_seed789
+    config: configs/v3c_R_ce_instrdialogpp_seed789.yaml
+    selector: random
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_ce_instrdialogpp_seed42
+    config: configs/v3c_R_ce_instrdialogpp_seed42.yaml
+    selector: random
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_ce_instrdialogpp_seed456
+    config: configs/v3c_U_ce_instrdialogpp_seed456.yaml
+    selector: compat_uniform
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_ce_instrdialogpp_seed789
+    config: configs/v3c_U_ce_instrdialogpp_seed789.yaml
+    selector: compat_uniform
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_ce_instrdialogpp_seed42
+    config: configs/v3c_U_ce_instrdialogpp_seed42.yaml
+    selector: compat_uniform
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_ce_instrdialogpp_seed456
+    config: configs/v3c_P_ce_instrdialogpp_seed456.yaml
+    selector: true_prototype
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_ce_instrdialogpp_seed789
+    config: configs/v3c_P_ce_instrdialogpp_seed789.yaml
+    selector: true_prototype
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_ce_instrdialogpp_seed42
+    config: configs/v3c_P_ce_instrdialogpp_seed42.yaml
+    selector: true_prototype
+    objective: ce
+    lambda_opsd: 0.0
+    stream: instrdialogpp
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_opsd_instrdialogpp_seed456
+    config: configs/v3c_R_opsd_instrdialogpp_seed456.yaml
+    selector: random
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_opsd_instrdialogpp_seed789
+    config: configs/v3c_R_opsd_instrdialogpp_seed789.yaml
+    selector: random
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_R_opsd_instrdialogpp_seed42
+    config: configs/v3c_R_opsd_instrdialogpp_seed42.yaml
+    selector: random
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_opsd_instrdialogpp_seed456
+    config: configs/v3c_U_opsd_instrdialogpp_seed456.yaml
+    selector: compat_uniform
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_opsd_instrdialogpp_seed789
+    config: configs/v3c_U_opsd_instrdialogpp_seed789.yaml
+    selector: compat_uniform
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_U_opsd_instrdialogpp_seed42
+    config: configs/v3c_U_opsd_instrdialogpp_seed42.yaml
+    selector: compat_uniform
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_opsd_instrdialogpp_seed456
+    config: configs/v3c_P_opsd_instrdialogpp_seed456.yaml
+    selector: true_prototype
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 456
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_opsd_instrdialogpp_seed789
+    config: configs/v3c_P_opsd_instrdialogpp_seed789.yaml
+    selector: true_prototype
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 789
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout
+  - id: v3c_P_opsd_instrdialogpp_seed42
+    config: configs/v3c_P_opsd_instrdialogpp_seed42.yaml
+    selector: true_prototype
+    objective: opsd
+    lambda_opsd: 0.2
+    stream: instrdialogpp
+    seed: 42
+    holdout_seed: 456
+    rho: 0.20
+    budget_policy: unified
+    ratio_definition: mixed_batch
+    monitor: train_holdout

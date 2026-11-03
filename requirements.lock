@@ -1,0 +1,13 @@
+# Linux + CUDA 12.8 record from the existing conda environment (Python 3.10).
+# torch was imported as 2.8.0+cu128. This is not a portable lockfile.
+# Do not use these lines to upgrade torch, transformers, or peft.
+torch==2.8.0+cu128
+transformers==4.48.3
+peft==0.20.0
+accelerate==1.14.0
+PyYAML==6.0.3
+numpy==2.2.6
+safetensors==0.8.0
+huggingface_hub==0.36.2
+tokenizers==0.21.4
+tqdm==4.70.0
