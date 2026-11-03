@@ -151,3 +151,9 @@ Task-aware 与 strict 不是同一个判定：短标签、yes/no、数字和选�
 ## 暂存仓库后续（不改源码树结论）
 
 上面的 P0 仍描述 `/root/autodl-tmp/rp_lora_v0`：那棵树没有改，旧 `v3_*` 数字仍是 `eval_split_monitor`。本仓库 `methods/pgdr.py` 同时保留该选择器，并增加 `train_holdout`。`v3h_*` seed 456 的 8 个全流程 run 用训练集留出 5/50，`on_eval_end` 不把官方 eval 遗忘写入选择器。这 8 个 run 以及旧协议补跑的 12 个 seed 789/42 run（`v3_rand_ce`、`v3_proto_ce`、`v3_rand_opsd` × 两个数据集）的 `final_metrics.json` 在 `/root/autodl-tmp/rp_lora_v3_runs/runs/`。已有的 `v3_proto_opsd` seed 456/789/42 没有重跑，清单里的数字仍指向源码树产物。冒烟 `v3h_proto_opsd_instrdialog_seed456_smoke2seg` 只有 2 段，不与全流程混比。
+
+## v3c 修正后的边界
+
+上面的 AUD-P0-001 和 AUD-P1-001 仍然描述旧的 `eval_split_monitor` 与 legacy proto。它们的数字不改写，也不并进 v3c。
+
+v3c 另开了三条选择器，配额在 `core/replay_budget.py`。45 条 current 时 R、U、P 的目标都是 11，不是 9 对 8。P 的 Related 按显式 L2 余弦从高到低填槽。U 仍是格式兼容后的均匀抽样，不能叫做余弦原型。退化槽只读 train-holdout，`holdout_seed` 为 456。36 个 `v3c_*` run 的 11 个指标只从各自的 `final.eval` 读，写在 `docs/ACL_v3_Corrected_Method_Results.md`。P 不如 U 或 R 的差按负数保留。这些均值不含 Protocol A，也不含 v3h。
