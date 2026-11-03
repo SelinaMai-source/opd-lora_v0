@@ -1,8 +1,23 @@
 """The public wrappers must be the same classes the trainer already builds."""
 from __future__ import annotations
 
+import importlib
 import unittest
 
+import baselines.agem as agem
+import baselines.citb_replay as citb_replay
+import baselines.clora as clora
+import baselines.ewc as ewc
+import baselines.gainlora as gainlora
+import baselines.gorp as gorp
+import baselines.inscl as inscl
+import baselines.kpig as kpig
+import baselines.l2 as l2
+import baselines.saber as saber
+import baselines.sapt as sapt
+import baselines.sdft as sdft
+import baselines.sequential as sequential
+import baselines.treelora as treelora
 import baselines.wrappers as wrappers
 from baselines.basic_baselines.sequential_lora.method import SequentialLoRAMethod
 from baselines.citb.agem.method import CITBAGEMMethod
@@ -41,12 +56,33 @@ REAL = {
     "saber": SABERMethod,
 }
 
+TOP_LEVEL = {
+    "sequential_lora": sequential,
+    "citb_replay": citb_replay,
+    "citb_ewc": ewc,
+    "citb_agem": agem,
+    "citb_l2": l2,
+    "inscl": inscl,
+    "kpig": kpig,
+    "clora": clora,
+    "gorp": gorp,
+    "sdft": sdft,
+    "gainlora": gainlora,
+    "treelora": treelora,
+    "sapt": sapt,
+    "saber": saber,
+}
+
 
 class PublicWrapperTests(unittest.TestCase):
     def test_wrappers_are_the_existing_classes(self) -> None:
         self.assertEqual(set(wrappers.REGISTRY), set(REAL))
         for name, cls in REAL.items():
             self.assertIs(wrappers.REGISTRY[name], cls)
+            module = TOP_LEVEL[name]
+            self.assertIs(getattr(module, cls.__name__), cls)
+            self.assertIs(module.build({}).__class__, cls)
+            self.assertIs(importlib.import_module(cls.__module__).__dict__[cls.__name__], cls)
 
     def test_metadata_does_not_require_a_private_disk(self) -> None:
         for meta in (id_meta(), pp_meta()):
