@@ -8,7 +8,7 @@
 
 ```bash
 pip install -e . --no-deps
-python -m unittest tests.test_replay_budget tests.test_prototype_retrieval tests.test_public_wrappers
+python -m unittest tests.test_replay_budget tests.test_prototype_retrieval tests.test_public_wrappers tests.test_benchmark_isolation tests.test_corrected_factorial
 python scripts/smoke_v3c_cpu.py
 ```
 
