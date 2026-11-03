@@ -1,8 +1,4 @@
-"""Existing SDFT class."""
-from baselines.sdft.method import SDFTMethod
+"""Kept import path. The public module is ``baselines.sdft``."""
+from baselines.sdft import BASELINE_NAME, SDFTMethod, build
 
-BASELINE_NAME = "sdft"
-
-
-def build(cfg):
-    return SDFTMethod(cfg)
+__all__ = ["BASELINE_NAME", "SDFTMethod", "build"]

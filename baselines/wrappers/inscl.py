@@ -1,8 +1,4 @@
-"""Existing InsCL class."""
-from baselines.inscl.method import InsCLMethod
+"""Kept import path. The public module is ``baselines.inscl``."""
+from baselines.inscl import BASELINE_NAME, InsCLMethod, build
 
-BASELINE_NAME = "inscl"
-
-
-def build(cfg):
-    return InsCLMethod(cfg)
+__all__ = ["BASELINE_NAME", "InsCLMethod", "build"]

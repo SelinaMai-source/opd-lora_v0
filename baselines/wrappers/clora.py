@@ -1,8 +1,4 @@
-"""Existing CLoRA class."""
-from baselines.clora.method import CLoRAMethod
+"""Kept import path. The public module is ``baselines.clora``."""
+from baselines.clora import BASELINE_NAME, CLoRAMethod, build
 
-BASELINE_NAME = "clora"
-
-
-def build(cfg):
-    return CLoRAMethod(cfg)
+__all__ = ["BASELINE_NAME", "CLoRAMethod", "build"]

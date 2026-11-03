@@ -1,8 +1,4 @@
-"""Existing SABER class."""
-from baselines.saber.method import SABERMethod
+"""Kept import path. The public module is ``baselines.saber``."""
+from baselines.saber import BASELINE_NAME, SABERMethod, build
 
-BASELINE_NAME = "saber"
-
-
-def build(cfg):
-    return SABERMethod(cfg)
+__all__ = ["BASELINE_NAME", "SABERMethod", "build"]

@@ -1,8 +1,4 @@
-"""Existing CITB EWC class."""
-from baselines.citb.ewc.method import CITBEWCMethod
+"""Kept import path. The public module is ``baselines.ewc``."""
+from baselines.ewc import BASELINE_NAME, CITBEWCMethod, build
 
-BASELINE_NAME = "citb_ewc"
-
-
-def build(cfg):
-    return CITBEWCMethod(cfg)
+__all__ = ["BASELINE_NAME", "CITBEWCMethod", "build"]

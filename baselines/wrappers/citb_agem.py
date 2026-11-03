@@ -1,8 +1,4 @@
-"""Existing CITB A-GEM class."""
-from baselines.citb.agem.method import CITBAGEMMethod
+"""Kept import path. The public module is ``baselines.agem``."""
+from baselines.agem import BASELINE_NAME, CITBAGEMMethod, build
 
-BASELINE_NAME = "citb_agem"
-
-
-def build(cfg):
-    return CITBAGEMMethod(cfg)
+__all__ = ["BASELINE_NAME", "CITBAGEMMethod", "build"]

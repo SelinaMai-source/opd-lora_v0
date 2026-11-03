@@ -1,8 +1,4 @@
-"""Existing KPIG class."""
-from baselines.kpig.method import KPIGMethod
+"""Kept import path. The public module is ``baselines.kpig``."""
+from baselines.kpig import BASELINE_NAME, KPIGMethod, build
 
-BASELINE_NAME = "kpig"
-
-
-def build(cfg):
-    return KPIGMethod(cfg)
+__all__ = ["BASELINE_NAME", "KPIGMethod", "build"]

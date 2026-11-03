@@ -1,8 +1,4 @@
-"""Existing sequential LoRA class. No second implementation."""
-from baselines.basic_baselines.sequential_lora.method import SequentialLoRAMethod
+"""Kept import path. The public module is ``baselines.sequential``."""
+from baselines.sequential import BASELINE_NAME, SequentialLoRAMethod, build
 
-BASELINE_NAME = "sequential_lora"
-
-
-def build(cfg):
-    return SequentialLoRAMethod(cfg)
+__all__ = ["BASELINE_NAME", "SequentialLoRAMethod", "build"]

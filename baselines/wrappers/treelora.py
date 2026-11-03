@@ -1,8 +1,4 @@
-"""Existing TreeLoRA class."""
-from baselines.treelora.method import TreeLoRAMethod
+"""Kept import path. The public module is ``baselines.treelora``."""
+from baselines.treelora import BASELINE_NAME, TreeLoRAMethod, build
 
-BASELINE_NAME = "treelora"
-
-
-def build(cfg):
-    return TreeLoRAMethod(cfg)
+__all__ = ["BASELINE_NAME", "TreeLoRAMethod", "build"]

@@ -1,8 +1,4 @@
-"""Existing GainLoRA class."""
-from baselines.gainlora.method import GainLoRAMethod
+"""Kept import path. The public module is ``baselines.gainlora``."""
+from baselines.gainlora import BASELINE_NAME, GainLoRAMethod, build
 
-BASELINE_NAME = "gainlora"
-
-
-def build(cfg):
-    return GainLoRAMethod(cfg)
+__all__ = ["BASELINE_NAME", "GainLoRAMethod", "build"]

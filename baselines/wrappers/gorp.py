@@ -1,8 +1,4 @@
-"""Existing GORP class."""
-from baselines.gorp.method import GORPMethod
+"""Kept import path. The public module is ``baselines.gorp``."""
+from baselines.gorp import BASELINE_NAME, GORPMethod, build
 
-BASELINE_NAME = "gorp"
-
-
-def build(cfg):
-    return GORPMethod(cfg)
+__all__ = ["BASELINE_NAME", "GORPMethod", "build"]

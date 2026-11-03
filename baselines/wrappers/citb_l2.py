@@ -1,8 +1,4 @@
-"""Existing CITB L2-anchor class."""
-from baselines.citb.l2.method import CITBL2Method
+"""Kept import path. The public module is ``baselines.l2``."""
+from baselines.l2 import BASELINE_NAME, CITBL2Method, build
 
-BASELINE_NAME = "citb_l2"
-
-
-def build(cfg):
-    return CITBL2Method(cfg)
+__all__ = ["BASELINE_NAME", "CITBL2Method", "build"]

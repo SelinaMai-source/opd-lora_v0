@@ -1,8 +1,4 @@
-"""Existing SAPT class."""
-from baselines.sapt.method import SAPTMethod
+"""Kept import path. The public module is ``baselines.sapt``."""
+from baselines.sapt import BASELINE_NAME, SAPTMethod, build
 
-BASELINE_NAME = "sapt"
-
-
-def build(cfg):
-    return SAPTMethod(cfg)
+__all__ = ["BASELINE_NAME", "SAPTMethod", "build"]

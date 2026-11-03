@@ -1,8 +1,7 @@
 """Public names for classes that already train. Nothing here is a new algorithm.
 
-Top-level ``baselines/<name>.py`` would shadow the existing packages
-(``baselines/inscl``, ``baselines/citb``, and the other method directories),
-so the wrappers live in this package.
+The modules live next to the implementation packages. A same-named module sets
+``__path__`` so ``baselines.<name>.method`` still imports the existing trainer.
 """
 from baselines.wrappers.citb_agem import CITBAGEMMethod
 from baselines.wrappers.citb_ewc import CITBEWCMethod
