@@ -77,6 +77,17 @@ def main() -> None:
         seen.add(uniform._last_replay_log["related_source_segment_ids"][0])
     if seen == {10}:
         raise SystemExit("compat_uniform matched true_prototype on every draw")
+    from baselines.wrappers import REGISTRY
+    from benchmarks.instrdialog import get_metadata as id_meta
+    from benchmarks.instrdialogpp import get_metadata as pp_meta
+    from methods.selectors import budget_for
+
+    if len(REGISTRY) != 14:
+        raise SystemExit(f"expected 14 real wrappers, got {len(REGISTRY)}")
+    if budget_for(45).n_replay_target != 11:
+        raise SystemExit("public allocator drifted")
+    if "/root/autodl-tmp" in str(id_meta()) or "/root/autodl-tmp" in str(pp_meta()):
+        raise SystemExit("benchmark metadata requires a private disk path")
     print("SMOKE_BUDGET_OK", flush=True)
 
 

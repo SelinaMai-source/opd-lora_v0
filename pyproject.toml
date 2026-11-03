@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opd-lora"
+version = "3.0.0"
+description = "Matched-budget PGDR and OPSD continual instruction tuning"
+readme = "README.md"
+requires-python = ">=3.10"
+# The training stack already provides torch, transformers, and peft.
+# This file does not upgrade them.
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*", "methods*", "baselines*", "benchmarks*"]
+namespaces = true
