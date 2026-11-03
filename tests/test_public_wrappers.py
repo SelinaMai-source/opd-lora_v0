@@ -1,6 +1,8 @@
 """The public wrappers must be the same classes the trainer already builds."""
 from __future__ import annotations
 
+import unittest
+
 import baselines.wrappers as wrappers
 from baselines.basic_baselines.sequential_lora.method import SequentialLoRAMethod
 from baselines.citb.agem.method import CITBAGEMMethod
@@ -40,23 +42,27 @@ REAL = {
 }
 
 
-def test_wrappers_are_the_existing_classes() -> None:
-    assert set(wrappers.REGISTRY) == set(REAL)
-    for name, cls in REAL.items():
-        assert wrappers.REGISTRY[name] is cls
+class PublicWrapperTests(unittest.TestCase):
+    def test_wrappers_are_the_existing_classes(self) -> None:
+        self.assertEqual(set(wrappers.REGISTRY), set(REAL))
+        for name, cls in REAL.items():
+            self.assertIs(wrappers.REGISTRY[name], cls)
+
+    def test_metadata_does_not_require_a_private_disk(self) -> None:
+        for meta in (id_meta(), pp_meta()):
+            self.assertNotIn("/root/autodl-tmp", str(meta))
+            self.assertTrue(meta["filename"].endswith("_multiref.json"))
+
+    def test_public_budget_helpers_keep_the_two_definitions(self) -> None:
+        old = legacy_counts(45, strategy="uniform")
+        proto = legacy_counts(45, strategy="proto")
+        new = budget_for(45, 0.20)
+        self.assertEqual(old["n_replay"], 9)
+        self.assertEqual(proto["n_replay"], 8)
+        self.assertEqual(new.n_replay_target, 11)
+        self.assertEqual(new.n_related, 6)
+        self.assertEqual(new.n_degraded, 5)
 
 
-def test_metadata_does_not_require_a_private_disk() -> None:
-    for meta in (id_meta(), pp_meta()):
-        assert "/root/autodl-tmp" not in str(meta)
-        assert meta["filename"].endswith("_multiref.json")
-
-
-def test_public_budget_helpers_keep_the_two_definitions() -> None:
-    old = legacy_counts(45, strategy="uniform")
-    proto = legacy_counts(45, strategy="proto")
-    new = budget_for(45, 0.20)
-    assert old["n_replay"] == 9
-    assert proto["n_replay"] == 8
-    assert new.n_replay_target == 11
-    assert new.n_related == 6 and new.n_degraded == 5
+if __name__ == "__main__":
+    unittest.main()
